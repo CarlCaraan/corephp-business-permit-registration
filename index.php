@@ -12,7 +12,7 @@
 
 	<!-- Navigation -->
 	<header>
-	<?php $page = 'home';include 'includes/navbar_landingpage.php'; ?>
+		<?php $page = 'home';include 'includes/navbar_landingpage.php'; ?>
 	</header>
 
 
