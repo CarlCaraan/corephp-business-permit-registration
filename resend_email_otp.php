@@ -1,0 +1,128 @@
+<?php
+$connect = new PDO("mysql:host=localhost;dbname=business", "root", "");
+
+$message = '';
+
+
+if(isset($_SESSION["user_id"]))
+{
+	header("location:userhome.php");
+}
+
+if(isset($_POST["resend"]))
+{
+	if(empty($_POST["user_email"]))
+	{
+		$message = '<div class="alert alert-danger">Email Address is required</div>';
+	}
+	else
+	{
+		$data = array(
+			':user_email'	=>	trim($_POST["user_email"])
+		);
+
+		$query = "
+		SELECT * FROM register_user
+		WHERE user_email = :user_email
+		";
+
+		$statement = $connect->prepare($query);
+
+		$statement->execute($data);
+
+		if($statement->rowCount() > 0)
+		{
+			$result = $statement->fetchAll();
+			foreach($result as $row)
+			{
+				if($row["user_email_status"] == 'verified')
+				{
+					$message = '<div class="alert alert-info">Email Address already verified, you can login into system</div>';
+				}
+				else
+				{
+					require 'includes/classes/class.phpmailer.php';
+					$mail = new PHPMailer;
+					$mail->IsSMTP();
+					$mail->Host = 'smtp.gmail.com';
+					$mail->Port = '587';
+					$mail->SMTPAuth = true;
+					$mail->Username = 'bannedefused3@gmail.com';
+					$mail->Password = '0639854227101msdcfredsw';
+					$mail->SMTPSecure = 'tls';
+					$mail->From = 'bannedefused3@gmail.com';
+					$mail->FromName = 'banne';
+					$mail->AddAddress($row["user_email"]);
+					$mail->WordWrap = 50;
+					$mail->IsHTML(true);
+					$mail->Subject = 'Verification code for Verify Your Email Address';
+					$message_body = '
+					<p>For verify your email address, enter this verification code when prompted: <b>'.$row["user_otp"].'</b>.</p>
+					<p>Sincerely,</p>
+					';
+					$mail->Body = $message_body;
+
+					if($mail->Send())
+					{
+						echo '<script>alert("Please Check Your Email for Verification Code")</script>';
+						echo '<script>window.location.replace("email_verify.php?code='.$row["user_activation_code"].'");</script>';
+					}
+					else
+					{
+
+					}
+				}
+			}
+		}
+		else
+		{
+			$message = '<div class="alert alert-danger">Email Address not found in our record</div>';
+		}
+	}
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resend Email Verification</title>
+	<?php include 'includes/head.php'; ?>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <?php $page = 'register';include 'includes/navbar_landingpage.php'; ?>
+    </header>
+
+	<!-- Start Resend Email OTP Section -->
+	<div class="container p-5">
+		<div class="card card-default mt-5">
+			<div class="card-header center">
+				<h3>Resend Email Verification</h3>
+				<p>Make sure you check your mail in your email</p>
+			</div>
+
+			<div class="card-body">
+				<?php echo $message; ?>
+				<form method="post">
+					<div class="form-group">
+						<strong><label for="user_email">Enter Your Email</label></strong>
+						<input type="email" name="user_email" class="form-control" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input type="submit" name="resend" class="btn btn-info btn-lg" value="Submit">
+					</div>
+				</form>
+			</div> <!-- End Card-Body -->
+		</div> <!-- End Card -->
+
+	</div> <!-- End Container -->
+	<!-- End Resend Email OTP Section -->
+
+
+<?php include 'includes/scripts.php'; ?>
+
+</body>
+</html>
