@@ -36,9 +36,15 @@ include("includes/classes/User.php");
 			</a>
 
 			<!-- Dashboard -->
-		    <p class="font-weight-bold text-uppercase px-3 mt-5">Dashboard</p>
+		    <p class="font-weight-bold text-uppercase px-3 mt-5">Admin Panel</p>
 
 		    <ul class="nav flex-column mb-0">
+				<li class="nav-item">
+		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_dashboard'){echo 'background-color: #ACACAC;';}?>">
+		                <i class="fas fa-tachometer-alt mr-3 text-success"></i>Dashboard
+		            </a>
+		        </li>			
+
 		        <li class="nav-item">
 		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_users'){echo 'background-color: #ACACAC;';}?>">
 		                <i class="fas fa-users mr-3 text-success"></i>Users

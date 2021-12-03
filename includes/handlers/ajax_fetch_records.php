@@ -67,7 +67,7 @@ $output = '
 		<th>File Name</th>
 		<th>Size</th>
 		<th>Date Added</th>
-		<th>Status</th>
+		<th class="center">Status</th>
 		<th class="center">Edit</th>
 		<th class="center">Download</th>
 		<th class="center">Delete</th>
@@ -76,6 +76,11 @@ $output = '
 if($total_data > 0)
 {
     foreach($result as $row) {
+        $pending = "warning";
+
+        if($row["status"] == "approved") {
+            $pending = "success";
+        }
         $output .= '
         <tr>
             <td>'.$row["id"].'</td>
@@ -83,7 +88,9 @@ if($total_data > 0)
             <td>'.$row["file_name"].'</td>
             <td>'.number_format($row["file_size"]/1024/1024,2) . "MB" . '</td>
             <td>'.$row["date_added"].'</td>
-            <td>'.$row["status"].'</td>
+            <td class="center">
+                <button class="btn btn-' . $pending . ' btn-sm text-light edit_data" name="edit" id="' . $row["id"] . '" >'.$row["status"].'</button>
+            </td>
             <td class="center">
                 <button name="edit" id="' . $row["id"] . '" class="btn btn-info edit_data"><i class="fas fa-edit"></i></button>
             </td>
