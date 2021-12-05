@@ -22,13 +22,6 @@ include("includes/classes/User.php");
 		<?php include("delete_pdf.php"); ?>
 		</header>
 
-		<a title="Go to your account settings" href="settings_user.php" id="username_container">
-			<?php
-				$fullname_obj = new User($con, $userLoggedIn);
-				echo $fullname_obj->getFirstAndLastName();
-			?>
-		</a>
-
 		<?php
 		$check_data_query = mysqli_query($con, "SELECT * FROM posts WHERE added_by='$userLoggedIn'");
     	$data_query = mysqli_fetch_array($check_data_query);
@@ -41,7 +34,6 @@ include("includes/classes/User.php");
 		}
 		?>
 
-
 		<div class="container pt-5">
 			<div class="card card-default mt-5">
 				<div class="card-header">
@@ -51,10 +43,10 @@ include("includes/classes/User.php");
 
 				<div class="card-body">
             		<!-- Submit File -->
-					<div class="jumbotron py-4">
+					<div class="jumbotron center py-4">
 		                <form class="" action="submit.php" method="POST" enctype="multipart/form-data">
-		                    <input class="form-control-lg" type="file" name="file" value="">
-		                    <input class="btn btn-lg btn-success" type="submit" name="upload" value="Upload File" <?php echo $disabled_button; ?>>
+		                    <input class="form-control" type="file" name="file" value="">
+		                    <input class="btn btn-lg btn-success mt-3" type="submit" name="upload" value="Upload File" <?php echo $disabled_button; ?>>
 		                    <?php echo $upload_message; ?>
 		                </form>
 					</div>
@@ -91,7 +83,7 @@ include("includes/classes/User.php");
 			                    </tr>
 			                </tbody>
 			            </table>
-					</div> <!-- End Table -->
+					</div> <!-- End Table Responsive -->
 				</div> <!-- End Card-Body -->
 			</div> <!-- End Card -->
 
@@ -128,24 +120,25 @@ include("includes/classes/User.php");
 	<!-- End Home Section -->
 
 
-<!-- Start Internet Notification Popup Message -->
-<div class="connections">
-	<div class="connection offline">
-		<i class="material-icons wifi-off">wifi_off</i>
-		<p>you are currently offline</p>
-		<a href="#" class="refreshBtn">Refresh</a>
-		<i class="material-icons close">close</i>
+	<!-- Start Internet Notification Popup Message -->
+	<div class="connections">
+		<div class="connection offline">
+			<i class="material-icons wifi-off">wifi_off</i>
+			<p>you are currently offline</p>
+			<a href="#" class="refreshBtn">Refresh</a>
+			<i class="material-icons close">close</i>
+		</div>
+		<div class="connection online">
+			<i class="material-icons wifi">wifi</i>
+			<p>your Internet connection was restored</p>
+			<i class="material-icons close">close</i>
+		</div>
 	</div>
-	<div class="connection online">
-		<i class="material-icons wifi">wifi</i>
-		<p>your Internet connection was restored</p>
-		<i class="material-icons close">close</i>
-	</div>
-</div>
-<!-- End Internet Notification Popup Message -->
+	<!-- End Internet Notification Popup Message -->
 
 
-<?php include 'includes/scripts.php'; ?>
+	<?php include 'includes/scripts.php'; ?>
+	<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
 
 </body>
 

@@ -4,15 +4,16 @@ require("gconfig.php");
 include("includes/classes/User.php");
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<?php include 'includes/head.php'; ?>
     <?php require 'includes/form_handlers/pdo_handler.php'; ?>
-	<title>Admin Panel</title>
+	<title>Users | Admin</title>
 </head>
 
-<body id="adminhome_body">
+<body>
 
 	<!-- Start Admin Section -->
 	<div class="home">
@@ -21,40 +22,32 @@ include("includes/classes/User.php");
 		<header>
 		<?php
 		$page = 'admin';
-		$side = 'dashboard_users';
+		$side = 'admin_users';
 		include 'includes/navbar_admin.php';
 		?>
 		</header>
 
-
 		<!-- Start Vertical navbar -->
 		<div class="vertical-nav" id="sidebar">
-
-			<a title="Go to your account settings" href="settings_admin.php" id="username_container">
-				<?php
-					$fullname_obj = new User($con, $userLoggedIn);
-					echo $fullname_obj->getFirstAndLastName();
-				?>
-			</a>
 
 			<!-- Dashboard -->
 		    <p class="font-weight-bold text-uppercase px-3 mt-5">Admin Panel</p>
 
 		    <ul class="nav flex-column mb-0">
 		        <li class="nav-item">
-		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_dashboard'){echo 'background-color: #ACACAC;';}?>">
+		            <a href="admindashboard.php" class="nav-link" id="admin_navlink" style="<?php if($side=='admin_dashboard'){echo 'background-color: #E9ECEF;';}?>">
 		                <i class="fas fa-tachometer-alt mr-3 text-success"></i>Dashboard
 		            </a>
 		        </li>
 
 		        <li class="nav-item">
-		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_users'){echo 'background-color: #ACACAC;';}?>">
+		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='admin_users'){echo 'background-color: #E9ECEF;';}?>">
 		                <i class="fas fa-users mr-3 text-success"></i>Users
 		            </a>
 		        </li>
 
 		        <li class="nav-item">
-		            <a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_records'){echo 'background-color: #ACACAC;';}?>">
+		            <a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if($side=='admin_records'){echo 'background-color: #E9ECEF;';}?>">
 		                <i class="fas fa-book-open mr-3 text-success"></i>Records
 		            </a>
 		        </li>
@@ -62,7 +55,6 @@ include("includes/classes/User.php");
 
 		</div>
 		<!-- End Vertical navbar -->
-
 
 		<!-- Start Page Content holder -->
 		<div class="page-content" id="admin_content">
@@ -88,11 +80,8 @@ include("includes/classes/User.php");
 		</div>
 		<!-- End Page Content holder -->
 
-
-
 	</div>
 	<!-- End Admin Section -->
-
 
 <!-- Start Internet Notification Popup Message -->
 <div class="connections">
@@ -109,7 +98,6 @@ include("includes/classes/User.php");
 	</div>
 </div>
 <!-- End Internet Notification Popup Message -->
-
 
 <!-- Javascript -->
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>

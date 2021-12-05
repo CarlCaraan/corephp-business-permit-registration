@@ -3,10 +3,11 @@ require("config/config.php");
 include("includes/classes/User.php");
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
 	<?php include 'includes/head.php'; ?>
-	<title>Admin Panel</title>
+	<title>Records | Admin</title>
 </head>
 
 <body>
@@ -18,41 +19,32 @@ include("includes/classes/User.php");
 		<header>
 		<?php
 		$page = 'admin';
-		$side = 'dashboard_records';
+		$side = 'admin_records';
 		include 'includes/navbar_admin.php';
 		?>
 		</header>
 
-
-
 		<!-- Start Vertical navbar -->
 		<div class="vertical-nav" id="sidebar">
-
-			<a title="Go to your account settings" href="settings_admin.php" id="username_container">
-				<?php
-					$fullname_obj = new User($con, $userLoggedIn);
-					echo $fullname_obj->getFirstAndLastName();
-				?>
-			</a>
 
 			<!-- Dashboard -->
 		    <p class="font-weight-bold text-uppercase px-3 mt-5">Admin Panel</p>
 
 		    <ul class="nav flex-column mb-0">
 				<li class="nav-item">
-		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_dashboard'){echo 'background-color: #ACACAC;';}?>">
+		            <a href="admindashboard.php" class="nav-link" id="admin_navlink" style="<?php if($side=='admin_dashboard'){echo 'background-color: #E9ECEF;';}?>">
 		                <i class="fas fa-tachometer-alt mr-3 text-success"></i>Dashboard
 		            </a>
 		        </li>			
 
 		        <li class="nav-item">
-		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_users'){echo 'background-color: #ACACAC;';}?>">
+		            <a href="adminhome.php" class="nav-link" id="admin_navlink" style="<?php if($side=='admin_users'){echo 'background-color: #E9ECEF;';}?>">
 		                <i class="fas fa-users mr-3 text-success"></i>Users
 		            </a>
 		        </li>
 
 		        <li class="nav-item">
-		            <a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if($side=='dashboard_records'){echo 'background-color: #ACACAC;';}?>">
+		            <a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if($side=='admin_records'){echo 'background-color: #E9ECEF;';}?>">
 		                <i class="fas fa-book-open mr-3 text-success"></i>Records
 		            </a>
 		        </li>
@@ -108,9 +100,6 @@ include("includes/classes/User.php");
 </div>
 <!-- End Internet Notification Popup Message -->
 
-
-</body>
-
 <!-- Javascript -->
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
 <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
@@ -118,6 +107,7 @@ include("includes/classes/User.php");
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><!-- Modern Date Picker -->
 <script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
 
+</body>
 </html>
 
 <!-- Start Modal Section -->

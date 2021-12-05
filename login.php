@@ -1,4 +1,5 @@
 <?php
+require("config/config.php");
 $connect = new PDO("mysql:host=localhost;dbname=business", "root", "");
 
 if (isset($_SESSION["user_id"])) {
@@ -14,7 +15,7 @@ $login_button = '';
 <html>
 
 <head>
-    <title>Login | Business Permit Registration</title>
+    <title>Login | Business Registration</title>
     <?php include 'includes/head.php'; ?>
 </head>
 
@@ -37,7 +38,7 @@ $login_button = '';
                         <img src="assets/images/icons/google.ico">
                     </div>
                 <span class="text-container">
-                    <span>Sign in with Google</span>
+                    <span>Log in in with Google</span>
                 </span>
                 </div>
             </div>
@@ -46,11 +47,38 @@ $login_button = '';
     ?>
 
     <!-- Start Login Section -->
-    <div class="container pt-5">
-        <div class="card card-default mt-5 animate__animated animate__rotateInDownRight">
-            <div class="card-header center">
-                <div id="signin_typing"></div><br>
-                <a href="register.php" class="center">Need an account? Register here</a>
+
+    <!-- Start Background Image -->
+    <div class="home-inner">
+    </div>
+    <!-- End Background Image -->
+
+    <div class="container">
+        <div class="card card-default animate__animated animate__backInLeft" id="login_card">
+            <div class="center">
+                <h1 id="login_headings"><strong>Log in to your account</strong></h1>
+                <!-- Google Button -->
+                <?php
+                if ($login_button == '') {
+                    header('Location:adminhome.php');
+                }
+                else {
+                    echo '<div align="center">' . $login_button . '</div>';
+                }
+                ?>
+
+                <div class="row pt-2">
+                    <div class="col-5 py-0 pr-0 pl-4">
+                        <hr class="bg-dark">
+                    </div>
+                    <div class="col-2 py-1 px-0">
+                        OR
+                    </div>
+                    <div class="col-5 py-0 pl-0 pr-4">
+                        <hr class="bg-dark">
+                    </div>
+                </div>
+
             </div>
 
             <div class="card-body">
@@ -75,37 +103,28 @@ $login_button = '';
                 ?>
                 <form method="POST" id="login_form">
                     <div class="form-group" id="email_area">
-                        <strong><label for="user_email">Email</label></strong>
-                        <input type="text" name="user_email" id="user_email" class="form-control" placeholder="Email">
+                        <input type="text" name="user_email" id="user_email" class="form-control login-input" placeholder="Email Address">
                         <span id="user_email_error" class="text-danger"></span>
+                        <a class="float-right my-1" id="forgot_password" href="forget_password.php?step1=1">Forgot Password</a>
                     </div>
                     <div class="form-group" id="password_area" style="display:none;">
-                        <strong><label for="user_password">Password</label></strong>
-                        <input type="password" name="user_password" id="user_password" class="form-control" placeholder="password">
+                        <input type="password" name="user_password" id="user_password" class="form-control login-input" placeholder="password">
                         <span id="user_password_error" class="text-danger"></span>
                     </div>
                     <div class="form-group" id="otp_area" style="display:none;">
-                        <strong><label for="user_otp">Enter Login Verification Code</label></strong>
-                        <input type="text" name="user_otp" id="user_otp" class="form-control">
+                        <input type="text" name="user_otp" id="user_otp" class="form-control login-input" placeholder="6-digit code">
                         <span id="user_otp_error" class="text-danger"></span>
                     </div>
-                    <div class="form-group" align="left">
+                    <div class="form-group center" id="next_btn_container">
                         <input type="hidden" name="action" id="action" value="email">
-                        <input type="submit" name="next" id="next" class="btn btn-info btn-lg" value="Next">
+                        <input type="submit" name="next" id="next" class="btn btn-lg" value="Next">
                     </div>
                 </form>
 
                 <div class="center">
-                    <strong><a href="forget_password.php?step1=1">Forgot Password</a></strong>
-                    <?php
-                    if ($login_button == '') {
-                        header('Location:adminhome.php');
-                    }
-                    else {
-                       echo '<div align="center">' . $login_button . '</div>';
-                    }
-                    ?>
+                    Not a member?<a href="register.php" id="register_now"> Register now</a>
                 </div>
+
             </div> <!-- End Card-Body -->
 
         </div> <!-- End Card -->
@@ -182,15 +201,3 @@ $(document).ready(function() {
 });
 </script>
 
-<script>
-
-/*========== TYPING ANIMATION ==========*/
-$(document).ready(function() {
-	 $("#signin_typing").typed({
-	    strings:["<h3>Sign In</h3>", "<h3>Register using Google Account</h3>"],
-	    typespeed:0,
-	    loop:true
-	 });
-});
-
-</script>

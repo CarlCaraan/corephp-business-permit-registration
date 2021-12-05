@@ -9,16 +9,16 @@ function imageMode(color) {
 
 // Dark Mode Styles
 function darkMode() {
-  toggleIcon.children[0].textContent = 'Dark Mode';
-  toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+  toggleIcon.children[1].textContent = 'Dark';
+  toggleIcon.children[0].classList.replace('fa-sun', 'fa-moon');
   toggleDark.children[0].classList.replace('light', 'dark');
   imageMode('dark');
 }
 
 // Light Mode Styles
 function lightMode() {
-  toggleIcon.children[0].textContent = 'Light Mode';
-  toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+  toggleIcon.children[1].textContent = 'Light';
+  toggleIcon.children[0].classList.replace('fa-moon', 'fa-sun');
   toggleDark.children[0].classList.replace('dark', 'light');
   imageMode('light');
 }

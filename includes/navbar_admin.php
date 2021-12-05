@@ -103,39 +103,70 @@ if(!defined('USERSITE')) {
 
 ?>
 
-<!-- Dark Mode Switch -->
-<div class="theme-switch-wrapper">
-    <span id="toggle-icon">
-        <span class="toggle-text">Light Mode</span>
-        <i class="fas fa-sun" data-fa-transform="grow-5"></i>
-    </span>
-
-    <!-- Default bootstrap switch -->
-    <div class="theme-switch custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="customSwitches">
-      <label class="custom-control-label" for="customSwitches"></label>
-    </div>
-</div>
-
 <!-- Start Navigation -->
-<nav class="navbar navbar-expand-md fixed-top">
+<nav class="navbar navbar-expand-md py-1 fixed-top">
 <div class="container-fluid">
-	<a class="navbar-brand" href="#"><img src="assets/images/icons/favicon.ico" alt=""></a>
+	<a class="navbar-brand-wrapper" href="admindashboard.php">
+		<div class="logo-container">
+			<span class="navbar-brand mx-0 float-left"><img src="assets/images/icons/favicon.png" alt=""></span>
+		</div>
+		<div class="logo-text-container float-right mt-1 ml-2">
+			<h6 class="text-white font-weight-bold mb-0" id="brand-text">Sta. Maria, Laguna</h6>
+			<span class="text-white" id="brand-text2">Business Registration</span>
+		</div>
+	</a>
+
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 		<span class="custom-toggler-icon"><i class="fas fa-bars"></i></span>
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarResponsive">
 		<ul class="navbar-nav ml-auto">
+
 			<li class="nav-item">
-				<a class="nav-link <?php if($page=='admin'){echo 'active';}?>" href="adminhome.php">Admin Panel</a>
+				<a class="nav-link <?php if($page=='admin'){echo 'active';}?>" href="admindashboard.php">Admin Panel</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link <?php if($page=='settings'){echo 'active';}?>" href="settings_admin.php">Settings</a>
+
+			<!-- Start Dropdown Menu -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle text-white <?php if($page=='settings'){echo 'active';}?>" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+					<span id="navbar_username" class="<?php if($page=='settings'){echo 'active';}?>">
+						<?php
+							$fullname_obj = new User($con, $userLoggedIn);
+							echo $fullname_obj->getFirstAndLastName();
+						?>
+					</span>
+				</a>
+
+				<div class="dropdown-menu mb-2 dropdown-menu-md-right" id="dropdown_menu" aria-labelledby="navbar_username">
+					<h5 class="dropdown-header">Account</h5>
+					<a class="dropdown-item <?php if($page=='settings'){echo 'active';}?>" href="settings_admin.php">Settings</a>
+					<a class="dropdown-item" href="includes/handlers/logout.php">Logout</a>
+					<h5 class="dropdown-header">Appearance</h5>
+
+					<!-- Dark Mode Switch -->
+					<div class="dropdown-item">
+						<!-- Default bootstrap switch -->
+						<div class="theme-switch custom-control custom-switch" id="darkmode_text">
+							<input type="checkbox" class="custom-control-input" id="customSwitches">
+							<label class="custom-control-label" for="customSwitches"></label>
+						</div>
+						<span id="toggle-icon">
+							<i class="fas fa-sun mt-0"></i>
+							<span class="toggle-text">Light</span>
+						</span>
+					</div>
+					
+					<!-- Stop closing dropdown menu onclick -->
+					<script>
+						$('.dropdown-menu').on('click', function (e) {
+							e.stopPropagation();
+						});
+					</script>
+				</div>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link <?php if($page=='logout'){echo 'active';}?>" href="includes/handlers/logout.php">Logout</a>
-			</li>
+			<!-- End Dropdown menu -->
+
 		</ul>
 	</div>
 </div>

@@ -20,14 +20,6 @@ include("includes/classes/User.php");
 		<?php $page = 'user';include 'includes/navbar_user.php'; ?>
 		</header>
 
-		<a title="Go to your account settings" href="settings_user.php" id="username_container">
-			<?php
-				$fullname_obj = new User($con, $userLoggedIn);
-				echo $fullname_obj->getFirstAndLastName();
-			?>
-		</a>
-
-
 		<div class="container pt-5">
 			<div class="card card-default mt-5">
 				<div class="card-header">
@@ -93,6 +85,7 @@ include("includes/classes/User.php");
 
 
 <?php include 'includes/scripts.php'; ?>
+<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
 
 </body>
 

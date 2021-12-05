@@ -3,9 +3,12 @@ require("config/config.php");
 $connect = new PDO("mysql:host=localhost;dbname=business", "root", "");
 
 if (isset($_SESSION["user_id"])) {
-    header("location:userhome.php");
+    header("location:adminhome.php");
 }
 
+require("gconfig.php");
+
+$login_button = '';
 
 $message = '';
 $error_first_name = '';
@@ -163,60 +166,120 @@ if (isset($_POST["register"])) {
 	<?php $page = 'register';include 'includes/navbar_landingpage.php'; ?>
 	</header>
 
-
-	<!-- Start Container -->
-	<div class="container pt-5">
-        <div class="card card-default mt-5 animate__animated animate__rotateInUpLeft">
-            <div class="card-header center">
-                <div id="signup_typing"></div><br>
-                <a href="login.php">Already have an account? Sign in here</a>
+    <!-- Google Sign In Button -->
+    <?php
+    if(!isset($_SESSION['access_token'])) {
+        //Create a URL to obtain user authorization
+        $login_button = '
+        <a href="' . $google_client->createAuthUrl() . '">
+            <div class="g-sign-in-button">
+                <div class="content-wrapper">
+                    <div class="logo-wrapper center">
+                        <img src="assets/images/icons/google.ico">
+                    </div>
+                <span class="text-container">
+                    <span>Register with Google</span>
+                </span>
+                </div>
             </div>
+        </a>';
+    }
+    ?>
+
+	<!-- Start Register Section -->
+
+    <!-- Start Background Image -->
+    <div class="home-inner">
+    </div>
+    <!-- End Background Image -->
+
+	<div class="container">
+        <div class="card card-default animate__animated animate__backInLeft" id="login_card">
+            <div class="center">
+                <h1 id="login_headings" style="letter-spacing: 1.5px;"><strong>Create your Account</strong></h1>
+                <!-- Google Button -->
+                <?php
+                if ($login_button == '') {
+                    header('Location:adminhome.php');
+                }
+                else {
+                    echo '<div align="center">' . $login_button . '</div>';
+                }
+                ?>
+
+                <div class="row pt-2">
+                    <div class="col-5 py-0 pr-0 pl-4">
+                        <hr class="bg-dark">
+                    </div>
+                    <div class="col-2 py-1 px-0">
+                        OR
+                    </div>
+                    <div class="col-5 py-0 pl-0 pr-4">
+                        <hr class="bg-dark">
+                    </div>
+                </div>
+
+            </div>
+
 
             <div class="card-body">
                 <?php echo $message; ?>
 				<form method="post">
-					<div class="form-group">
-						<strong><label for="first_name">First Name</label></strong>
-						<input type="text" name="first_name" class="form-control" placeholder="First Name">
-						<?php echo $error_first_name; ?>
-					</div>
-					<div class="form-group">
-						<strong><label for="last_name">Last Name</label></strong>
-						<input type="text" name="last_name" class="form-control" placeholder="Last Name">
-						<?php echo $error_last_name; ?>
-					</div>
-					<div class="form-group">
-						<strong><label for="user_email">Email</label></strong>
-						<input type="text" name="user_email" class="form-control" placeholder="Email">
-						<?php echo $error_user_email; ?>
-					</div>
-					<div class="form-group">
-						<strong><label for="user_password">Enter Your Password</label></strong>
-						<input type="password" name="user_password" class="form-control" placeholder="Password">
-						<?php echo $error_user_password; ?>
-					</div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 py-0">
+                            <input type="text" name="first_name" class="form-control login-input" placeholder="First Name">
+                            <?php echo $error_first_name; ?>
+                        </div>
+                        <div class="form-group col-md-6 py-0">
+                            <input type="text" name="last_name" class="form-control login-input" placeholder="Last Name">
+                            <?php echo $error_last_name; ?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-8 py-0 my-0">
+                            <div class="form-group">
+                                <input type="text" name="user_email" class="form-control login-input" placeholder="Email Address">
+                                <?php echo $error_user_email; ?>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="user_password" class="form-control login-input" placeholder="Password">
+                                <?php echo $error_user_password; ?>
+                            </div>
+                        </div>
 
-					<strong><label for="user_gender">Gender</label></strong>
-					<div class="form-check">
-					    <label class="form-check-label">
-					        <input type="radio" class="form-check-input" name="user_gender" value="male">Male
-				    	</label>
-					</div>
-					<div class="form-check">
-					    <label class="form-check-label">
-					        <input type="radio" class="form-check-input" name="user_gender" value="female">Female
-					    </label>
-					</div>
+                        <div class="form-group col-md-4 pt-0">
+                            <div class="form-group pt-2 pl-3" id="gender_wrapper">
+                                <label for="user_gender" id="gender_label">Gender</label>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="user_gender" value="male">Male
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="user_gender" value="female">Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End row -->
+
 					<?php echo $error_user_gender; ?>
 
 					<div class="form-group center">
-						<input type="submit" name="register" class="btn btn-info btn-lg" value="Sign Up">
+						<input type="submit" name="register" id="next" class="btn btn-lg" value="Register">
 					</div>
 				</form>
+
+                <div class="center">
+                    Already a member?<a href="login.php" id="register_now"> Login</a>
+                </div>
+
             </div> <!-- End Card-Body -->
         </div> <!-- End Card -->
 
-	</div> <!-- End Container -->
+	</div> <!-- End Register Section -->
 
 
 <!-- Start Internet Notification Popup Message -->
@@ -241,15 +304,3 @@ if (isset($_POST["register"])) {
 </body>
 </html>
 
-<script>
-
-/*========== TYPING ANIMATION ==========*/
-$(document).ready(function() {
-	 $("#signup_typing").typed({
-	    strings:["<h3>Create your Account</h3>"],
-	    typespeed:0,
-	    loop:true
-	 });
-});
-
-</script>
