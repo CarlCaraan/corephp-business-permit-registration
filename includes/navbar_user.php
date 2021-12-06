@@ -116,11 +116,13 @@ define('USERSITE', true);
 	
 			<!-- Start Dropdown Menu -->
 			<li class="nav-item dropdown">
-				<a id="navbar_username" class="nav-link dropdown-toggle text-white  <?php if($page=='settings'){echo 'active';}?>" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-					<?php
-						$fullname_obj = new User($con, $userLoggedIn);
-						echo $fullname_obj->getFirstAndLastName();
-					?>
+				<a class="nav-link dropdown-toggle text-white <?php if($page=='settings'){echo 'active';}?>" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+					<span id="navbar_username" class="<?php if($page=='settings'){echo 'active';}?>">
+						<?php
+							$fullname_obj = new User($con, $userLoggedIn);
+							echo $fullname_obj->getFirstAndLastName();
+						?>
+					</span>
 				</a>
 
 				<div class="dropdown-menu mb-2" id="dropdown_menu" aria-labelledby="navbar_username">

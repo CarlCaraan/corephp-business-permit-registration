@@ -25,7 +25,7 @@ $user_gender = '';
 
 if (isset($_POST["register"])) {
     if (empty($_POST['user_gender'])) {
-        $error_user_gender = "<label class='text-danger'>Choose your Gender</label>";
+        $error_user_gender = "<span class='text-danger' id='error_messages'>Select Gender</span>";
     } else {
         //gender
         $user_gender = strip_tags($_POST['user_gender']); //Remove html tags
@@ -33,7 +33,7 @@ if (isset($_POST["register"])) {
     }
 
     if (empty($_POST["first_name"])) {
-        $error_first_name = "<label class='text-danger'>Enter First Name</label>";
+        $error_first_name = "<span class='text-danger px-2' id='error_messages'>Enter First Name</span>";
     } else {
         $first_name = strip_tags($_POST['first_name']); //Remove html tags
         $first_name = str_replace(' ', '', $first_name); //remove spaces
@@ -41,7 +41,7 @@ if (isset($_POST["register"])) {
     }
 
     if (empty($_POST["last_name"])) {
-        $error_last_name = "<label class='text-danger'>Enter Last Name</label>";
+        $error_last_name = "<span class='text-danger px-2' id='error_messages'>Enter Last Name</span>";
     } else {
         $last_name = strip_tags($_POST['last_name']); //Remove html tags
         $last_name = str_replace(' ', '', $last_name); //remove spaces
@@ -49,16 +49,16 @@ if (isset($_POST["register"])) {
     }
 
     if (empty($_POST["user_email"])) {
-        $error_user_email = '<label class="text-danger">Enter Email Address</label>';
+        $error_user_email = '<span class="text-danger px-2" id="error_messages">Enter Email Address</span>';
     } else {
         $user_email = trim($_POST["user_email"]);
         if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-            $error_user_email = '<label class="text-danger">Enter Valid Email Address</label>';
+            $error_user_email = '<span class="text-danger px-2" id="error_messages">Enter Valid Email Address</span>';
         }
     }
 
     if (empty($_POST["user_password"])) {
-        $error_user_password = '<label class="text-danger">Enter Password</label>';
+        $error_user_password = '<span class="text-danger px-2" id="error_messages">Enter Password</span>';
     } else {
         $user_password = trim($_POST["user_password"]);
         $user_password = password_hash($user_password, PASSWORD_DEFAULT);
@@ -196,7 +196,7 @@ if (isset($_POST["register"])) {
 	<div class="container">
         <div class="card card-default animate__animated animate__backInLeft" id="login_card">
             <div class="center">
-                <h1 id="login_headings" style="letter-spacing: 1.5px;"><strong>Create your Account</strong></h1>
+                <h1 id="login_headings" style="letter-spacing: 1.5px;"><strong>Create your account</strong></h1>
                 <!-- Google Button -->
                 <?php
                 if ($login_button == '') {
@@ -249,7 +249,7 @@ if (isset($_POST["register"])) {
                         </div>
 
                         <div class="form-group col-md-4 pt-0">
-                            <div class="form-group pt-2 pl-3" id="gender_wrapper">
+                            <div class="form-group pt-2 pl-3 rounded" id="gender_wrapper">
                                 <label for="user_gender" id="gender_label">Gender</label>
                                 <div class="form-check">
                                     <label class="form-check-label">
@@ -261,11 +261,11 @@ if (isset($_POST["register"])) {
                                         <input type="radio" class="form-check-input" name="user_gender" value="female">Female
                                     </label>
                                 </div>
+                                <?php echo $error_user_gender; ?>
                             </div>
                         </div>
                     </div> <!-- End row -->
 
-					<?php echo $error_user_gender; ?>
 
 					<div class="form-group center">
 						<input type="submit" name="register" id="next" class="btn btn-lg" value="Register">
@@ -273,7 +273,7 @@ if (isset($_POST["register"])) {
 				</form>
 
                 <div class="center">
-                    Already a member?<a href="login.php" id="register_now"> Login</a>
+                    Already a member?<a href="login.php" id="register_now"> Log in</a>
                 </div>
 
             </div> <!-- End Card-Body -->

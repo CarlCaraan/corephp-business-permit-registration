@@ -38,7 +38,7 @@ $login_button = '';
                         <img src="assets/images/icons/google.ico">
                     </div>
                 <span class="text-container">
-                    <span>Log in in with Google</span>
+                    <span>Log in with Google</span>
                 </span>
                 </div>
             </div>
@@ -96,7 +96,7 @@ $login_button = '';
                     if ($_GET["reset_password"] == 'success') {
                         echo '<div class="alert alert-info alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Password save successfully!</strong> Now you can login with your new password.
+                                <strong>Password saved successfully!</strong> You can now log in with your new password.
                               </div>';
                     }
                 }
@@ -104,16 +104,17 @@ $login_button = '';
                 <form method="POST" id="login_form">
                     <div class="form-group" id="email_area">
                         <input type="text" name="user_email" id="user_email" class="form-control login-input" placeholder="Email Address">
-                        <span id="user_email_error" class="text-danger"></span>
+                        <span id="user_email_error" style="font-size: 0.8rem" class="text-danger px-2"></span>
                         <a class="float-right my-1" id="forgot_password" href="forget_password.php?step1=1">Forgot Password</a>
+                        <!-- <span class="float-right my-1" id="forgot_password" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">Forgot Password</span> -->
                     </div>
                     <div class="form-group" id="password_area" style="display:none;">
                         <input type="password" name="user_password" id="user_password" class="form-control login-input" placeholder="password">
-                        <span id="user_password_error" class="text-danger"></span>
+                        <span id="user_password_error" style="font-size: 0.8rem" class="text-danger px-2"></span>
                     </div>
                     <div class="form-group" id="otp_area" style="display:none;">
                         <input type="text" name="user_otp" id="user_otp" class="form-control login-input" placeholder="6-digit code">
-                        <span id="user_otp_error" class="text-danger"></span>
+                        <span id="user_otp_error" style="font-size: 0.8rem" class="text-danger px-2"></span>
                     </div>
                     <div class="form-group center" id="next_btn_container">
                         <input type="hidden" name="action" id="action" value="email">
@@ -124,6 +125,12 @@ $login_button = '';
                 <div class="center">
                     Not a member?<a href="register.php" id="register_now"> Register now</a>
                 </div>
+
+
+<!-- Button trigger modal -->
+
+
+
 
             </div> <!-- End Card-Body -->
 
@@ -147,6 +154,25 @@ $login_button = '';
 </div>
 <!-- End Internet Notification Popup Message -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Try to relax and remember your password</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php include 'includes/scripts.php'; ?>
 

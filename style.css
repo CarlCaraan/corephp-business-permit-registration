@@ -192,6 +192,9 @@ p {
     font-size: 1.3rem;
     color: #222423;
 }
+#error_messages {
+    font-size: .85rem;
+}
 
 /*-- Google Sign In Button --*/
 .g-sign-in-button {
@@ -323,6 +326,10 @@ p {
 
 #username_container {
 
+}
+#alert_setpassword {
+    padding: 6px 0 5px 12px !important;
+    margin-bottom: 5px!important;
 }
 
 /*============= USER SECTION =============*/

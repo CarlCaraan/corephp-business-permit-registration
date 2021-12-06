@@ -7,7 +7,6 @@ if(isset($_POST['update_details'])) {
 	$gender = $_POST['user_gender'];
 	$email = $_POST['user_email'];
 
-    ini_set('display_errors', 'Off');
 
 	$email_check = mysqli_query($con, "SELECT * FROM register_user WHERE user_email='$email'");
 	$row = mysqli_fetch_array($email_check);
@@ -18,7 +17,7 @@ if(isset($_POST['update_details'])) {
                     	    <button type='button' class='close' data-dismiss='alert'>&times;</button>
                     	    <strong>Details</strong> Updated!
                         </div>";
-			$query = mysqli_query($con, "UPDATE register_user SET first_name='$firstname', last_name='$lastname', user_gender='$gender', user_email='$email' WHERE user_name='$userLoggedIn'");
+			$query = mysqli_query($con, "UPDATE register_user SET first_name='$firstname', last_name='$lastname', user_gender='$gender' WHERE user_name='$userLoggedIn'");
 	}
 	else
 		$message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
@@ -39,7 +38,40 @@ if(isset($_POST['update_password'])) {
     $row = mysqli_fetch_array($password_query);
     $db_password = $row['user_password'];
 
-    if(password_verify($old_password, $db_password)) {
+    if(!empty($db_password)) {
+        if(password_verify($old_password, $db_password)) {
+            if($new_password_1 == $new_password_2) {
+
+                if(strlen($new_password_1) <= 4) {
+                    $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            <strong>Sorry</strong> your password must be greater than 4 characters!
+                                        </div>";
+                }
+                else {
+                    $new_password_md5 = password_hash($new_password_1, PASSWORD_DEFAULT);
+                    $password_query = mysqli_query($con, "UPDATE register_user SET user_password='$new_password_md5' WHERE user_name='$userLoggedIn'");
+                    $password_message = "<div class='alert alert-success alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            Your<strong> Password</strong> has been changed!
+                                        </div>";
+                }
+            }
+            else {
+                $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                        Your<strong> New Password</strong> doesn't match!
+                                    </div>";
+            }
+        }
+        else {
+            $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                    Your<strong> Current Password</strong> is incorrect!
+                                </div>";
+        }
+    }
+    else {
         if($new_password_1 == $new_password_2) {
 
             if(strlen($new_password_1) <= 4) {
@@ -64,12 +96,7 @@ if(isset($_POST['update_password'])) {
                                 </div>";
         }
     }
-    else {
-        $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
-                                <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                Your<strong> Current Password</strong> is incorrect!
-                            </div>";
-    }
+
 }
 else {
     $password_message = "";

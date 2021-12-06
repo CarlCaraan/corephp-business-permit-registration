@@ -76,7 +76,7 @@ if(isset($_POST["resend"]))
 		}
 		else
 		{
-			$message = '<div class="alert alert-danger">Email Address not found in our record</div>';
+			$message = '<div class="alert alert-danger">Email Address doesn\'t exist</div>';
 		}
 	}
 }
@@ -97,22 +97,34 @@ if(isset($_POST["resend"]))
     </header>
 
 	<!-- Start Resend Email OTP Section -->
-	<div class="container p-5">
-		<div class="card card-default mt-5">
-			<div class="card-header center">
-				<h3>Resend Email Verification</h3>
-				<p>Make sure you check your mail in your email</p>
+
+    <!-- Start Background Image -->
+    <div class="home-inner">
+    </div>
+    <!-- End Background Image -->
+
+	<div class="container">
+		<div class="card card-default" id="login_card">
+			<div class="center">
+				<h1 id="login_headings">Resend Email Verification</h1>
 			</div>
 
+
 			<div class="card-body">
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					Please check your <strong>inbox</strong> using your <strong>email</strong>.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 				<?php echo $message; ?>
 				<form method="post">
 					<div class="form-group">
 						<strong><label for="user_email">Enter Your Email</label></strong>
-						<input type="email" name="user_email" class="form-control" placeholder="Email">
+						<input type="email" name="user_email" class="form-control login-input" placeholder="Email">
 					</div>
-					<div class="form-group">
-						<input type="submit" name="resend" class="btn btn-info btn-lg" value="Submit">
+					<div class="form-group center">
+						<input type="submit" name="resend" class="btn btn-lg" id="next" value="Submit">
 					</div>
 				</form>
 			</div> <!-- End Card-Body -->

@@ -72,23 +72,34 @@ else
 	</header>
 
 	<!-- Start Email Verify Section  -->
-	<div class="container p-5">
-		<div class="card card-default mt-5">
-			<div class="card-header center">
-				<h3 >Verify Your Email Address</h3>
-				<p>Please check your email</p>
+
+    <!-- Start Background Image -->
+    <div class="home-inner">
+    </div>
+    <!-- End Background Image -->
+
+	<div class="container">
+		<div class="card card-default" id="login_card">
+			<div class="center">
+				<h1 id="login_headings">Verify Your Email Address</h1>
 			</div>
 			<div class="card-body">
-				<?php echo $message; ?>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					Please check your <strong>inbox</strong> using your <strong>email</strong>.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 				<form method="POST">
 					<div class="form-group">
 						<strong><label for="user_otp">Enter your verification code</label></strong>
-						<input type="text" name="user_otp" class="form-control" placeholder="code">
+						<input type="text" name="user_otp" class="form-control login-input" placeholder="6-digit code">
+						<?php echo $message; ?>
 						<?php echo $error_user_otp; ?>
 					</div>
-					<div class="form-group">
-						<input type="submit" name="submit" class="btn btn-info btn-lg" value="Submit">
-						<a href="resend_email_otp.php" class="btn btn-secondary btn-lg">Resend Code</a>
+					<div class="form-group center">
+						<input type="submit" name="submit" class="btn btn-lg px-5" id="next" value="Submit">
+						<a href="resend_email_otp.php" class="btn btn-secondary btn-lg px-4">Resend Code</a>
 					</div>
 				</form>
 			</div> <!-- End Card-Body -->

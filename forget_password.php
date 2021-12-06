@@ -176,13 +176,24 @@ if(isset($_POST["change_password"]))
 	</header>
 
 	<!-- Start Forget Password Section -->
-	<div class="container p-5">
-		<div class="card card-default mt-5">
-			<div class="card-header center">
-				<h3>Reset Password</h3>
-				<p>Request a password reset below.</p>
+
+    <!-- Start Background Image -->
+    <div class="home-inner">
+    </div>
+    <!-- End Background Image -->
+
+	<div class="container">
+		<div class="card card-default" id="login_card">
+			<div class="center">
+				<h1 id="login_headings">Reset Password</h1>
 			</div>
 			<div class="card-body">
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					Please check your <strong>inbox</strong> using your <strong>email</strong>.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 				<?php
 				echo $message;
 
@@ -192,10 +203,10 @@ if(isset($_POST["change_password"]))
 				<form method="post">
 					<div class="form-group">
 						<strong><label for="user_email">Enter Your Email</label></strong>
-						<input type="text" name="user_email" class="form-control" placeholder="Email">
+						<input type="text" name="user_email" class="form-control login-input" placeholder="Email">
 					</div>
-					<div class="form-group">
-						<input type="submit" name="submit" class="btn btn-info btn-lg" value="Reset Password">
+					<div class="form-group center">
+						<input type="submit" name="submit" class="btn btn-lg" id="next" value="Reset Password">
 					</div>
 				</form>
 				<?php
@@ -206,11 +217,11 @@ if(isset($_POST["change_password"]))
 				<form method="POST">
 					<div class="form-group">
 						<strong><label>Enter your verification code</label></strong>
-						<input type="text" name="user_otp" class="form-control" placeholder="code">
+						<input type="text" name="user_otp" class="form-control login-input" placeholder="6-digit code">
 					</div>
-					<div class="form-group">
+					<div class="form-group center">
 						<input type="hidden" name="user_code" value="<?php echo $_GET["code"]; ?>">
-						<input type="submit" name="check_otp" class="btn btn-info btn-lg" value="Submit">
+						<input type="submit" name="check_otp" class="btn btn-lg" id="next" value="Submit">
 					</div>
 				</form>
 				<?php
@@ -222,15 +233,15 @@ if(isset($_POST["change_password"]))
 				<form method="post">
 					<div class="form-group">
 						<strong><label for="user_password">New Password</label></strong>
-						<input type="password" name="user_password" class="form-control">
+						<input type="password" name="user_password" class="form-control login-input">
 					</div>
 					<div class="form-group">
 						<strong><label for="confirm_password">Confirm Password</label></strong>
-						<input type="password" name="confirm_password" class="form-control">
+						<input type="password" name="confirm_password" class="form-control login-input">
 					</div>
-					<div class="form-group">
+					<div class="form-group center">
 						<input type="hidden" name="user_code" value="<?php echo $_GET["code"]; ?>">
-						<input type="submit" name="change_password" class="btn btn-info btn-lg" value="Change Password">
+						<input type="submit" name="change_password" class="btn btn-lg" id="next" value="Change Password">
 					</div>
 				</form>
 				<?php

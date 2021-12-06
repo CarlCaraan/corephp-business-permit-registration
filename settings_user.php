@@ -40,20 +40,24 @@ include("includes/classes/User.php");
 						//Settings Handler
 						include("includes/form_handlers/settings_handler.php");
 
-						$user_data_query = mysqli_query($con, "SELECT first_name, last_name, user_name, user_email, user_gender, account FROM register_user WHERE user_name='$userLoggedIn'");
+						$user_data_query = mysqli_query($con, "SELECT first_name, last_name, user_name, user_email, user_gender, user_password FROM register_user WHERE user_name='$userLoggedIn'");
 						$row = mysqli_fetch_array($user_data_query);
 
 						$firstname = $row['first_name'];
 						$lastname = $row['last_name'];
 						$gender = $row['user_gender'];
-						$email = $row['user_email'];
-						$account = $row['account'];
+						$check_password = $row['user_password'];
 
-						if($account == "google") {
-							$disable = "disabled";
+						if(empty($check_password)) {
+							$disable = "d-none";
+							$create = "Set a new password";
+							$alert_setpassword = "<div class='alert alert-warning alert-dismissible fade show' id='alert_setpassword'>
+														Set a password to<strong> Login</strong> via local accout and google account.
+													</div>";
 						}
 						else {
 							$disable = "";
+							$create = "Change Password";
 						}
 
 						?>
@@ -62,34 +66,29 @@ include("includes/classes/User.php");
 							<form class="" action="settings_user.php" method="POST">
 								<strong><p>Basic Information</p></strong>
 
-								<div class="form-row">
-								    <div class="col-md py-0">
-										<input class="form-control" type="text" name="first_name" placeholder="First Name" value="<?php echo $firstname; ?>" required>
-								    </div>
-									<div class="col-md py-0">
-										<input class="form-control" type="text" name="last_name" placeholder="Last Name" value="<?php echo $lastname; ?>" required>
-									</div>
+								<div class="form-group">
+									<input class="form-control" type="text" name="first_name" placeholder="First Name" value="<?php echo $firstname; ?>" required>
+									<input class="form-control mt-1" type="text" name="last_name" placeholder="Last Name" value="<?php echo $lastname; ?>" required>
+
+									<select class="form-control mt-1" name="user_gender" id="user_gender" value="<?php echo $gender; ?>" required>
+										<option value="Male" <?php if($gender == "Male")echo "selected"; ?>>Male</option>
+										<option value="Female" <?php if($gender == "Female")echo "selected"; ?>>Female</option>
+									</select>
 								</div>
 
-								<input class="form-control mt-1" type="email" name="user_email" placeholder="Email" value="<?php echo $email; ?>" required <?php echo $disable; ?>>
-
-						        <select class="form-control mt-1" name="user_gender" id="user_gender" value="<?php echo $gender; ?>" required <?php echo $disable; ?>>
-						      		<option value="Male" <?php if($gender == "Male")echo "selected"; ?>>Male</option>
-						      		<option value="Female" <?php if($gender == "Female")echo "selected"; ?>>Female</option>
-						        </select>
-
-								<input class="btn btn-outline-light btn-lg bg-success mt-4" type="submit" name="update_details" value="Update Details"></input>
+								<input class="btn btn-outline-light btn-lg bg-success mt-1" type="submit" name="update_details" value="Update Details"></input>
 								<?php echo $message; ?>
 							</form>
 						</div>
 
 						<div class="col-md p-0 mx-1">
 							<form class="" action="settings_user.php" method="POST">
-								<strong><p>Change Password</p></strong>
-								<input class="form-control" type="password" name="old_password" placeholder="Current Password" required <?php echo $disable; ?>>
-								<input class="form-control mt-1" type="password" name="new_password_1" placeholder="New Password" required <?php echo $disable; ?>>
-								<input class="form-control mt-1" type="password" name="new_password_2" placeholder="Confirm New Password" required <?php echo $disable; ?>>
-								<input class="btn btn-outline-light btn-lg bg-success mt-4" type="submit" name="update_password" value="Update Password" <?php echo $disable; ?>></input>
+								<strong><p><?php echo $create; ?></p></strong>
+								<?php echo $alert_setpassword; ?>
+								<input class="form-control <?php echo $disable; ?>" type="password" name="old_password" placeholder="Current Password">
+								<input class="form-control mt-1" type="password" name="new_password_1" placeholder="New Password" required>
+								<input class="form-control mt-1" type="password" name="new_password_2" placeholder="Confirm New Password" required>
+								<input class="btn btn-outline-light btn-lg bg-success mt-4" type="submit" name="update_password" value="Update Password"></input>
 								<?php echo $password_message; ?>
 							</form>
 						</div>
@@ -136,6 +135,7 @@ include("includes/classes/User.php");
 
 
 <?php include 'includes/scripts.php'; ?>
+<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
 
 </body>
 
