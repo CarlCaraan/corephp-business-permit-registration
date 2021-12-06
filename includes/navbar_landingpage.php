@@ -7,7 +7,7 @@
 		</div>
 		<div class="logo-text-container float-right mt-1 ml-2">
 			<h6 class="text-white font-weight-bold mb-0" id="brand-text">Sta. Maria, Laguna</h6>
-			<span class="text-white" id="brand-text2">Business Registration</span>
+			<span id="brand-text2">Business Registration</span>
 		</div>
 	</a>
 

@@ -1,5 +1,6 @@
 <?php
 //For Basic Information Form
+ini_set('display_errors', 'Off');
 if(isset($_POST['update_details'])) {
 
 	$firstname = $_POST['first_name'];
@@ -15,7 +16,7 @@ if(isset($_POST['update_details'])) {
 	if($matched_user == "" || $matched_user == $userLoggedIn) {
 			$message = "<div class='alert alert-success alert-dismissible fade show mt-2'>
                     	    <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                    	    <strong>Details</strong> Updated!
+                    	    User details successfully <strong>Updated!</strong> 
                         </div>";
 			$query = mysqli_query($con, "UPDATE register_user SET first_name='$firstname', last_name='$lastname', user_gender='$gender' WHERE user_name='$userLoggedIn'");
 	}

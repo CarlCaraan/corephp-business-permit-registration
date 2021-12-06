@@ -91,7 +91,7 @@ define('USERSITE', true);
 <!-- Start Navigation -->
 <nav class="navbar navbar-expand-md py-1 fixed-top">
 <div class="container">
-	<a class="navbar-brand-wrapper" href="index.php">
+	<a class="navbar-brand-wrapper" href="userhome.php">
 		<div class="logo-container">
 			<span class="navbar-brand mx-0 float-left" href="index.php"><img src="assets/images/icons/favicon.png" alt=""></span>
 		</div>
