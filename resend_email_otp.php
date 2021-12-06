@@ -106,13 +106,11 @@ if(isset($_POST["resend"]))
 	<div class="container">
 		<div class="card card-default" id="login_card">
 			<div class="center">
-				<h1 id="login_headings">Resend Email Verification</h1>
+				<h2 class="font-weight-bold" id="login_headings">Resend Email Verification</h2>
 			</div>
-
-
 			<div class="card-body">
-				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					Please check your <strong>inbox</strong> using your <strong>email</strong>.
+				<div class="alert alert-info alert-dismissible fade show" role="alert">
+					Please check your <strong>inbox</strong> after sending <strong>request</strong>.
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>

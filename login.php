@@ -105,8 +105,8 @@ $login_button = '';
                     <div class="form-group" id="email_area">
                         <input type="text" name="user_email" id="user_email" class="form-control login-input" placeholder="Email Address">
                         <span id="user_email_error" style="font-size: 0.8rem" class="text-danger px-2"></span>
-                        <a class="float-right my-1" id="forgot_password" href="forget_password.php?step1=1">Forgot Password</a>
-                        <!-- <span class="float-right my-1" id="forgot_password" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">Forgot Password</span> -->
+                        <!-- <a class="float-right my-1" id="forgot_password" href="forget_password.php?step1=1">Forgot Password</a> -->
+                        <span class="float-right my-1" id="forgot_password" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">Forgot Password</span>
                     </div>
                     <div class="form-group" id="password_area" style="display:none;">
                         <input type="password" name="user_password" id="user_password" class="form-control login-input" placeholder="password">
@@ -164,7 +164,8 @@ $login_button = '';
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body center">
+        <img class="w-25 rounded-circle img-thumbnail" src="assets/images/lonely.png" alt=""><br><br>
         <h4>Try to relax and remember your password</h4>
       </div>
       <div class="modal-footer">

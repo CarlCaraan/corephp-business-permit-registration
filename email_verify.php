@@ -81,11 +81,11 @@ else
 	<div class="container">
 		<div class="card card-default" id="login_card">
 			<div class="center">
-				<h1 id="login_headings">Verify Your Email Address</h1>
+				<h2 class="font-weight-bold" id="login_headings">Verify Your Email Address</h2>
 			</div>
 			<div class="card-body">
-				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					Please check your <strong>inbox</strong> using your <strong>email</strong>.
+				<div class="alert alert-info alert-dismissible fade show" role="alert">
+					An <strong>email</strong> has been sent. Please check your <strong>inbox</strong>.
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -99,7 +99,7 @@ else
 					</div>
 					<div class="form-group center">
 						<input type="submit" name="submit" class="btn btn-lg px-5" id="next" value="Submit">
-						<a href="resend_email_otp.php" class="btn btn-secondary btn-lg px-4">Resend Code</a>
+						<a href="resend_email_otp.php" class="btn btn-secondary btn-lg px-4 font-weight-bold">Resend Code</a>
 					</div>
 				</form>
 			</div> <!-- End Card-Body -->

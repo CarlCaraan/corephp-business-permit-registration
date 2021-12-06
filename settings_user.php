@@ -58,6 +58,7 @@ include("includes/classes/User.php");
 						else {
 							$disable = "";
 							$create = "Change Password";
+							$alert_setpassword = "";
 						}
 
 						?>

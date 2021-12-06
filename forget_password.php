@@ -38,7 +38,7 @@ if(isset($_POST["submit"]))
 			{
 				if($row["user_email_status"] == 'not verified')
 				{
-					$message = '<div class="alert alert-info">Your Email Address is not verify, so first verify your email address by click on this <a href="resend_email_otp.php">link</a></div>';
+					$message = '<div class="alert alert-warning">Your email address is not yet verified. Please click this <a href="resend_email_otp.php">link</a> to verify.</div>';
 				}
 				else
 				{
@@ -185,11 +185,11 @@ if(isset($_POST["change_password"]))
 	<div class="container">
 		<div class="card card-default" id="login_card">
 			<div class="center">
-				<h1 id="login_headings">Reset Password</h1>
+				<h2 class="font-weight-bold" id="login_headings">Reset Password</h2>
 			</div>
 			<div class="card-body">
-				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					Please check your <strong>inbox</strong> using your <strong>email</strong>.
+				<div class="alert alert-info alert-dismissible fade show" role="alert">
+					Please check your <strong>inbox</strong> after sending <strong>request</strong>.
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
