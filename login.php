@@ -200,7 +200,8 @@ $login_button = '';
                             $('#email_area').css('display', 'none');
                             $('#password_area').css('display', 'block');
                         }
-                    } else if (action == 'password') {
+                    }
+                    else if (action == 'password') {
                         if (data.error != '') {
                             $('#user_password_error').text(data.error);
                         }
