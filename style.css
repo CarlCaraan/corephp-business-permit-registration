@@ -1,28 +1,20 @@
 /*============= ALL FONTS =============*/
 
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Raleway&display=swap');
 
 @font-face {
-  font-family: "Bellota-LightItalic";
-  src: url("assets/fonts/Bellota-LightItalic.ttf");
+  font-family: 'Lato', sans-serif;
+  src: url("assets/fonts/Lato-Regular.ttf");
 }
 @font-face {
-  font-family: "Bellota-BoldItalic";
-  src: url("assets/fonts/Bellota-BoldItalic.ttf");
+  font-family: 'Raleway', sans-serif;
+  src: url("assets/fonts/Raleway-Regular.ttf");
 }
 @font-face {
-  font-family: "Bellota-Bold";
-  src: url("assets/fonts/Bellota-Bold.ttf");
-}
-@font-face {
-  font-family: "JetBrainsMono-Bold";
-  src: url("assets/fonts/JetBrainsMono-Bold.ttf");
-}
-@font-face {
-  font-family: "JetBrainsMono-Regular";
-  src: url("assets/fonts/JetBrainsMono-Regular.ttf");
+	font-family: 'Poppins', sans-serif;
+  src: url("assets/fonts/Poppins-Regular.ttf");
 }
 
 /*============= LIGHT MODE & DARK MODE COLORS =============*/
@@ -288,17 +280,17 @@ p {
   text-decoration: none;
 }
 #brand-text {
+  font-family: 'Lato', sans-serif;
   line-height: 10px;
   margin-top: 8px;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
-  font-family: lato;
 }
 #brand-text2 {
   letter-spacing: 0.21px;
   text-transform: uppercase;
   font-size: 14.3px;
-  font-family: lato, sans-serif;
+  font-family: 'Lato', sans-serif;
   letter-spacing: 0.8px;
   color: #f2f2f2;
 }
@@ -313,9 +305,9 @@ p {
   font-size: 1.6rem;
 }
 .navbar-nav .nav-link {
+  font-family: 'Raleway', sans-serif;
   color: white;
   font-size: 16px;
-  font-family: raleway, sans-serif;
 }
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
@@ -333,7 +325,7 @@ p {
 }
 /* Dropdown Menu */
 .dropdown {
-  font-family: raleway, sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 .dropdown-toggle {
   margin-top: 1px;
