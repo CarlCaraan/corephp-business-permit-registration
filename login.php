@@ -194,7 +194,8 @@ $login_button = '';
                     if (action == 'email') {
                         if (data.error != '') {
                             $('#user_email_error').text(data.error);
-                        } else {
+                        }
+                        else {
                             $('#user_email_error').text('');
                             $('#email_area').css('display', 'none');
                             $('#password_area').css('display', 'block');
@@ -202,15 +203,18 @@ $login_button = '';
                     } else if (action == 'password') {
                         if (data.error != '') {
                             $('#user_password_error').text(data.error);
-                        } else {
+                        }
+                        else {
                             $('#user_password_error').text('');
                             $('#password_area').css('display', 'none');
                             $('#otp_area').css('display', 'block');
                         }
-                    } else {
+                    }
+                    else {
                         if (data.error != '') {
                             $('#user_otp_error').text(data.error);
-                        } else {
+                        }
+                        else {
                             window.location.replace("adminhome.php");
                         }
                     }
