@@ -37,6 +37,7 @@ if($_POST['query'] != '') {
     OR last_name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
     OR user_type LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
     OR account LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+    OR user_datetime LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
     ';
 }
 
@@ -58,22 +59,18 @@ $output = '
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>User Details!</strong> has been saved!
   </div>
-<label>Total Results : '.$total_data.'</label>
-<!--<div align="left">-->
-<!--    <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success m-1">Add</button>-->
-<!--</div>-->
-<table class="table table-striped table-bordered">
-    <tr>
+<label>Total Users : '.$total_data.'</label>
+<table class="table table-striped">
+    <tr id="admin_table_headings">
 		<th>ID</th>
 		<th>Name</th>
-		<th>Gender</th>
+		<th>Sex</th>
 		<th>Email</th>
 		<th>Sign Up Date</th>
 		<th>Status</th>
-		<th>User Type</th>
+		<th>Role</th>
 		<th>Account</th>
-		<th class="center">Edit</th>
-		<th class="center">Delete</th>
+		<th class="center">Action</th>
     </tr>
 ';
 if($total_data > 0)
@@ -97,10 +94,10 @@ if($total_data > 0)
             <td>'.$row["user_type"].'</td>
             <td>'.$row["account"].'</td>
             <td class="center">
-                <button name="edit" id="' . $row["register_user_id"] . '" class="btn btn-info edit_data ' . $edit_disable . '"><i class="fas fa-edit"></i></button>
-            </td>
-            <td class="center">
-                <button class="btn btn-danger" data-id="' . $row["register_user_id"] . '" onclick="confirmDelete(this);"><i class="fas fa-trash" id="trash_icon"></i></button>
+                <div class="mx-auto" style="width: 100px;">
+                    <button name="edit" id="' . $row["register_user_id"] . '" class="btn btn-info edit_data ' . $edit_disable . '"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger" data-id="' . $row["register_user_id"] . '" onclick="confirmDelete(this);"><i class="fas fa-trash" id="trash_icon"></i></button>
+                </div>
             </td>
         </tr>
         ';
@@ -176,7 +173,7 @@ for($count = 0; $count < count($page_array); $count++) {
 
         $previous_id = $page_array[$count] - 1;
         if($previous_id > 0) {
-            $previous_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$previous_id.'">Previous</a></li>';
+            $previous_link = '<li class="page-item"><a class="page-link text-dark" href="javascript:void(0)" data-page_number="'.$previous_id.'">Previous</a></li>';
         }
         else {
             $previous_link = '
@@ -192,7 +189,7 @@ for($count = 0; $count < count($page_array); $count++) {
             </li>';
         }
         else {
-            $next_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$next_id.'">Next</a></li>';
+            $next_link = '<li class="page-item"><a class="page-link text-dark" href="javascript:void(0)" data-page_number="'.$next_id.'">Next</a></li>';
         }
     }
     else {
@@ -204,7 +201,7 @@ for($count = 0; $count < count($page_array); $count++) {
         }
         else {
             $page_link .= '
-            <li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$page_array[$count].'">'.$page_array[$count].'</a></li>';
+            <li class="page-item"><a class="page-link text-dark" href="javascript:void(0)" data-page_number="'.$page_array[$count].'">'.$page_array[$count].'</a></li>';
         }
     }
 }

@@ -43,7 +43,7 @@ if(isset($_POST['upload'])) {
     try {
         if($uploadOk == 1 && move_uploaded_file($file_temp, $path)) {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "INSERT INTO posts (added_by, file_name, file_size, date_added) VALUES ('$added_by', '$name', '$file_size', '$date_added')";
+            $query = "INSERT INTO posts (added_by, file_name, file_size, date_added, first_name, last_name) VALUES ('$added_by', '$name', '$file_size', '$date_added', '$first_name', '$last_name')";
             $conn->exec($query);
         }
     }

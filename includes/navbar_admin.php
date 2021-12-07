@@ -106,7 +106,7 @@ if(!defined('USERSITE')) {
 <!-- Start Navigation -->
 <nav class="navbar navbar-expand-md py-1 fixed-top">
 <div class="container-fluid">
-	<a class="navbar-brand-wrapper" href="admindashboard.php">
+	<a class="navbar-brand-wrapper" href="adminhome.php">
 		<div class="logo-container">
 			<span class="navbar-brand mx-0 float-left"><img src="assets/images/icons/favicon.png" alt=""></span>
 		</div>
@@ -124,7 +124,7 @@ if(!defined('USERSITE')) {
 		<ul class="navbar-nav ml-auto">
 
 			<li class="nav-item">
-				<a class="nav-link <?php if($page=='admin'){echo 'active';}?>" href="admindashboard.php">Admin Panel</a>
+				<a class="nav-link <?php if($page=='admin'){echo 'active';}?>" href="adminhome.php">Admin Panel</a>
 			</li>
 
 			<!-- Start Dropdown Menu -->

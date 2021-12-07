@@ -54,7 +54,7 @@ $login_button = '';
     <!-- End Background Image -->
 
     <div class="container">
-        <div class="card card-default animate__animated animate__backInLeft" id="login_card">
+        <div class="card card-default" id="login_card">
             <div class="center">
                 <h1 id="login_headings"><strong>Log in to your account</strong></h1>
                 <!-- Google Button -->

@@ -36,6 +36,7 @@
   --darkfonts: #222423;
   --container: #f1f1f2;
   --card: #DFDFDF;
+  --nav-link: #ECE7DF;
 }
 
 [data-theme="dark"] {
@@ -47,6 +48,7 @@
   --darkfonts: #f1f1f1;
   --container: #3D3D3D;
   --card: #ACACAC;
+  --nav-link: #585858;
 }
 
 /*!
@@ -76,6 +78,7 @@ body {
 }
 td, th, tr {
     color: var(--darkfonts);
+    border: none!important;
 }
 h1,h2,h3,h4,h5,h6 {
     color: var(--darkfonts);
@@ -366,7 +369,7 @@ p {
 }
 .gender-input,
 .gender-input:focus {
-    background-color: #EDE8DF;
+    background-color: #EDE8DF; 
     border: none;
     color: #000!important;
     font-size: 1.4rem;
@@ -382,7 +385,7 @@ p {
 
 /*-- Page Content --*/
 #admin_content {
-    padding-top: 4rem;
+    padding-top: 3.8rem;
 }
 #admin_content.active {
   width: 100%;
@@ -405,7 +408,7 @@ p {
   transition: all 0.4s;
 }
 #sidebar {
-    padding-top: 4.4rem;
+    padding-top: 62.4px;
 }
 #sidebar.active {
   margin-left: -17rem;
@@ -415,11 +418,12 @@ p {
     font-family: 'Jetbrains Mono';
 }
 #page_current {
-    background-color: var(--primary-color);
-    border-color: #ACACAC;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
 }
 #admin_navlink:hover {
     color: var(--darkfonts);
+    background-color: var(--nav-link);
 }
 .modal-content {
     background-color: var(--container);
@@ -427,6 +431,53 @@ p {
 #admin_navlink {
     color: var(--darkfonts);
 }
+#sidebar_headings {
+    background-color: var(--secondary-color);
+    font-weight: 600;
+}
+#sidebar_icons {
+    color: #E5885A;
+    font-size: 1.7rem;
+}
+#icon_wrapper {
+    width: 38px;
+}
+#sidebar_text_wrapper {
+    font-size: 1.2rem;
+    text-align: left!important;
+
+}
+#sidebar_text_wrapper:hover { 
+    padding-left: 5px;
+    transition: padding .2s ease-in;
+}
+#sidebarCollapse {
+    border-radius: 0;
+    padding: .2rem .6rem .2rem .6rem;
+    box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.15);
+}
+#admin_table_headings {
+    background-color: var(--nav-link);
+    border: none!important;
+    border-radius: 10px!important;
+}
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+table tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+table tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
 
 
 /*============= INTERNET NOTIFICATION POPUP MESSAGE =============*/

@@ -1,13 +1,16 @@
 <?php
 require("config/config.php");
+require("gconfig.php");
 include("includes/classes/User.php");
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<?php include 'includes/head.php'; ?>
-	<title>Records | Admin</title>
+    <?php require 'includes/form_handlers/pdo_handler.php'; ?>
+	<title>Users | Admin</title>
 </head>
 
 <body>
@@ -19,7 +22,7 @@ include("includes/classes/User.php");
 		<header>
 		<?php
 		$page = 'admin';
-		$side = 'admin_records';
+		$side = 'admin_users';
 		include 'includes/navbar_admin.php';
 		?>
 		</header>
@@ -28,7 +31,7 @@ include("includes/classes/User.php");
 		<div class="vertical-nav" id="sidebar">
 
 			<!-- Dashboard -->
-		    <p class="text-uppercase center text-white p-2 my-0" id="sidebar_headings">Admin Panel</p>
+			<p class="text-uppercase center text-white p-2 my-0" id="sidebar_headings">Admin Panel</p>
 
 		    <ul class="nav flex-column">
 		        <li class="nav-item">
@@ -77,7 +80,6 @@ include("includes/classes/User.php");
 		</div>
 		<!-- End Vertical navbar -->
 
-
 		<!-- Start Page Content holder -->
 		<div class="page-content" id="admin_content">
 
@@ -86,32 +88,31 @@ include("includes/classes/User.php");
 		        <i class="fas fa-bars mt-1" id="sidebar_icons"></i>
 		    </button>
 
-			<!-- Start Table -->
+			<!-- Start Table Container -->
 			<div class="container-fluid">
 				<div class="card card-default mt-3" id="setting_container">
-						<h3 class="font-weight-bold pl-4 pt-4" id="setting_headings">Records</h3>
+					<h3 class="font-weight-bold pl-4 pt-4" id="setting_headings">Users</h3>
 					<div class="card-body">
 						<div class="form-group">
 							<input type="text" name="search_box" id="search_box" class="form-control login-input" placeholder="Search...">
 						</div>
 						<div class="table-responsive" id="dynamic_content">
-							<div id="records_table">
+							<div id="users_table">
 								<!--- Ajax Content Here --->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div> <!-- End container-fluid -->
+			<!-- End Table Container -->
+
 
 
 		</div>
 		<!-- End Page Content holder -->
 
-
-
 	</div>
 	<!-- End Admin Section -->
-
 
 <!-- Start Internet Notification Popup Message -->
 <div class="connections">
@@ -147,20 +148,21 @@ include("includes/classes/User.php");
 
 	<!-- Modal content-->
 	<div class="modal-content">
+
   		<div class="modal-header">
 			<h4 class="modal-title text-info">Delete User</h4>
         	<button type="button" class="close" data-dismiss="modal">&times;</button>
     	</div>
 
     	<div class="modal-body">
-    		<p>Are you sure you want to delete this record?</p>
-            <form method="POST" action="includes/form_handlers/delete_records.php" id="form-delete-record">
-                <input type="hidden" name="records_id">
+    		<p>Are you sure you want to delete this user?</p>
+            <form method="POST" action="includes/form_handlers/delete_users.php" id="form-delete-user">
+                <input type="hidden" name="register_user_id">
             </form>
     	</div>
 
     	<div class="modal-footer">
-			<button type="submit" form="form-delete-record" class="btn btn-danger">Delete</button>
+			<button type="submit" form="form-delete-user" class="btn btn-danger">Delete</button>
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     	</div>
 
@@ -176,28 +178,50 @@ include("includes/classes/User.php");
         <div class="modal-content">
             <div class="modal-header">
 				<div class="center w-100">
-					<h4 class="modal-title text-info ml-4">Edit User Records</h4>
+					<h4 class="modal-title text-info ml-4">Edit User Details</h4>
 				</div>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
-            <div class="modal-body">
+			<div class="modal-body">
                 <form method="post" id="insert_form">
-                    <label for="added_by">Name</label>
-                    <input type="text" name="added_by" id="added_by" class="form-control" required><br>
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" id="first_name" class="form-control" required><br>
 
-                    <label for="date_added">Date Added</label>
-                    <input name="date_added" id="date_added" class="form-control" required></input><br>
+                    <label for="last_name">Last Name</label>
+                    <input name="last_name" id="last_name" class="form-control" required></input><br>
 
-                    <label for="status">Status</label>
-                    <select name="status" id="status" class="form-control" required>
-                        <option value="For Verification">For Verification</option>
-                        <option value="Verified">Verified</option>
+					<div class="user_gender_disable">
+	                    <label for="user_gender">Gender</label>
+	                    <select name="user_gender" id="user_gender" class="form-control">
+	                        <option value="Male">Male</option>
+	                        <option value="Female">Female</option>
+	                    </select><br>
+					</div>
+
+					<div class="user_email_disable">
+	                    <label for="user_email">Email</label>
+	                    <input name="user_email" id="user_email" class="form-control" required></input><br>
+					</div>
+
+                    <label for="user_datetime">Sign Up Date</label>
+                    <input type="text" name="user_datetime" id="user_datetime" class="form-control" required></input><br>
+
+                    <label for="user_email_status">Status</label>
+                    <select name="user_email_status" id="user_email_status" class="form-control" required>
+                        <option value="verified">Verified</option>
+                        <option value="not verified">Not Verified</option>
+                    </select><br>
+
+                    <label for="user_type">User Type</label>
+                    <select name="user_type" id="user_type" class="form-control" required>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
                     </select><br>
 			</div>
 				
 			<div class="modal-footer">
-					<input type="hidden" name="records_id" id="records_id">
+					<input type="hidden" name="register_user_id" id="register_user_id">
 					<input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info">
 					<input type="reset" class="btn btn-secondary"></input>
 				</form>
@@ -211,8 +235,8 @@ include("includes/classes/User.php");
 
 <!-- Modern Datetime picker UI -->
 <script>
-    flatpickr('#date_added', {
-        enableTime: true
+    flatpickr('#user_datetime', {
+        enableTime: false
     })
 </script>
 
@@ -226,7 +250,7 @@ $(document).ready(function(){
     function load_data(page, query = '')
     {
       $.ajax({
-        url:"includes/handlers/ajax_fetch_records.php",
+        url:"includes/handlers/ajax_fetch_users.php",
         method:"POST",
         data:{page:page, query:query},
         success:function(data)

@@ -194,7 +194,7 @@ if (isset($_POST["register"])) {
     <!-- End Background Image -->
 
 	<div class="container">
-        <div class="card card-default animate__animated animate__backInLeft" id="register_card">
+        <div class="card card-default" id="register_card">
             <div class="center">
                 <h1 id="login_headings" style="letter-spacing: 1.5px;"><strong>Create your account</strong></h1>
                 <!-- Google Button -->

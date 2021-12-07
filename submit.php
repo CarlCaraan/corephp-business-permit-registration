@@ -58,8 +58,8 @@ include("includes/classes/User.php");
 			                    <tr>
 			                        <th>Name</th>
 			                        <th>File Name</th>
-			                        <th>File Size</th>
-			                        <th>Date Added</th>
+			                        <th>Size</th>
+			                        <th>Date Filed</th>
 			                        <th>Action</th>
 			                    </tr>
 			               </thead>
@@ -72,7 +72,7 @@ include("includes/classes/User.php");
 							?>
 			                <tbody>
 			                    <tr>
-			                        <td><?php echo $row['added_by'] ?></td>
+			                        <td><?php echo $row['last_name'] . ", " . $row['first_name'] ?></td>
 			                        <td><?php echo $row['file_name'] ?></td>
 			                        <td><?php echo number_format($row['file_size']/1024/1024,2) . "MB" ?></td>
 			                        <td><?php echo $row['date_added'] ?></td>

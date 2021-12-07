@@ -56,49 +56,49 @@ $output = '
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>User Records!</strong> has been saved!
   </div>
-<label>Total Results : '.$total_data.'</label>
-<!--<div align="left">-->
-<!--    <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success m-1">Add</button>-->
-<!--</div>-->
-<table class="table table-striped table-bordered">
-    <tr>
+<label>Total Records : '.$total_data.'</label>
+<table class="table table-striped">
+    <tr id="admin_table_headings">
 		<th>ID</th>
 		<th>Name</th>
 		<th>File Name</th>
 		<th>Size</th>
 		<th>Date Added</th>
 		<th class="center">Status</th>
-		<th class="center">Edit</th>
-		<th class="center">Download</th>
-		<th class="center">Delete</th>
+		<th class="center">Attachment</th>
+		<th class="center">Action</th>
     </tr>
 ';
 if($total_data > 0)
 {
     foreach($result as $row) {
         $pending = "warning";
+        $pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+        $pending_text = "text-dark";
 
-        if($row["status"] == "approved") {
+        if($row["status"] == "Verified") {
             $pending = "success";
+            $pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
+            $pending_text = "text-light";
         }
         $output .= '
         <tr>
             <td>'.$row["id"].'</td>
-            <td>'.$row["added_by"].'</td>
+            <td>'.$row["last_name"].', '.$row["last_name"].'</td>
             <td>'.$row["file_name"].'</td>
             <td>'.number_format($row["file_size"]/1024/1024,2) . "MB" . '</td>
             <td>'.$row["date_added"].'</td>
             <td class="center">
-                <button class="btn btn-' . $pending . ' btn-sm text-light edit_data" name="edit" id="' . $row["id"] . '" >'.$row["status"].'</button>
+                <button class="btn btn-' . $pending . ' btn-sm '. $pending_text .' edit_data" name="edit" id="' . $row["id"] . '" >' . $pending_icon . $row["status"].'</button>
             </td>
             <td class="center">
-                <button name="edit" id="' . $row["id"] . '" class="btn btn-info edit_data"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-primary btn-sm text-light" href="download_pdf.php?file_name='. $row['file_name']. '">View Attachment</button>
             </td>
             <td class="center">
-				<a class="btn btn-primary" href="download_pdf.php?file_name='. $row['file_name']. '"><i class="fas fa-download"></i></a>
-            </td>
-            <td class="center">
-                <button class="btn btn-danger" data-id="' . $row["id"] . '" onclick="confirmDelete(this);"><i class="fas fa-trash" id="trash_icon"></i></button>
+                <div class="mx-auto" style="width: 100px;">
+                    <button name="edit" id="' . $row["id"] . '" class="btn btn-info edit_data"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger" data-id="' . $row["id"] . '" onclick="confirmDelete(this);"><i class="fas fa-trash" id="trash_icon"></i></button>
+                </div>
             </td>
         </tr>
         ';
@@ -174,7 +174,7 @@ for($count = 0; $count < count($page_array); $count++) {
 
         $previous_id = $page_array[$count] - 1;
         if($previous_id > 0) {
-            $previous_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$previous_id.'">Previous</a></li>';
+            $previous_link = '<li class="page-item"><a class="page-link text-dark" href="javascript:void(0)" data-page_number="'.$previous_id.'">Previous</a></li>';
         }
         else {
             $previous_link = '
@@ -190,7 +190,7 @@ for($count = 0; $count < count($page_array); $count++) {
             </li>';
         }
         else {
-            $next_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$next_id.'">Next</a></li>';
+            $next_link = '<li class="page-item"><a class="page-link text-dark" href="javascript:void(0)" data-page_number="'.$next_id.'">Next</a></li>';
         }
     }
     else {
@@ -202,7 +202,7 @@ for($count = 0; $count < count($page_array); $count++) {
         }
         else {
             $page_link .= '
-            <li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$page_array[$count].'">'.$page_array[$count].'</a></li>';
+            <li class="page-item"><a class="page-link text-dark" href="javascript:void(0)" data-page_number="'.$page_array[$count].'">'.$page_array[$count].'</a></li>';
         }
     }
 }
