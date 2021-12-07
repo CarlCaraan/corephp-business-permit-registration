@@ -23,12 +23,13 @@ $login_button = '';
 
     <!-- Navigation -->
     <header>
-        <?php $page = 'login';include 'includes/navbar_landingpage.php'; ?>
+        <?php $page = 'login';
+        include 'includes/navbar_landingpage.php'; ?>
     </header>
 
     <!-- Google Sign In Button -->
     <?php
-    if(!isset($_SESSION['access_token'])) {
+    if (!isset($_SESSION['access_token'])) {
         //Create a URL to obtain user authorization
         $login_button = '
         <a href="' . $google_client->createAuthUrl() . '">
@@ -61,8 +62,7 @@ $login_button = '';
                 <?php
                 if ($login_button == '') {
                     header('Location:adminhome.php');
-                }
-                else {
+                } else {
                     echo '<div align="center">' . $login_button . '</div>';
                 }
                 ?>
@@ -126,56 +126,50 @@ $login_button = '';
                     Not a member?<a href="register.php" id="register_now"> Register now</a>
                 </div>
 
-
-<!-- Button trigger modal -->
-
-
-
-
             </div> <!-- End Card-Body -->
 
         </div> <!-- End Card -->
     </div> <!-- End Container -->
 
 
-<!-- Start Internet Notification Popup Message -->
-<div class="connections">
-	<div class="connection offline">
-		<i class="material-icons wifi-off">wifi_off</i>
-		<p>you are currently offline</p>
-		<a href="#" class="refreshBtn">Refresh</a>
-		<i class="material-icons close">close</i>
-	</div>
-	<div class="connection online">
-		<i class="material-icons wifi">wifi</i>
-		<p>your Internet connection was restored</p>
-		<i class="material-icons close">close</i>
-	</div>
-</div>
-<!-- End Internet Notification Popup Message -->
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body center">
-        <img class="w-25 rounded-circle img-thumbnail" src="assets/images/lonely.png" alt=""><br><br>
-        <h4>Try to relax and remember your password</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+    <!-- Start Internet Notification Popup Message -->
+    <div class="connections">
+        <div class="connection offline">
+            <i class="material-icons wifi-off">wifi_off</i>
+            <p>you are currently offline</p>
+            <a href="#" class="refreshBtn">Refresh</a>
+            <i class="material-icons close">close</i>
+        </div>
+        <div class="connection online">
+            <i class="material-icons wifi">wifi</i>
+            <p>your Internet connection was restored</p>
+            <i class="material-icons close">close</i>
+        </div>
     </div>
-  </div>
-</div>
+    <!-- End Internet Notification Popup Message -->
 
-<?php include 'includes/scripts.php'; ?>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body center">
+                    <img class="w-25 rounded-circle img-thumbnail" src="assets/images/lonely.png" alt=""><br><br>
+                    <h4>Try to relax and remember your password</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include 'includes/scripts.php'; ?>
 
 </body>
 
@@ -183,48 +177,47 @@ $login_button = '';
 
 
 <script>
-$(document).ready(function() {
-    $('#login_form').on('submit', function(event) {
-        event.preventDefault();
-        var action = $('#action').val();
-        $.ajax({
-            url: "includes/handlers/ajax_login_verify.php",
-            method: "POST",
-            data: $(this).serialize(),
-            dataType: "json",
-            beforeSend: function() {
-                $('#next').attr('disabled', 'disabled');
-            },
-            success: function(data) {
-                $('#next').attr('disabled', false);
-                if (action == 'email') {
-                    if (data.error != '') {
-                        $('#user_email_error').text(data.error);
+    $(document).ready(function() {
+        $('#login_form').on('submit', function(event) {
+            event.preventDefault();
+            var action = $('#action').val();
+            $.ajax({
+                url: "includes/handlers/ajax_login_verify.php",
+                method: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                beforeSend: function() {
+                    $('#next').attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    $('#next').attr('disabled', false);
+                    if (action == 'email') {
+                        if (data.error != '') {
+                            $('#user_email_error').text(data.error);
+                        } else {
+                            $('#user_email_error').text('');
+                            $('#email_area').css('display', 'none');
+                            $('#password_area').css('display', 'block');
+                        }
+                    } else if (action == 'password') {
+                        if (data.error != '') {
+                            $('#user_password_error').text(data.error);
+                        } else {
+                            $('#user_password_error').text('');
+                            $('#password_area').css('display', 'none');
+                            $('#otp_area').css('display', 'block');
+                        }
                     } else {
-                        $('#user_email_error').text('');
-                        $('#email_area').css('display', 'none');
-                        $('#password_area').css('display', 'block');
+                        if (data.error != '') {
+                            $('#user_otp_error').text(data.error);
+                        } else {
+                            window.location.replace("adminhome.php");
+                        }
                     }
-                } else if (action == 'password') {
-                    if (data.error != '') {
-                        $('#user_password_error').text(data.error);
-                    } else {
-                        $('#user_password_error').text('');
-                        $('#password_area').css('display', 'none');
-                        $('#otp_area').css('display', 'block');
-                    }
-                } else {
-                    if (data.error != '') {
-                        $('#user_otp_error').text(data.error);
-                    } else {
-                        window.location.replace("adminhome.php");
-                    }
+
+                    $('#action').val(data.next_action);
                 }
-
-                $('#action').val(data.next_action);
-            }
-        })
+            })
+        });
     });
-});
 </script>
-
