@@ -7,7 +7,7 @@ if(isset($_POST['register_user_id'])) {
     $query = $conn->prepare("DELETE FROM register_user WHERE register_user_id='$register_user_id'");
     $query->execute();
 
-    header('Location: ../../adminhome.php');
+    header('Location: ../../adminusers.php');
 }
 
 ?>

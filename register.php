@@ -163,7 +163,7 @@ if (isset($_POST["register"])) {
 
 	<!-- Navigation -->
 	<header>
-	<?php $page = 'register';include 'includes/navbar_landingpage.php'; ?>
+	<?php $page = 'login';include 'includes/navbar_landingpage.php'; ?>
 	</header>
 
     <!-- Google Sign In Button -->

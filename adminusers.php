@@ -178,7 +178,7 @@ include("includes/classes/User.php");
         <div class="modal-content">
             <div class="modal-header">
 				<div class="center w-100">
-					<h4 class="modal-title text-info ml-4">Edit User Details</h4>
+					<h4 class="modal-title text-info ml-4" id="add_user_headings">Edit User Details</h4>
 				</div>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
@@ -218,9 +218,9 @@ include("includes/classes/User.php");
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select><br>
-			</div>
+				</div>
 				
-			<div class="modal-footer">
+				<div class="modal-footer">
 					<input type="hidden" name="register_user_id" id="register_user_id">
 					<input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info">
 					<input type="reset" class="btn btn-secondary"></input>

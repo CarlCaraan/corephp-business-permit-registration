@@ -55,11 +55,14 @@ $result = $statement->fetchAll();
 $total_filter_data = $statement->rowCount();
 
 $output = '
-  <div class="alert alert-success alert-dismissible" id="user_alert_message" style="display: none;">
+<div class="alert alert-success alert-dismissible" id="user_alert_message" style="display: none;">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>User Details!</strong> has been saved!
-  </div>
-<label>Total Users : '.$total_data.'</label>
+</div>
+<label class="font-weight-bold m-2">Total Users : '.$total_data.'</label>
+<div class="float-left mb-3">
+    <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info"><i class="fas fa-user-plus"></i> Add User</button>
+</div>
 <table class="table table-striped">
     <tr id="admin_table_headings">
 		<th>ID</th>
@@ -76,13 +79,6 @@ $output = '
 if($total_data > 0)
 {
     foreach($result as $row) {
-        $account = $row['account'];
-        if($account == "google") {
-            $edit_disable = "edit_disable";
-        }
-        else {
-            $edit_disable = "edit_enable";
-        }
         $output .= '
         <tr>
             <td>'.$row["register_user_id"].'</td>
@@ -95,7 +91,7 @@ if($total_data > 0)
             <td>'.$row["account"].'</td>
             <td class="center">
                 <div class="mx-auto" style="width: 100px;">
-                    <button name="edit" id="' . $row["register_user_id"] . '" class="btn btn-info edit_data ' . $edit_disable . '"><i class="fas fa-edit"></i></button>
+                    <button name="edit" id="' . $row["register_user_id"] . '" class="btn btn-info edit_data"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-danger" data-id="' . $row["register_user_id"] . '" onclick="confirmDelete(this);"><i class="fas fa-trash" id="trash_icon"></i></button>
                 </div>
             </td>
@@ -223,15 +219,10 @@ $(document).ready(function(){
         $('#insert').val("Insert");
         $('#insert_form')[0].reset();
         $('#register_user_id').val("");
-        // $('#password_input').css("display", "block");
+        $('#add_user_headings').text("Add User")
     });
-    $('.edit_disable').click(function(){
-        $('.user_gender_disable').css("display", "none");
-        $('.user_email_disable').css("display", "none");
-    });
-    $('.edit_enable').click(function(){
-        $('.user_gender_disable').css("display", "block");
-        $('.user_email_disable').css("display", "block");
+    $('.edit_data').click(function(){
+        $('#add_user_headings').text("Edit User Details")
     });
     $(document).on('click', '.edit_data', function(){
         var register_user_id = $(this).attr("id");
