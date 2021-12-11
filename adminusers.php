@@ -94,7 +94,7 @@ include("includes/classes/User.php");
 					<h3 class="font-weight-bold pl-4 pt-4" id="setting_headings">Users</h3>
 					<div class="card-body">
 						<div class="form-group">
-							<input type="text" name="search_box" id="search_box" class="form-control login-input" placeholder="Search...">
+							<input type="search" name="search_box" id="search_box" class="form-control login-input" placeholder="Search...">
 						</div>
 						<div class="table-responsive" id="dynamic_content">
 							<div id="users_table">
