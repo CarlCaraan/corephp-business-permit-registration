@@ -653,13 +653,36 @@ table tr:first-child th:first-child {
 @media (max-width: 479px) {
   #login_card,
   #register_card {
-	margin: 5rem 0 !important;
-	padding: 3rem 0.5rem 3rem 0.5rem;
-	border-radius: 10px;
-	background-color: #f0f1f3;
+    margin: 5rem 0 !important;
+    padding: 3rem 0.5rem 3rem 0.5rem;
+    border-radius: 10px;
+    background-color: #f0f1f3;
   }
   #login_headings {
-	font-size: 1.65rem;
+    font-size: 1.65rem;
+  }
+  .connection {
+    width: 300px;
+    height: 50px;
+    left: 10px;
+  }
+  .connection .refreshBtn {
+    margin-left: 3px;
+  }
+  .connection .close {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .connection .wifi {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .connection .wifi-off {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .online.active {
+    width: 300px;
   }
 }
 
