@@ -441,7 +441,7 @@ p {
 }
 #sidebar_text_wrapper {
   font-size: 1.2rem;
-  text-align: left !important;
+  text-align: left;
 }
 #sidebar_text_wrapper:hover {
   padding-left: 5px;
@@ -456,8 +456,6 @@ p {
 }
 #admin_table_headings {
   background-color: var(--nav-link);
-  border: none !important;
-  border-radius: 10px !important;
 }
 table tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
