@@ -48,6 +48,12 @@ include("includes/classes/User.php");
 		                    <input class="form-control" type="file" name="file" value="">
 		                    <input class="btn btn-lg btn-success mt-3" type="submit" name="upload" value="Upload File" <?php echo $disabled_button; ?>>
 		                    <?php echo $upload_message; ?>
+		                    <?php 
+							if(isset($_SESSION['delete_message'])) {
+								echo $_SESSION['delete_message'];
+								unset($_SESSION['delete_message']);
+							}
+							 ?>
 		                </form>
 					</div>
 
