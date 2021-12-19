@@ -2,6 +2,8 @@
 require_once 'pdo_handler.php';
 require("../../config/config.php");
 
+session_start();
+
 if(isset($_POST['records_id'])) {
     $records_id = $_POST['records_id'];
 
@@ -12,6 +14,12 @@ if(isset($_POST['records_id'])) {
     $query->execute();
 
     unlink("../../assets/uploads/" . $row['file_name']);
+
+    $_SESSION['delete_message'] = "<div class='alert alert-success alert-dismissible fade show mt-2'>
+                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                        Row has been <strong>trashed</strong>!
+                                    </div>";
+
     header('Location: ../../adminrecords.php');
 }
 

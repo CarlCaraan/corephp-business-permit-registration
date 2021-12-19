@@ -96,6 +96,15 @@ include("includes/classes/User.php");
 						<div class="form-group">
 							<input type="search" name="search_box" id="search_box" class="form-control login-input" placeholder="Search...">
 						</div>
+
+						<!-- Flash Delete Message -->
+						<?php 
+						if(isset($_SESSION['delete_message'])) {
+							echo $_SESSION['delete_message'];
+							unset($_SESSION['delete_message']);
+						}
+						?>
+
 						<div class="table-responsive" id="dynamic_content">
 							<div id="users_table">
 								<!--- Ajax Content Here --->
