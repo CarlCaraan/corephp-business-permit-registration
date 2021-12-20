@@ -24,6 +24,14 @@ if(isset($_POST['upload'])) {
                             <strong>Sorry</strong> your file is too large!
                         </div>";
     }
+    // This field is required
+    else if ($file_name == "") {
+        $uploadOk = 0;
+        $upload_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                            This field must not be <strong>empty</strong>!
+                        </div>";
+    }
     // Allow certain file formats
     else if($fileType != "pdf") {
       $uploadOk = 0;
