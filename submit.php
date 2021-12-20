@@ -6,7 +6,6 @@ include("includes/classes/User.php");
 <html>
 <head>
 	<?php include 'includes/head.php'; ?>
-    <?php require 'includes/form_handlers/pdo_handler.php'; ?>
 	<title>Registration | Welcome</title>
 </head>
 
@@ -44,7 +43,7 @@ include("includes/classes/User.php");
 				<div class="card-body">
             		<!-- Submit File -->
 					<div class="jumbotron center py-4">
-		                <form class="" action="submit.php" method="POST" enctype="multipart/form-data">
+		                <form action="submit.php" method="POST" enctype="multipart/form-data">
 		                    <input class="form-control" type="file" name="file" value="">
 		                    <input class="btn btn-lg btn-success mt-3" type="submit" name="upload" value="Upload File" <?php echo $disabled_button; ?>>
 		                    <?php echo $upload_message; ?>

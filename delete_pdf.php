@@ -1,6 +1,5 @@
 <?php
 require_once 'includes/form_handlers/pdo_handler.php';
-session_start();
 
 if(isset($_GET['file_name'])) {
     $name = $_GET['file_name'];
