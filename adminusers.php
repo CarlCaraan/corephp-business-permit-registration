@@ -9,7 +9,6 @@ include("includes/classes/User.php");
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<?php include 'includes/head.php'; ?>
-    <?php require 'includes/form_handlers/pdo_handler.php'; ?>
 	<title>Users | Admin</title>
 </head>
 
@@ -102,6 +101,14 @@ include("includes/classes/User.php");
 						if(isset($_SESSION['delete_message'])) {
 							echo $_SESSION['delete_message'];
 							unset($_SESSION['delete_message']);
+						}
+						?>
+
+						<!-- Flash Update Message -->
+						<?php 
+						if(isset($_SESSION['update_message'])) {
+							echo $_SESSION['update_message'];
+							unset($_SESSION['update_message']);
 						}
 						?>
 

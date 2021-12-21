@@ -52,10 +52,6 @@ $result = $statement->fetchAll();
 $total_filter_data = $statement->rowCount();
 
 $output = '
-  <div class="alert alert-success alert-dismissible" id="alert_message" style="display: none;">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>User Records!</strong> has been saved!
-  </div>
 <label>Total Records : '.$total_data.'</label>
 <table class="table table-striped">
     <tr id="admin_table_headings">
@@ -262,10 +258,9 @@ $(document).ready(function(){
                 $('#insert_form')[0].reset();
                 $('#add_data_Modal').modal('hide');
                 $('#records_table').html(data);
-                $('#alert_message').css("display", "block");
                 setTimeout(function(){
                    window.location.reload(1);
-               }, 2000);
+               });
             }
         });
     });

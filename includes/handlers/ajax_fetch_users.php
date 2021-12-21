@@ -55,10 +55,6 @@ $result = $statement->fetchAll();
 $total_filter_data = $statement->rowCount();
 
 $output = '
-<div class="alert alert-success alert-dismissible" id="user_alert_message" style="display: none;">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>User Details!</strong> has been saved!
-</div>
 <label class="font-weight-bold m-2">Total Users : '.$total_data.'</label>
 <div class="float-left mb-3">
     <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info"><i class="fas fa-user-plus"></i> Add User</button>
@@ -260,10 +256,9 @@ $(document).ready(function(){
                 $('#insert_form')[0].reset();
                 $('#add_data_Modal').modal('hide');
                 $('#users_table').html(data);
-                $('#user_alert_message').css("display", "block");
                 setTimeout(function(){
                    window.location.reload(1);
-               }, 2000);
+               });
             }
         });
     });

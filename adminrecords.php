@@ -102,6 +102,13 @@ include("includes/classes/User.php");
 							unset($_SESSION['delete_message']);
 						}
 						?>
+						<!-- Flash Update Message -->
+						<?php 
+						if(isset($_SESSION['update_message'])) {
+							echo $_SESSION['update_message'];
+							unset($_SESSION['update_message']);
+						}
+						?>
 
 						<div class="table-responsive" id="dynamic_content">
 							<div id="records_table">

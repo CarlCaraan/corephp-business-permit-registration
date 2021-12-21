@@ -1,5 +1,6 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "business");
+session_start();
 
 if(!empty($_POST)) {
 
@@ -14,6 +15,12 @@ if(!empty($_POST)) {
         date_added='$date_added',
         status='$status'
         WHERE id='".$_POST["records_id"]."'";
+
+        $_SESSION['update_message'] = "<div class='alert alert-success alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            Row has been <strong>Updated</strong>!
+                                        </div>";
+
     }
     else {
         // $query = "
