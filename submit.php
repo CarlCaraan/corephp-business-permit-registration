@@ -17,8 +17,7 @@ include("includes/classes/User.php");
 		<!-- Navigation -->
 		<header>
 		<?php $page = 'submit';include 'includes/navbar_user.php'; ?>
-		<?php include("includes/form_handlers/upload_pdf.php"); ?>
-		<?php include("delete_pdf.php"); ?>
+		<?php include("includes/form_handlers/pdo_handler.php"); ?>
 		</header>
 
 		<?php
@@ -43,10 +42,15 @@ include("includes/classes/User.php");
 				<div class="card-body">
             		<!-- Submit File -->
 					<div class="jumbotron center py-4">
-		                <form action="submit.php" method="POST" enctype="multipart/form-data">
+		                <form action="includes/form_handlers/upload_pdf.php" method="POST" enctype="multipart/form-data">
 		                    <input class="form-control" type="file" name="file" value="">
 		                    <input class="btn btn-lg btn-success mt-3" type="submit" name="upload" value="Upload File" <?php echo $disabled_button; ?>>
-		                    <?php echo $upload_message; ?>
+							<?php 
+							if(isset($_SESSION['upload_message'])) {
+								echo $_SESSION['upload_message'];
+								unset($_SESSION['upload_message']);
+							}
+							 ?>
 		                    <?php 
 							if(isset($_SESSION['delete_message'])) {
 								echo $_SESSION['delete_message'];

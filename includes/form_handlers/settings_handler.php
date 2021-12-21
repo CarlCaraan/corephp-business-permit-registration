@@ -1,6 +1,17 @@
 <?php
-//For Basic Information Form
-ini_set('display_errors', 'Off');
+require_once '../../config/config.php';
+
+if(mysqli_connect_errno())
+{
+	echo "Failed to connect: " . mysqli_connect_errno();
+}
+if(isset($_SESSION['user_name'])) {
+    $userLoggedIn = $_SESSION['user_name'];
+}
+else {
+	header("location:login.php");
+}
+
 if(isset($_POST['update_details'])) {
 
 	$firstname = $_POST['first_name'];
@@ -14,20 +25,23 @@ if(isset($_POST['update_details'])) {
 	$matched_user = $row['user_name'];
 
 	if($matched_user == "" || $matched_user == $userLoggedIn) {
-			$message = "<div class='alert alert-success alert-dismissible fade show mt-2'>
+			$_SESSION['message'] = "<div class='alert alert-success alert-dismissible fade show mt-2'>
                     	    <button type='button' class='close' data-dismiss='alert'>&times;</button>
                     	    User details successfully <strong>Updated!</strong> 
                         </div>";
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
 			$query = mysqli_query($con, "UPDATE register_user SET first_name='$firstname', last_name='$lastname', user_gender='$gender' WHERE user_name='$userLoggedIn'");
 	}
 	else
-		$message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+    $_SESSION['message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                         <button type='button' class='close' data-dismiss='alert'>&times;</button>
                         <strong>Email</strong> is already in use!
                     </div>";
+
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
-else
-	$message = "";
+
 
 //For Password Form
 if(isset($_POST['update_password'])) {
@@ -44,61 +58,73 @@ if(isset($_POST['update_password'])) {
             if($new_password_1 == $new_password_2) {
 
                 if(strlen($new_password_1) <= 4) {
-                    $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                    $_SESSION['password_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                                             <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                             <strong>Sorry</strong> your password must be greater than 4 characters!
                                         </div>";
+
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
                 else {
                     $new_password_md5 = password_hash($new_password_1, PASSWORD_DEFAULT);
                     $password_query = mysqli_query($con, "UPDATE register_user SET user_password='$new_password_md5' WHERE user_name='$userLoggedIn'");
-                    $password_message = "<div class='alert alert-success alert-dismissible fade show mt-2'>
+                    $_SESSION['password_message'] = "<div class='alert alert-success alert-dismissible fade show mt-2'>
                                             <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                             Your<strong> Password</strong> has been changed!
                                         </div>";
+
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
             }
             else {
-                $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                $_SESSION['password_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                                         <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                         Your<strong> New Password</strong> doesn't match!
                                     </div>";
+
+                header('Location: ../../settings_user.php');
             }
         }
         else {
-            $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+            $_SESSION['password_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                                     <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                     Your<strong> Current Password</strong> is incorrect!
                                 </div>";
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
     else {
         if($new_password_1 == $new_password_2) {
 
             if(strlen($new_password_1) <= 4) {
-                $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                $_SESSION['password_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                                         <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                         <strong>Sorry</strong> your password must be greater than 4 characters!
                                     </div>";
+
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
             else {
                 $new_password_md5 = password_hash($new_password_1, PASSWORD_DEFAULT);
                 $password_query = mysqli_query($con, "UPDATE register_user SET user_password='$new_password_md5' WHERE user_name='$userLoggedIn'");
-                $password_message = "<div class='alert alert-success alert-dismissible fade show mt-2'>
+                $_SESSION['password_message'] = "<div class='alert alert-success alert-dismissible fade show mt-2'>
                                         <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                         Your<strong> Password</strong> has been changed!
                                     </div>";
+
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
         }
         else {
-            $password_message = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+            $_SESSION['password_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                                     <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                     Your<strong> New Password</strong> doesn't match!
                                 </div>";
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
 
 }
-else {
-    $password_message = "";
-}
+
