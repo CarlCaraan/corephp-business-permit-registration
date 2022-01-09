@@ -9,14 +9,11 @@ if(isset($_SESSION['user_name'])) {
 	$_SESSION['first_name'] = $first_name;
 	$last_name = $user['last_name'];
 	$_SESSION['last_name'] = $last_name;
-}
 
-else {
+}else {
 	header("location:login.php");
 }
-
 ?>
-
 
 <!-- Start Navigation -->
 <nav class="navbar navbar-expand-md py-1 fixed-top">

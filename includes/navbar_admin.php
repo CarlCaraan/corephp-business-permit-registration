@@ -38,6 +38,7 @@ if (isset($_GET["code"])) {
         $user_email = $_SESSION['user_email'];
         $account = "google";
         $email_status = "verified";
+        $user_type = "user";
 
         //Create Username
 		$username = strtolower($first_name . "_" . $last_name);
@@ -60,35 +61,36 @@ if (isset($_GET["code"])) {
     			'$first_name', '$last_name', '$user_email', '$username'
     		)");
 
-            $update_account_query = mysqli_query($con, "UPDATE register_user SET account='$account', user_email_status='$email_status' WHERE user_email='$user_email'");
+            $update_account_query = mysqli_query($con, "UPDATE register_user SET account='$account', user_type='$user_type', user_email_status='$email_status' WHERE user_email='$user_email'");
+
+
+			$check_username = mysqli_query($con, "SELECT user_name FROM register_user WHERE user_name='$username'");
+			$row = mysqli_fetch_array($check_username);
+			$username = $row['user_name'];
+			$_SESSION['user_name'] = $username;
         }
 
-        $username = $row['user_name'];
-        $_SESSION['user_name'] = $username;
+		$username = $row['user_name'];
+		$_SESSION['user_name'] = $username;
     }
 }
 
 if(isset($_SESSION["user_name"])) {
     $userLoggedIn = $_SESSION['user_name'];
-
     $users_details_query = mysqli_query($con, "SELECT * FROM register_user WHERE user_name='$userLoggedIn'");
     $user = mysqli_fetch_array($users_details_query);
 
-    //Authorized for Admin only
-    if($user["user_type"] == "admin") {
-        define('USERSITE', true);
-    }
-
+	//Authorized for Admin only
+	if ($user["user_type"] == "admin") {
+		define('USERSITE', true);
+	}
+}else{
+    header( "Location: login.php" );
 }
-else {
-	header("location:login.php");
-}
-
 if(!defined('USERSITE')) {
     header( "refresh:0;url=userhome.php" );
     die();
 }
-
 ?>
 
 <!-- Start Navigation -->
