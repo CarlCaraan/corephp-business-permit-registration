@@ -32,15 +32,12 @@ if (isset($_GET["code"])) {
             $_SESSION['user_image'] = $data['picture'];
         }
 
-
         //Set Variables
         $first_name = $_SESSION['first_name'];
         $last_name = $_SESSION['last_name'];
         $user_email = $_SESSION['user_email'];
         $account = "google";
         $email_status = "verified";
-
-
 
         //Create Username
 		$username = strtolower($first_name . "_" . $last_name);
@@ -65,20 +62,11 @@ if (isset($_GET["code"])) {
 
             $update_account_query = mysqli_query($con, "UPDATE register_user SET account='$account', user_email_status='$email_status' WHERE user_email='$user_email'");
         }
+
         $username = $row['user_name'];
         $_SESSION['user_name'] = $username;
-
-        //Stop Login using google account when existing user have local account
-        $check_account_query = mysqli_query($con, "SELECT account FROM register_user WHERE user_name='$username'");
-        $account = mysqli_fetch_array($check_account_query);
-
-        if($account['account'] == "local") {
-            header("Location:login.php");
-        }
-
     }
 }
-
 
 if(isset($_SESSION["user_name"])) {
     $userLoggedIn = $_SESSION['user_name'];

@@ -1,93 +1,19 @@
 <?php
-if (isset($_GET["code"])) {
-
-    $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
-
-    if (!isset($token['error'])) {
-
-        $google_client->setAccessToken($token['access_token']);
-        $_SESSION['access_token'] = $token['access_token'];
-        $google_service = new Google_Service_Oauth2($google_client);
-        $data = $google_service->userinfo->get();
-
-        //Set SESSION Variables
-        if (!empty($data['given_name'])) {
-            $_SESSION['first_name'] = $data['given_name'];
-        }
-
-        if (!empty($data['family_name'])) {
-            $_SESSION['last_name'] = $data['family_name'];
-        }
-
-        if (!empty($data['email'])) {
-            $_SESSION['user_email'] = $data['email'];
-        }
-
-        if (!empty($data['gender'])) {
-            $_SESSION['user_gender'] = $data['gender'];
-        }
-
-        if (!empty($data['picture'])) {
-            $_SESSION['user_image'] = $data['picture'];
-        }
-
-
-        //Set Variables
-        $first_name = $_SESSION['first_name'];
-        $last_name = $_SESSION['last_name'];
-        $user_email = $_SESSION['user_email'];
-        $user_gender = $_SESSION['user_gender'];
-        $account = "google";
-        $email_status = "verified";
-
-
-        //Create Username
-		$username = strtolower($first_name . "_" . $last_name);
-		$check_username_query = mysqli_query($con, "SELECT user_name FROM register_user WHERE user_name='$username'");
-        $row = mysqli_fetch_array($check_username_query);
-
-		//if username exist add number to username
-		$i = 0;
-		while(mysqli_num_rows($check_username_query) != 0) {
-			$i++; //Add 1 to i
-			$username = $username . "_" . $i;
-			$check_username_query = mysqli_query($con, "SELECT user_name FROM register_user WHERE user_name='$username'");
-		}
-
-        //Add credentials to db
-        $check_email_query = mysqli_query($con, "SELECT user_email FROM register_user WHERE user_email='$user_email'");
-
-    	if(mysqli_num_rows($check_email_query) == 0) {
-    		$query = mysqli_query($con, "INSERT INTO register_user (first_name, last_name, user_email, user_gender, user_name) VALUES (
-    			'$first_name', '$last_name', '$user_email', '$user_gender', '$username'
-    		)");
-
-            $update_account_query = mysqli_query($con, "UPDATE register_user SET account='$account', user_email_status='$email_status' WHERE user_email='$user_email'");
-        }
-        $username = $row['user_name'];
-        $_SESSION['user_name'] = $username;
-
-
-    }
-}
-
-
 if(isset($_SESSION['user_name'])) {
     $userLoggedIn = $_SESSION['user_name'];
-
-    $first_name = $_SESSION['first_name'];
-    $last_name = $_SESSION['last_name'];
-
 
     $users_details_query = mysqli_query($con, "SELECT * FROM register_user WHERE user_name='$userLoggedIn'");
     $user = mysqli_fetch_array($users_details_query);
 
+	$first_name = $user['first_name'];
+	$_SESSION['first_name'] = $first_name;
+	$last_name = $user['last_name'];
+	$_SESSION['last_name'] = $last_name;
 }
+
 else {
 	header("location:login.php");
 }
-
-define('USERSITE', true);
 
 ?>
 

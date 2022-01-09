@@ -1,20 +1,9 @@
 <?php
 require_once './pdo_handler.php';
 
-if(isset($_SESSION['user_name'])) {
-    $userLoggedIn = $_SESSION['user_name'];
-
-    $first_name = $_SESSION['first_name'];
-    $last_name = $_SESSION['last_name'];
-
-
-    $users_details_query = mysqli_query($con, "SELECT * FROM register_user WHERE user_name='$userLoggedIn'");
-    $user = mysqli_fetch_array($users_details_query);
-
-}
-else {
-	header("location:login.php");
-}
+$userLoggedIn = $_SESSION['user_name'];
+$first_name = $_SESSION['first_name'];
+$last_name = $_SESSION['last_name'];
 
 if(isset($_POST['upload'])) {
     $file_name = $_FILES['file']['name'];
