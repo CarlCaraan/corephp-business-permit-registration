@@ -186,6 +186,50 @@ p {
   background-color: #e67140;
 }
 
+/*============= FOOTER SECTION =============*/
+
+#footer_container {
+  background-color: #F0F1F3;
+}
+#footer_heading {
+  font-size: 20px;
+  color: #2A6877;
+  font-weight: 700;
+}
+#footer_copyright {
+  font-size: 15px;
+  color: #1C1E1D;
+}
+#footer_icon_twitter {
+  padding: 7px 10px 7px 10px;
+}
+#footer_icon_facebook {
+  padding: 7px 13px 7px 13px;
+}
+#footer_icon_instagram {
+  padding: 7px 8px 7px 8px;
+}
+
+/*============= CONTACT US SECTION =============*/
+
+#contact_heading {
+  font-family: "Lato", sans-serif!important;
+}
+#paragraph_heading {
+  font-family: "Helvetica", sans-serif!important;
+}
+
+#icon_facebook:hover {
+    color: #4269af;
+}
+#icon_twitter:hover {
+    color: #0da4f1;
+}
+#icon_instagram:hover {
+    color: #f34771;
+}
+
+
 /*============= REGISTER SECTION =============*/
 #register_card {
   margin: 10rem 18rem 0 18rem;
@@ -632,6 +676,24 @@ table tr:first-child th:first-child {
   }
   #login_headings {
 	font-size: 2.1rem;
+  }
+  #footer_heading {
+    font-size: 18px;
+    line-height: 3.5rem;
+  }
+  #footer_info {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0;
+  }
+  #footer_copyright_wrapper {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  }
+  #footer_space_between {
+    padding: 0;
   }
 }
 

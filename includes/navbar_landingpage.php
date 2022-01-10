@@ -21,7 +21,10 @@
 				<a class="nav-link <?php if($page=='home'){echo 'active';}?>" href="index.php">Home</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link <?php if($page=='login'){echo 'active';}?>" href="login.php">Login</a>
+				<a class="nav-link <?php if($page=='contact'){echo 'active';}?>" href="contact.php">Contact Us</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link <?php if($page=='login'){echo 'active';}?>" href="login.php">Login or Register</a>
 			</li>
 		</ul>
 	</div>

@@ -17,7 +17,9 @@
 			include 'includes/navbar_landingpage.php'; ?>
 		</header>
 
-
+	<!-- Start Footer Section -->
+	<?php include 'includes/footer.php'; ?>
+	<!-- End Footer Section -->
 
 	</div>
 	<!-- End Home Section -->
