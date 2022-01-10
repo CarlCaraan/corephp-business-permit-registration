@@ -16,28 +16,28 @@ function clean_text($string)
 
 if (isset($_POST["submit"])) {
     if (empty($_POST["name"])) {
-        $error .= '<p><label class="text-danger">Please Enter your Name</label></p>';
+        $error .= '<label class="text-danger">Please Enter your Name*</label><br>';
     } else {
         $name = clean_text($_POST["name"]);
         if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-            $error .= '<p><label class="text-danger">Only letters and white space allowed</label></p>';
+            $error .= '<label class="text-danger">Only letters and white space allowed*</label><br>';
         }
     }
     if (empty($_POST["email"])) {
-        $error .= '<p><label class="text-danger">Please Enter your Email</label></p>';
+        $error .= '<label class="text-danger">Please Enter your Email*</label><br>';
     } else {
         $email = clean_text($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error .= '<p><label class="text-danger">Invalid email format</label></p>';
+            $error .= '<label class="text-danger">Invalid email format*</label><br>';
         }
     }
     if (empty($_POST["subject"])) {
-        $error .= '<p><label class="text-danger">Subject is required</label></p>';
+        $error .= '<label class="text-danger">Subject is required*</label><br>';
     } else {
         $subject = clean_text($_POST["subject"]);
     }
     if (empty($_POST["message"])) {
-        $error .= '<p><label class="text-danger">Message is required</label></p>';
+        $error .= '<label class="text-danger">Message is required*</label>';
     } else {
         $message = clean_text($_POST["message"]);
     }
@@ -128,7 +128,7 @@ if (isset($_POST["submit"])) {
         <div class="masthead-content text-white" id="masthead_content">
             <div class="container-fluid px-4 px-lg-0">
                 <h1 class="lh-1 mb-4 text-white" id="contact_heading">Contact Form</h1>
-                <p class="mb-5 text-white" id="paragraph_heading">We're working hard to finish the development of this site. Fill up below to receive updates and to be notified when we launch!</p>
+                <p class="text-white" id="paragraph_heading">For your concerns. Fill up below to receive updates and to be notified.</p>
 
                 <?php echo $error; ?>
                 <form method="post">
