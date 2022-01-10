@@ -625,6 +625,9 @@ table tr:first-child th:first-child {
 	border-radius: 10px;
 	background-color: #f0f1f3;
   }
+  #masthead_content {
+    padding-top: 5rem!important;
+  }
 }
 /*-- Devices under 1200px (xl) --*/
 @media (max-width: 1199px) {

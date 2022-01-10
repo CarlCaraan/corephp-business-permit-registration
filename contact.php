@@ -125,7 +125,7 @@ if (isset($_POST["submit"])) {
 
     <!-- Masthead-->
     <div class="masthead">
-        <div class="masthead-content text-white">
+        <div class="masthead-content text-white" id="masthead_content">
             <div class="container-fluid px-4 px-lg-0">
                 <h1 class="lh-1 mb-4 text-white" id="contact_heading">Contact Form</h1>
                 <p class="mb-5 text-white" id="paragraph_heading">We're working hard to finish the development of this site. Fill up below to receive updates and to be notified when we launch!</p>
