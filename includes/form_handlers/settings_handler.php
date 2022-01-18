@@ -82,7 +82,7 @@ if(isset($_POST['update_password'])) {
                                         Your<strong> New Password</strong> doesn't match!
                                     </div>";
 
-                header('Location: ../../settings_user.php');
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
         }
         else {
