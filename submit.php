@@ -4,6 +4,7 @@ include("includes/classes/User.php");
 ?>
 
 <html>
+
 <head>
 	<?php include 'includes/head.php'; ?>
 	<title>Registration | Welcome</title>
@@ -16,18 +17,16 @@ include("includes/classes/User.php");
 
 		<!-- Navigation -->
 		<header>
-		<?php $page = 'submit';include 'includes/navbar_user.php'; ?>
-		<?php include("includes/form_handlers/pdo_handler.php"); ?>
+			<?php $page = 'submit';
+			include 'includes/navbar_user.php'; ?>
+			<?php include("includes/form_handlers/pdo_handler.php"); ?>
 		</header>
 
 		<?php
 		$check_data_query = mysqli_query($con, "SELECT * FROM posts WHERE added_by='$userLoggedIn'");
-    	$data_query = mysqli_fetch_array($check_data_query);
-
-		if (!empty($data_query)) {
+		if (mysqli_num_rows($check_data_query) >= 2) {
 			$disabled_button = "disabled";
-		}
-		else {
+		} else {
 			$disabled_button = "";
 		}
 		?>
@@ -35,99 +34,72 @@ include("includes/classes/User.php");
 		<div class="container pt-5">
 			<div class="card card-default mt-5">
 				<div class="card-header">
-		            <h3 class="center">Step 2 - Submit a PDF File</h3>
-		            <p class="center">Make sure you attach in pdf file format</p>
+					<h3 class="center">Step 2 - Submit a PDF File</h3>
+					<p class="center">Make sure you attach in pdf file format</p>
 				</div>
 
 				<div class="card-body">
-            		<!-- Submit File -->
+					<!-- Submit File -->
 					<div class="jumbotron center py-4">
-		                <form action="includes/form_handlers/upload_pdf.php" method="POST" enctype="multipart/form-data">
-		                    <input class="form-control" type="file" name="file" value="">
-		                    <input class="btn btn-lg btn-success mt-3" type="submit" name="upload" value="Upload File" <?php echo $disabled_button; ?>>
-							<?php 
-							if(isset($_SESSION['upload_message'])) {
+						<form action="includes/form_handlers/upload_pdf.php" method="POST" enctype="multipart/form-data">
+							<input class="form-control" type="file" name="file" value="">
+							<input class="btn btn-lg btn-success mt-3" type="submit" name="upload" value="Upload File" <?php echo $disabled_button; ?>>
+							<?php
+							if (isset($_SESSION['upload_message'])) {
 								echo $_SESSION['upload_message'];
 								unset($_SESSION['upload_message']);
 							}
-							 ?>
-		                    <?php 
-							if(isset($_SESSION['delete_message'])) {
+							?>
+							<?php
+							if (isset($_SESSION['delete_message'])) {
 								echo $_SESSION['delete_message'];
 								unset($_SESSION['delete_message']);
 							}
-							 ?>
-		                </form>
+							?>
+						</form>
 					</div>
 
-		            <!-- Start Table -->
+					<!-- Start Table -->
 					<div class="table-responsive">
-				 	   <table class="table table-hover table-bordered">
-			                <thead class="bg-light">
-			                    <tr>
-			                        <th>Name</th>
-			                        <th>File Name</th>
-			                        <th>Size</th>
-			                        <th>Date Filed</th>
-			                        <th>Action</th>
-			                    </tr>
-			               </thead>
+						<table class="table table-hover table-bordered">
+							<thead class="bg-light">
+								<tr>
+									<th>Name</th>
+									<th>File Name</th>
+									<th>Size</th>
+									<th>Date Filed</th>
+									<th>Action</th>
+								</tr>
+							</thead>
 
-							<?php
-							$query = $conn->prepare("SELECT * FROM posts WHERE added_by='$userLoggedIn' ORDER BY id DESC");
-							$query->execute();
+							<tbody>
+								<?php
+								$query = $conn->prepare("SELECT * FROM posts WHERE added_by='$userLoggedIn' ORDER BY id DESC");
+								$query->execute();
 
-							while($row = $query->fetch()) {
-							?>
-			                <tbody>
-			                    <tr>
-			                        <td><?php echo $row['last_name'] . ", " . $row['first_name'] ?></td>
-			                        <td><?php echo $row['file_name'] ?></td>
-			                        <td><?php echo number_format($row['file_size']/1024/1024,2) . "MB" ?></td>
-			                        <td><?php echo $row['date_added'] ?></td>
-			                        <td>
-										<a href="download_pdf.php?file_name=<?php echo $row['file_name'] ?>"><i class="fas fa-download text-primary mr-1"></i></a>
-					  					<button type="button" data-toggle="modal" data-target="#myModal"><i class="fas fa-trash text-danger" id="trash_icon"></i></button>
-									</td>
-			                    </tr>
-			                </tbody>
-			            </table>
+								while ($row = $query->fetch()) {
+								?>
+									<tr>
+										<td><?php echo $row['last_name'] . ", " . $row['first_name'] ?></td>
+										<td><?php echo $row['file_name'] ?></td>
+										<td><?php echo number_format($row['file_size'] / 1024 / 1024, 2) . "MB" ?></td>
+										<td><?php echo $row['date_added'] ?></td>
+										<td>
+											<a href="download_pdf.php?file_name=<?php echo $row['file_name'] ?>"><i class="fas fa-download text-primary mr-1"></i></a>
+											<a id="delete" href="delete_pdf.php?file_name=<?php echo $row['file_name'] ?>"><i class="fas fa-trash text-danger" id="trash_icon"></i></a>
+										</td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
 					</div> <!-- End Table Responsive -->
 				</div> <!-- End Card-Body -->
 			</div> <!-- End Card -->
 
 		</div> <!-- End Container -->
 
-
-	    <!-- Start Modal Section -->
-	    <div class="modal fade" id="myModal" role="dialog">
-	   		<div class="modal-dialog">
-
-	    	<!-- Modal content-->
-	    	<div class="modal-content">
-
-	      		<div class="modal-header">
-					<h4>Delete PDF</h4>
-	            	<button type="button" class="close" data-dismiss="modal">&times;</button>
-	        	</div>
-
-	        	<div class="modal-body">
-	        		<p>Are you sure you want to delete this PDF?</p>
-	        	</div>
-
-	        	<div class="modal-footer">
-			  		<a class="btn btn-danger" href="delete_pdf.php?file_name=<?php echo $row['file_name'] ?>">Delete</a>
-	         		<button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Cancel</button>
-	        	</div>
-
-	        </div>
-
-	   		</div>
-	    </div> <!-- End Modal Section-->
-				<?php } ?>
 	</div>
 	<!-- End Home Section -->
-
 
 	<!-- Start Internet Notification Popup Message -->
 	<div class="connections">
@@ -145,10 +117,38 @@ include("includes/classes/User.php");
 	</div>
 	<!-- End Internet Notification Popup Message -->
 
-
 	<?php include 'includes/scripts.php'; ?>
 	<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
+	<!-- SweetAlert2 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- SweetAlert2 -->
+	<script>
+		$(function() {
+			$(document).on('click', '#delete', function(e) {
+				e.preventDefault();
+				var link = $(this).attr("href");
 
+				Swal.fire({
+					title: 'Are you sure?',
+					text: "Delete this PDF?",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Yes, delete it!'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						window.location.href = link
+						Swal.fire(
+							'Deleted!',
+							'Your file has been deleted.',
+							'success'
+						)
+					}
+				})
+			});
+		});
+	</script>
 </body>
 
 
