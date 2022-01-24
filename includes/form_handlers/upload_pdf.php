@@ -20,7 +20,7 @@ if(isset($_POST['upload'])) {
     $fileType = strtolower(pathinfo($path,PATHINFO_EXTENSION));
 
     // Check file size
-    if($file_size > 500000) {
+    if($file_size > 50000000) {
         $uploadOk = 0;
         session_start();
         $_SESSION['upload_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
