@@ -189,7 +189,7 @@ p {
 /*============= FOOTER SECTION =============*/
 
 #footer_container {
-  background-color: #F0F1F3;
+  background-color: var(--container);
 }
 #footer_heading {
   font-size: 20px;
@@ -198,16 +198,32 @@ p {
 }
 #footer_copyright {
   font-size: 15px;
-  color: #1C1E1D;
 }
 #footer_icon_twitter {
   padding: 7px 10px 7px 10px;
+  background-color: var(--darkfonts);
+  color: var(--fonts);
+  transition: all 0.2s ease-in;
 }
 #footer_icon_facebook {
   padding: 7px 13px 7px 13px;
+  background-color: var(--darkfonts);
+  color: var(--fonts);
+  transition: all 0.2s ease-in;
 }
 #footer_icon_instagram {
   padding: 7px 8px 7px 8px;
+  background-color: var(--darkfonts);
+  transition: all 0.2s ease-in;
+}
+#instagram_icon {
+  color: var(--fonts)!important;
+  transition: all 0.2s ease-in;
+}
+#footer_icon_twitter:hover,
+#footer_icon_facebook:hover,
+#footer_icon_instagram:hover {
+  opacity: .85;
 }
 
 /*============= CONTACT US SECTION =============*/
@@ -499,6 +515,7 @@ p {
   -webkit-box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.15);
 }
+/*-- Admin Table --*/
 #admin_table_headings {
   background-color: var(--nav-link);
 }
@@ -515,6 +532,27 @@ table tr:first-child th:last-child {
 table tr:first-child th:first-child {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+/*-- Admin Dashboard --*/
+#user_legends {
+  color: #1cc88a;
+  font-size: 1.5rem;
+}
+#admin_legends {
+  color: #4e73df;
+  font-size: 1.5rem;
+}
+#dashboard_container {
+  margin-bottom: 8.3rem;
+}
+#dashboard_col_wrapper {
+  background-color: var(--container);
+  padding: 1rem 0rem 0.5rem 0rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 /*============= INTERNET NOTIFICATION POPUP MESSAGE =============*/

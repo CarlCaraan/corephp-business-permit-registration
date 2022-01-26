@@ -1,5 +1,5 @@
 <footer>
-    <div class="footer_container pt-3 pb-3" id="footer_container" style="margin-top: 600px">
+    <div class="footer_container pt-3 pb-3" id="footer_container">
         <div class="container">
             <div class="row">
 
@@ -32,9 +32,9 @@
                             <span id="footer_copyright">&copy 2022 M83X Systems. All Rights Reserved.</span>
                         </div>
                         <div class="col-lg-2">
-                            <a class="bg-dark text-white rounded" id="footer_icon_twitter" href="https://www.facebook.com/MayorCindySML" target="_blank"><i class="fab fa-twitter"></i></a>
-                            <a class="bg-dark text-white rounded" id="footer_icon_facebook" href="https://www.facebook.com/MayorCindySML" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a class="bg-dark text-white rounded" id="footer_icon_instagram" href="https://www.facebook.com/MayorCindySML" target="_blank"><i class="fab fa-instagram pt-1"></i></a>
+                            <a class="rounded" id="footer_icon_twitter" href="https://www.facebook.com/MayorCindySML" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a class="rounded" id="footer_icon_facebook" href="https://www.facebook.com/MayorCindySML" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="rounded" id="footer_icon_instagram" href="https://www.facebook.com/MayorCindySML" target="_blank"><i class="fab fa-instagram pt-2" id="instagram_icon"></i></a>
                         </div>
                     </div>
 
