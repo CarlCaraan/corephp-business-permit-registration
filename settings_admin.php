@@ -76,6 +76,7 @@ include("includes/classes/User.php");
 
 									<strong><label class="mt-2" for="user_gender">Sex</label></strong>
 									<select class="form-control gender-input" name="user_gender" id="user_gender" value="<?php echo $gender; ?>" required>
+										<option disabled selected>Select Gender (optional)</option>
 										<option value="Male" <?php if ($gender == "Male") echo "selected"; ?>>Male</option>
 										<option value="Female" <?php if ($gender == "Female") echo "selected"; ?>>Female</option>
 									</select>

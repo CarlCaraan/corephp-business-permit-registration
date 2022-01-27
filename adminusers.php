@@ -206,6 +206,7 @@ include("includes/classes/User.php");
 					<div class="user_gender_disable">
 	                    <label for="user_gender">Gender</label>
 	                    <select name="user_gender" id="user_gender" class="form-control">
+							<option disabled selected>Select Gender (optional)</option>
 	                        <option value="Male">Male</option>
 	                        <option value="Female">Female</option>
 	                    </select><br>
