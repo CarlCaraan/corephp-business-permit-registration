@@ -66,7 +66,7 @@ include("includes/classes/User.php");
 								<tr>
 									<th>Name</th>
 									<th>File Name</th>
-									<th>Size</th>
+									<th>Status</th>
 									<th>Date Filed</th>
 									<th>Action</th>
 								</tr>
@@ -77,12 +77,26 @@ include("includes/classes/User.php");
 								$query = $conn->prepare("SELECT * FROM posts WHERE added_by='$userLoggedIn' ORDER BY id DESC");
 								$query->execute();
 
+								$pending = "warning";
+								$pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+								$pending_text = "text-dark";
+
+
+
 								while ($row = $query->fetch()) {
+								if($row["status"] == "Verified") {
+									$pending = "success";
+									$pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
+									$pending_text = "text-light";
+								}
 								?>
 									<tr>
 										<td><?php echo $row['last_name'] . ", " . $row['first_name'] ?></td>
 										<td><?php echo $row['file_name'] ?></td>
-										<td><?php echo number_format($row['file_size'] / 1024 / 1024, 2) . "MB" ?></td>
+										<td>
+											<?php //echo number_format($row['file_size'] / 1024 / 1024, 2) . "MB" ?>
+											<button class="btn btn-' . $pending . ' btn-sm '. $pending_text .' edit_data" name="edit" id="<?php echo $row['id']; >" >' . $pending_icon . $row["status"].'</button>
+										</td>
 										<td><?php echo $row['date_added'] ?></td>
 										<td>
 											<a href="download_pdf.php?file_name=<?php echo $row['file_name'] ?>"><i class="fas fa-download text-primary mr-1"></i></a>

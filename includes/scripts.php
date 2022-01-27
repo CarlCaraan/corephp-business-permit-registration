@@ -5,4 +5,5 @@
 <script src="assets/js/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><!-- Modern Date Picker -->
 <script src="assets/js/typed.min.js"></script> <!-- Typing Animation -->
+<script src="assets/js/jquery.counterup.js"></script>
 <!-- End of Script Source Files -->

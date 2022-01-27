@@ -190,6 +190,10 @@ p {
 
 #footer_container {
   background-color: var(--container);
+  width: 100%;
+}
+#admin_footer{
+  margin-top: 19.4rem;
 }
 #footer_heading {
   font-size: 20px;
@@ -542,8 +546,13 @@ table tr:first-child th:first-child {
   color: #4e73df;
   font-size: 1.5rem;
 }
-#dashboard_container {
-  margin-bottom: 8.3rem;
+#pending_legends {
+  color: #FFC107;
+  font-size: 1.5rem;
+}
+#approved_legends {
+  color: #28A745;
+  font-size: 1.5rem;
 }
 #dashboard_col_wrapper {
   background-color: var(--container);

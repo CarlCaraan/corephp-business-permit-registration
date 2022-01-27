@@ -10,3 +10,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"><!-- Modern Date Picker -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"> <!-- Animate CSS CDN -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet"> <!-- Google Icons -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <!-- Counter Up Jquery -->

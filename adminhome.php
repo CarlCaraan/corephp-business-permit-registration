@@ -89,8 +89,8 @@ include("includes/classes/User.php");
 			<button id="sidebarCollapse" type="button" class="btn border-0">
 				<i class="fas fa-bars mt-1" id="sidebar_icons"></i>
 			</button>
-			<div class="row" id="dashboard_container">
-				<div class="col-xl-4 col-lg-5">
+			<div class="row">
+				<div class="col-xl-6">
 					<?php
 					$all_user_details_query = mysqli_query($con, "SELECT * FROM register_user");
 					$all_users = mysqli_num_rows($all_user_details_query);
@@ -108,16 +108,22 @@ include("includes/classes/User.php");
 					echo $user_output;
 					?>
 					<!-- Start Donut Chart -->
-					<div class="card mb-4" id="dashboard_col_wrapper">
+					<div class="card" id="dashboard_col_wrapper">
 						<h6 class="ml-3 mt-2 font-weight-bold" id="setting_headings">All Users Statistics</h6>
 						<hr>
 						<div class="card-body">
 							<div class="chart-pie">
 								<canvas id="myPieChart"></canvas>
 							</div>
-							<small>Users Count: <?php echo $users; ?></small><br>
-							<small>Admin Count: <?php echo $admins; ?></small><br>
-							<small>Total User: <?php echo $all_users; ?></small>
+							<small>Users Count:
+								<span class="counter"><?php echo $users; ?></span> 
+							</small><br>
+							<small>Admin Count:
+								<span class="counter"><?php echo $admins; ?></span>
+							</small><br>
+							<small>Total User:
+								<span class="counter"><?php echo $all_users; ?></span>
+							</small>
 						</div>
 						<hr>
 						<div class="ml-3">
@@ -133,40 +139,79 @@ include("includes/classes/User.php");
 					<!-- End Donut Chart -->
 				</div>
 
-				<div class="col-xl-4 col-lg-5">
+				<div class="col-xl-6">
 					<?php
-					$all_user_details_query = mysqli_query($con, "SELECT * FROM register_user");
-					$all_users = mysqli_num_rows($all_user_details_query);
+					$all_record_details_query = mysqli_query($con, "SELECT * FROM posts");
+					$all_records = mysqli_num_rows($all_record_details_query);
+					$all_records_percentage = mysqli_num_rows($all_record_details_query);
 
-					$admin_details_query = mysqli_query($con, "SELECT * FROM register_user WHERE user_type='admin'");
-					$admins = mysqli_num_rows($admin_details_query);
+					$all_pending_details_query = mysqli_query($con, "SELECT * FROM posts WHERE status='for verification'");
+					$all_pendings = mysqli_num_rows($all_pending_details_query);
 
-					$user_details_query = mysqli_query($con, "SELECT * FROM register_user WHERE user_type='user'");
-					$users = mysqli_num_rows($user_details_query);
+					$all_approved_details_query = mysqli_query($con, "SELECT * FROM posts WHERE status='Verified'");
+					$all_approveds = mysqli_num_rows($all_approved_details_query);
 
-					$admin_output = "<span class='d-none' id='fetch_admin'>" . $admins . "</span>";
-					$user_output = "<span class='d-none' id='fetch_user'>" . $users . "</span>";
+					// Get percentage
+					$percentage_pending = substr(($all_pendings / $all_records) * 100, 0, 5);
+					$percentage_approved = substr(($all_approveds / $all_records) * 100, 0, 5);
 
-					echo $admin_output;
-					echo $user_output;
+					$results_percentage = ($all_pendings + $all_approveds) / $all_records * 100;
 					?>
-					<!-- Start Donut Chart -->
-					<div class="card mb-4" id="dashboard_col_wrapper">
+					<!-- Start Progress Chart -->
+					<div class="card" id="dashboard_col_wrapper">
 						<h6 class="ml-3 mt-2 font-weight-bold" id="setting_headings">Documents Statistics</h6>
 						<hr>
-						<div class="card-body">
+						<div class="card-body pt-4 pb-4">
+							<h4 class="small font-weight-bold">For Verification
+								<span class="float-right">%</span>
+								<span class="float-right counter"><?php echo $percentage_pending; ?></span>
+							</h4>
+							<div class="progress mb-4">
+								<div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $percentage_pending; ?>%" aria-valuenow="<?php echo $all_pendings; ?>" aria-valuemin="0" aria-valuemax="<?php echo $all_records; ?>"></div>
+							</div>
 
+							<h4 class="small font-weight-bold">Verified 
+								<span class="float-right">%</span>
+								<span class="float-right counter"><?php echo $percentage_approved; ?></span>
+							</h4>
+							<div class="progress mb-4">
+								<div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage_approved; ?>%" aria-valuenow="<?php echo $all_approveds; ?>" aria-valuemin="0" aria-valuemax="<?php echo $all_records; ?>"></div>
+							</div>
+
+							<h4 class="small font-weight-bold">Total Documents
+								<span class="float-right">%</span>
+								<span class="float-right counter"><?php echo $results_percentage; ?></span>
+							</h4>
+							<div class="progress mb-4">
+								<div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<?php
+							$date_today = date("Y-m-d");
+							$total_document_query = mysqli_query($con, "SELECT * FROM posts WHERE date_added='$date_today'");
+							$total_documents = mysqli_num_rows($total_document_query);
+							?>
+							<small>Documents Uploaded Today:
+								<span class="counter"><?php  echo $total_documents; ?></span> 
+							</small>
 						</div>
 						<hr>
 						<div class="ml-3">
-
+							<h6 class="m-0 font-weight-bold" id="setting_headings">Legends:</h6>
+							<small><span id="pending_legends">■</span>
+								Pending Documents:
+								<span class="counter"><?php echo $all_pendings; ?></span>
+							</small>
+							<small><span id="approved_legends">■</span>
+								Approved Documents:
+								<span class="counter"><?php echo $all_approveds; ?></span> 
+							</small> 
 						</div>
 					</div>
-					<!-- End Donut Chart -->
+					<!-- End Progress Chart -->
 				</div>
 			</div>
 
-			<?php include 'includes/footer.php'; ?>
+			<?php include 'includes/admin_footer.php'; ?>
 		</div>
 		<!-- End Page Content holder -->
 
@@ -238,6 +283,20 @@ include("includes/classes/User.php");
 			},
 		});
 	</script>
+
+	<!-- Start Counter Up JS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+	<script>
+	jQuery(document).ready(function( $ ) {
+		$('.counter').counterUp({
+			delay: 10,
+			time: 1000
+		});
+	});
+	</script>
+
+	<!-- End Counter Up JS -->
 </body>
 
 </html>

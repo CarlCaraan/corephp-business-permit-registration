@@ -22,7 +22,6 @@
                         <div class="col-6 center">
                             <img class="float-left" src="assets/images/footer/logo2.png" width="70px" alt="">
                         </div>
-
                     </div>
                 </div> <!-- End Col -->
 

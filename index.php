@@ -18,7 +18,7 @@
 		</header>
 
 	<!-- Start Footer Section -->
-	<?php include 'includes/footer.php'; ?>
+	<?php include 'includes/user_footer.php'; ?>
 	<!-- End Footer Section -->
 
 	</div>

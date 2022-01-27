@@ -11,7 +11,7 @@ if(isset($_POST['upload'])) {
     $file_size = $_FILES['file']['size'];
     $name = date("Y-m-d h-i-s") . "." . $file_name;
     $path = "../../assets/uploads/" . $name;
-    $date_added = date("Y-m-d H:i:s");
+    $date_added = date("Y-m-d");
 
     $added_by = $userLoggedIn;
 

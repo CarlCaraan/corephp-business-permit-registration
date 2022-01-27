@@ -120,13 +120,9 @@ include("includes/classes/User.php");
 					</div>
 				</div>
 			</div> <!-- End container-fluid -->
-			<!-- End Table Container -->
-
-
 
 		</div>
 		<!-- End Page Content holder -->
-
 	</div>
 	<!-- End Admin Section -->
 
