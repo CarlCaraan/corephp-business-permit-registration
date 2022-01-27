@@ -81,14 +81,13 @@ include("includes/classes/User.php");
 								$pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
 								$pending_text = "text-dark";
 
-
-
 								while ($row = $query->fetch()) {
 									if ($row["status"] == "Verified") {
 										$pending = "success";
 										$pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
 										$pending_text = "text-light";
 									}
+
 								?>
 									<tr>
 										<td><?php echo $row['last_name'] . ", " . $row['first_name'] ?></td>
@@ -106,6 +105,18 @@ include("includes/classes/User.php");
 								<?php } ?>
 							</tbody>
 						</table>
+						<?php
+						if ($query->rowCount() == 0) {
+							$no_data ='
+							<div class="w-100 center">
+								<span><i class="fas fa-info-circle text-info"></i> Upload your requirements.</span>
+							</div>
+							';
+						}else{
+							$no_data = '';
+						}
+						echo $no_data;
+						?>
 					</div> <!-- End Table Responsive -->
 				</div> <!-- End Card-Body -->
 			</div> <!-- End Card -->
