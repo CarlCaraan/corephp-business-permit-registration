@@ -32,7 +32,7 @@ include("includes/classes/User.php");
 		?>
 
 		<div class="container pt-5">
-			<div class="card card-default mt-5">
+			<div class="card card-default">
 				<div class="card-header">
 					<h3 class="center">Step 2 - Submit a PDF File</h3>
 					<p class="center">Make sure you attach in pdf file format</p>
@@ -84,18 +84,18 @@ include("includes/classes/User.php");
 
 
 								while ($row = $query->fetch()) {
-								if($row["status"] == "Verified") {
-									$pending = "success";
-									$pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
-									$pending_text = "text-light";
-								}
+									if ($row["status"] == "Verified") {
+										$pending = "success";
+										$pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
+										$pending_text = "text-light";
+									}
 								?>
 									<tr>
 										<td><?php echo $row['last_name'] . ", " . $row['first_name'] ?></td>
 										<td><?php echo $row['file_name'] ?></td>
 										<td>
 											<?php //echo number_format($row['file_size'] / 1024 / 1024, 2) . "MB" ?>
-											<button class="btn btn-' . $pending . ' btn-sm '. $pending_text .' edit_data" name="edit" id="<?php echo $row['id']; >" >' . $pending_icon . $row["status"].'</button>
+											<span class="btn btn-<?php echo $pending; ?> btn-sm <?php echo $pending_text; ?> edit_data" name="edit" id="<?php echo $row['id']; ?>"><?php echo $pending_icon . $row["status"]; ?></span>
 										</td>
 										<td><?php echo $row['date_added'] ?></td>
 										<td>
