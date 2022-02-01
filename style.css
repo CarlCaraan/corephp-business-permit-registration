@@ -139,6 +139,31 @@ p {
 
 /*============= LANDING PAGE SECTION =============*/
 
+.caption {
+  width: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 10%;
+  z-index: 1;
+}
+.image-carousel {
+  width: 75%;
+  margin: 0 auto;
+}
+#landing_page_heading {
+  color: #2A6877;
+  font-weight: bold;
+  font-size: 28px;
+}
+#landing_page_atag,
+#landing_page_atag:hover {
+  text-decoration: underline;
+  color: var(--secondary-color);
+}
+#instruction_container {
+  background-color: #E4E4E4;
+}
+
 /*============= LOGIN SECTION =============*/
 .home-inner {
   background-image: url("assets/images/background.jpg");
@@ -581,6 +606,7 @@ table tr:first-child th:first-child {
   opacity: 0;
   pointer-events: none;
   transition: 0.5s;
+  z-index: 1000!important;
 }
 .connection p {
   font-family: "Poppins", sans-serif;

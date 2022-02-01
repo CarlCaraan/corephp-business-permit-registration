@@ -11,3 +11,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"> <!-- Animate CSS CDN -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet"> <!-- Google Icons -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <!-- Counter Up Jquery -->
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
