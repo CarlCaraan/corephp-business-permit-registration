@@ -14,3 +14,5 @@
 <!-- Owl Carousel -->
 <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+<!-- Light Box CSS -->
+<link rel="stylesheet" href="assets/css/lightbox.css">
