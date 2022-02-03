@@ -168,7 +168,7 @@
 							<div class="panel panel-default wow fadeInUp" data-wow-duration=".3s" data-wow-delay=".3s">
 								<div class="panel-heading" id="headingOne">
 									<h4 class="panel-title">
-										<a href="#collapseOne" data-toggle="collapse" data-parent="#accordian">Have you any questions ?</a>
+										<a class="font-weight-bold" href="#collapseOne" data-toggle="collapse" data-parent="#accordian">Have you any questions ?</a>
 									</h4>
 								</div>
 								<div id="collapseOne" class="panel-collapse collapse in" aria-labelledby="headingone">
@@ -182,7 +182,7 @@
 							<div class="panel panel-default wow fadeInUp" data-wow-duration=".6s" data-wow-delay=".6s">
 								<div class="panel-heading" id="headingTwo">
 									<h4 class="panel-title">
-										<a href="#collapseTwo" class="collapsed" data-toggle="collapse" data-parent="#accordian">Are you getting it exactly ?</a>
+										<a class="font-weight-bold" href="#collapseTwo" class="collapsed" data-toggle="collapse" data-parent="#accordian">Are you getting it exactly ?</a>
 									</h4>
 								</div>
 								<div id="collapseTwo" class="panel-collapse collapse" aria-labelledby="headingTwo">
@@ -196,7 +196,7 @@
 							<div class="panel panel-default wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".9s">
 								<div class="panel-heading" id="headingThree">
 									<h4 class="panel-title">
-										<a href="#collapseThree" class="collapsed" data-toggle="collapse" data-parent="#accordian">Is it clearly explained ?</a>
+										<a class="font-weight-bold" href="#collapseThree" class="collapsed" data-toggle="collapse" data-parent="#accordian">Is it clearly explained ?</a>
 									</h4>
 								</div>
 								<div id="collapseThree" class="panel-collapse collapse" aria-labelledby="headingThree">
@@ -210,7 +210,7 @@
 							<div class="panel panel-default wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="1.2s">
 								<div class="panel-heading" id="headingfour">
 									<h4 class="panel-title">
-										<a href="#collapsefour" class="collapsed" data-toggle="collapse" data-parent="#accordian"> Course is deserving anything ?</a>
+										<a class="font-weight-bold" href="#collapsefour" class="collapsed" data-toggle="collapse" data-parent="#accordian"> Course is deserving anything ?</a>
 									</h4>
 								</div>
 								<div id="collapsefour" class="panel-collapse collapse" aria-labelledby="headingfour">
