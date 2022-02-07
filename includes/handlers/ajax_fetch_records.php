@@ -88,7 +88,7 @@ if($total_data > 0)
                 <button class="btn btn-' . $pending . ' btn-sm '. $pending_text .' edit_data" name="edit" id="' . $row["id"] . '" >' . $pending_icon . $row["status"].'</button>
             </td>
             <td class="center">
-                <a class="btn btn-primary btn-sm text-light" href="download_pdf.php?file_name='. $row['file_name']. '">View Attachment</a>
+                <a class="btn btn-primary btn-sm text-light" href="download_pdf.php?file_name='. $row['file_name']. '"><i class="fas fa-paperclip" id="paperclip_icon"></i> View Attachment</a>
             </td>
             <td class="center">
                 <div class="mx-auto" style="width: 100px;">
