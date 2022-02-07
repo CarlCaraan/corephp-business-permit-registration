@@ -1,13 +1,13 @@
 const toggleSwitch = document.querySelector('input[type="checkbox"]');
 const toggleIcon = document.getElementById('toggle-icon');
 const toggleDark = document.getElementById('toggle-dark');
-const image1 = document.getElementById('image1');
-const image2 = document.getElementById('image2');
+const image1 = document.getElementById('image1'); //Register Undraw Illustration Image SVG
+const image2 = document.getElementById('image2'); //M83x Logo
 
 // Dark or Light Images
 function imageMode(color) {
-  image1.src = `assets/images/registration_${color}.svg`;
-  image2.src = `assets/images/footer/m83x_${color}.png`;
+  image2.src = `assets/images/footer/m83x_${color}.png`; //M83x Logo
+  image1.src = `assets/images/registration_${color}.svg`; //Register Undraw Illustration Image SVG
 }
 
 // Dark Mode Styles
