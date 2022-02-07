@@ -3,8 +3,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 //Grab variables
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$middle_name = $_POST['middle_name'];
+$suffix_name = $_POST['suffix_name'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 
@@ -17,8 +19,10 @@ $data = '';
 $data .= '<h1>Your Details</h1>';
 
 //Add data
-$data .= '<strong>First Name: </strong>' . $fname . '<br>';
-$data .= '<strong>Last Name: </strong>' . $lname . '<br>';
+$data .= '<strong>First Name: </strong>' . $first_name . '<br>';
+$data .= '<strong>Last Name: </strong>' . $last_name . '<br>';
+$data .= '<strong>Middle Name: </strong>' . $middle_name . '<br>';
+$data .= '<strong>Suffix Name: </strong>' . $suffix_name . '<br>';
 $data .= '<strong>Email: </strong>' . $email . '<br>';
 $data .= '<strong>Phone Number: </strong>' . $phone . '<br>';
 
@@ -27,4 +31,4 @@ $mpdf->WriteHTML($data);
 
 
 //Output to browser
-$mpdf->Output('' . $fname . " " . $lname . '.pdf', 'D');
+$mpdf->Output('' . $first_name . " " . $last_name . '.pdf', 'D');

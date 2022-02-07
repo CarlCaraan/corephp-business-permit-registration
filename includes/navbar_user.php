@@ -87,6 +87,7 @@ if(isset($_SESSION['user_name'])) {
 </nav>
 <!--- End Navigation -->
 
+<?php ini_set('display_errors', 'Off'); ?>
 
 <!-- Start of Async Drift Code -->
 <script>

@@ -8,7 +8,7 @@ include("includes/classes/User.php");
 
 <head>
 	<?php include 'includes/head.php'; ?>
-	<title>Registration | Welcome</title>
+	<title>Registration | Business Permission</title>
 </head>
 
 <body>
@@ -71,7 +71,7 @@ include("includes/classes/User.php");
 												</div>
 												<div class="col-xl">
 													<label class="font-weight-bold" for="middle_name">Name Suffix (ex. Sr.Jr.III,etc.)</label>
-													<input class="form-control registration-input" type="text" name="suffix_name" placeholder="Name Suffix" required>
+													<input class="form-control registration-input" type="text" name="suffix_name" placeholder="Name Suffix (optional)">
 												</div>
 											</div>
 											<div class="form-row mb-2">

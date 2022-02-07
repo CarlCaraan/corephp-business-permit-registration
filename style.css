@@ -36,7 +36,7 @@
 [data-theme="dark"] {
   --switch-color: #e88959;
   --primary-color: #2f6875;
-  --primary2-color: #F0F1F3;
+  --primary2-color: #f0f1f3;
   --secondary-color: #e88959;
   --main-background: rgba(48, 48, 48);
   --textarea: #3a3b3c;
@@ -626,13 +626,21 @@ a.top-scroll:hover {
 .registration-input,
 .registration-input::placeholder,
 .registration-input:focus {
- background-color: #ECE7DE;
- border: 0;
- color: #000;
+  background-color: #ece7de;
+  border: 0;
+  color: #000;
 }
 /*-- Submit Section --*/
-#trash_icon {
+#close_icon {
   font-size: 1rem;
+}
+#paperclip_icon {
+  font-size: 1rem;
+}
+#submit_main_content {
+  height: 45.7rem;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
 }
 
 /*============= ADMIN SECTION =============*/
@@ -867,6 +875,9 @@ table tr:first-child th:first-child {
   }
   #masthead_content {
     padding-top: 5rem !important;
+  }
+  #submit_main_content {
+    height: auto;
   }
 }
 /*-- Devices under 1200px (xl) --*/
