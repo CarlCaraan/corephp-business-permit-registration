@@ -1,26 +1,29 @@
 const toggleSwitch = document.querySelector('input[type="checkbox"]');
 const toggleIcon = document.getElementById('toggle-icon');
 const toggleDark = document.getElementById('toggle-dark');
+const image1 = document.getElementById('image1');
+const image2 = document.getElementById('image2');
 
 // Dark or Light Images
 function imageMode(color) {
-
+  image1.src = `assets/images/registration_${color}.svg`;
+  image2.src = `assets/images/footer/m83x_${color}.png`;
 }
 
 // Dark Mode Styles
 function darkMode() {
+  imageMode('secondary');
   toggleIcon.children[1].textContent = 'Dark';
   toggleIcon.children[0].classList.replace('fa-sun', 'fa-moon');
   toggleDark.children[0].classList.replace('light', 'dark');
-  imageMode('dark');
 }
 
 // Light Mode Styles
 function lightMode() {
+  imageMode('primary');
   toggleIcon.children[1].textContent = 'Light';
   toggleIcon.children[0].classList.replace('fa-moon', 'fa-sun');
   toggleDark.children[0].classList.replace('dark', 'light');
-  imageMode('light');
 }
 
 // Switch Theme Dynamically

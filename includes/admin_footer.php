@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <img src="assets/images/footer/logo.png" width="40px" alt="">
-                <img class="ml-2" src="assets/images/footer/logo2.png" width="40px" alt="">
+                <img class="ml-2" src="assets/images/footer/m83x_primary.png" id="image2" width="40px" alt="">
             </div>
         </div>
     </div>

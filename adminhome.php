@@ -239,7 +239,6 @@ include("includes/classes/User.php");
 	<script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
 	<script src="assets/js/custom.js"></script>
 	<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
-
 	<script src="assets/js/Chart.min.js"></script> <!-- Pie Chart Plugins -->
 
 	<script>

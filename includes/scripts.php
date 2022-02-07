@@ -5,6 +5,7 @@
 <script src="assets/js/typed.min.js"></script> <!-- Typing Animation -->
 <script src="assets/js/jquery.counterup.js"></script>
 <script src="assets/js/custom.js"></script>
+<script src="assets/js/landing_page_custom.js"></script>
 <!-- Owl Carousel -->
 <script src="assets/js/owl.carousel.min.js"></script>
 <!-- Lightbox JS -->

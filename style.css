@@ -20,7 +20,9 @@
 /*============= LIGHT MODE & DARK MODE COLORS =============*/
 
 :root {
+  --switch-color: #2f6875;
   --primary-color: #2f6875;
+  --primary2-color: #2f6875; /* green to white */
   --secondary-color: #e88959;
   --main-background: #fff;
   --textarea: #f0f2f5;
@@ -32,7 +34,9 @@
 }
 
 [data-theme="dark"] {
+  --switch-color: #e88959;
   --primary-color: #2f6875;
+  --primary2-color: #F0F1F3;
   --secondary-color: #e88959;
   --main-background: rgba(48, 48, 48);
   --textarea: #3a3b3c;
@@ -253,7 +257,7 @@ p {
 }
 /* Map Section */
 #map_section {
-  background-color: #F1F1F2;
+  background-color: #f1f1f2;
 }
 #map_heading_container {
   background: var(--primary-color);
@@ -343,7 +347,7 @@ a.top-scroll:hover {
 }
 #footer_heading {
   font-size: 20px;
-  color: #2a6877;
+  color: var(--switch-color);
   font-weight: 700;
 }
 #footer_copyright {
@@ -573,6 +577,7 @@ a.top-scroll:hover {
 #setting_headings {
   font-weight: 700;
   color: var(--secondary-color);
+  font-family: "Lato", sans-serif;
 }
 .gender-input,
 .gender-input:focus {
@@ -583,6 +588,48 @@ a.top-scroll:hover {
 }
 
 /*============= USER SECTION =============*/
+/*-- Registration Section --*/
+#registration_headings {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  color: var(--primary2-color);
+}
+#registration_main_content {
+  height: 45.7rem;
+}
+#registration_text {
+  color: var(--primary2-color);
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+}
+#registration_text2 {
+  color: var(--switch-color);
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+}
+#v-pills-personal-tab,
+#v-pills-business-tab {
+  background-color: var(--container);
+  color: var(--dark-fonts);
+  font-family: "Raleway", sans-serif;
+}
+#v-pills-personal-tab.active,
+#v-pills-business-tab.active {
+  background-color: var(--switch-color);
+  color: #fff;
+  font-family: "Raleway", sans-serif;
+}
+#registration_button {
+  background-color: var(--switch-color);
+  color: #fff;
+}
+.registration-input,
+.registration-input::placeholder,
+.registration-input:focus {
+ background-color: #ECE7DE;
+ border: 0;
+ color: #000;
+}
 /*-- Submit Section --*/
 #trash_icon {
   font-size: 1rem;
@@ -830,6 +877,9 @@ table tr:first-child th:first-child {
     padding: 3rem 2rem 3rem 2rem;
     border-radius: 10px;
     background-color: #f0f1f3;
+  }
+  #registration_main_content {
+    height: auto;
   }
 }
 
