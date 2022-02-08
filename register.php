@@ -125,11 +125,11 @@ if (isset($_POST["register"])) {
             $mail->Host = 'smtp.gmail.com';
             $mail->Port = '587';
             $mail->SMTPAuth = true;
-            $mail->Username = 'bannedefused3@gmail.com';
-            $mail->Password = '0639854227101msdcfredsw';
+            $mail->Username = 'wetutwetut@gmail.com';
+            $mail->Password = 'wetwet666';
             $mail->SMTPSecure = 'tls';
-            $mail->From = 'bannedefused3@gmail.com';
-            $mail->FromName = 'banne';
+            $mail->From = 'wetutwetut@gmail.com';
+            $mail->FromName = 'BPR-SantaMariaLaguna';
             $mail->AddAddress($user_email);
             $mail->WordWrap = 50;
             $mail->IsHTML(true);

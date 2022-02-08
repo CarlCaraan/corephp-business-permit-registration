@@ -100,15 +100,15 @@ if(isset($_POST["action"]))
 
 					$mail->SMTPAuth = true;
 
-					$mail->Username = 'bannedefused3@gmail.com';
+					$mail->Username = 'wetutwetut@gmail.com';
 
-					$mail->Password = '0639854227101msdcfredsw';
+					$mail->Password = 'wetwet666';
 
 					$mail->SMTPSecure = 'tls';
 
-					$mail->From = 'bannedefused3@gmail.com';
+					$mail->From = 'wetutwetut@gmail.com';
 
-					$mail->FromName = 'banne';
+					$mail->FromName = 'BPR-SantaMariaLaguna';
 
 					$mail->AddAddress($_SESSION["user_email"]);
 

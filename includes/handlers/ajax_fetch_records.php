@@ -37,8 +37,7 @@ if($_POST['query'] != '') {
     OR status LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
     ';
 }
-
-$query .= 'ORDER BY id ASC ';
+$query .= 'WHERE deleted="no" ORDER BY id ASC ';
 
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 

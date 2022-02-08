@@ -14,6 +14,7 @@ if(isset($_POST['upload'])) {
     $date_added = date("Y-m-d");
 
     $added_by = $userLoggedIn;
+    $deleted = "no";
 
 
     $uploadOk = 1;
@@ -69,7 +70,7 @@ if(isset($_POST['upload'])) {
     try {
         if($uploadOk == 1 && move_uploaded_file($file_temp, $path)) {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "INSERT INTO posts (added_by, file_name, file_size, date_added, first_name, last_name) VALUES ('$added_by', '$name', '$file_size', '$date_added', '$first_name', '$last_name')";
+            $query = "INSERT INTO posts (added_by, file_name, file_size, date_added, first_name, last_name, deleted) VALUES ('$added_by', '$name', '$file_size', '$date_added', '$first_name', '$last_name', '$deleted')";
             $conn->exec($query);
         }
     }
