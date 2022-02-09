@@ -8,7 +8,7 @@ include("includes/classes/User.php");
 
 <head>
 	<?php include 'includes/head.php'; ?>
-	<title>Records | Admin</title>
+	<title>Pending Records | Admin</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@ include("includes/classes/User.php");
 		<header>
 			<?php
 			$page = 'admin';
-			$side = 'admin_records';
+			$side = 'admin_records_pending';
 			include 'includes/navbar_admin.php';
 			?>
 		</header>
@@ -46,7 +46,7 @@ include("includes/classes/User.php");
 						</div>
 					</a>
 				</li>
-
+				<h6 class="text-uppercase font-weight-bold mx-auto my-3" id="registration_text">User Management</h6>
 				<li class="nav-item">
 					<a href="adminusers.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_users') {
 																							echo 'background-color: var(--nav-link); border-radius: 5px;';
@@ -61,9 +61,9 @@ include("includes/classes/User.php");
 						</div>
 					</a>
 				</li>
-
+				<h6 class="text-uppercase font-weight-bold mx-auto my-3" id="registration_text">Permit Management</h6>
 				<li class="nav-item">
-					<a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records') {
+					<a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_pending') {
 																								echo 'background-color: var(--nav-link); border-radius: 5px;';
 																							} ?>">
 						<div class="row center">
@@ -71,12 +71,41 @@ include("includes/classes/User.php");
 								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
 							</div>
 							<div class="col-8 py-0">
-								<div class="ml-2" id="sidebar_text_wrapper">Records</div>
+								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-warning">Pending</span></div>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="adminrecords_approved.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_approved') {
+																								echo 'background-color: var(--nav-link); border-radius: 5px;';
+																							} ?>">
+						<div class="row center">
+							<div class="col-2 py-0">
+								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
+							</div>
+							<div class="col-8 py-0">
+								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-success">Approved</span></div>
 							</div>
 						</div>
 					</a>
 				</li>
 
+				<li class="nav-item">
+					<a href="adminrecords_reject.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_reject') {
+																								echo 'background-color: var(--nav-link); border-radius: 5px;';
+																							} ?>">
+						<div class="row center">
+							<div class="col-2 py-0">
+								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
+							</div>
+							<div class="col-8 py-0">
+								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-danger">Reject</span></div>
+							</div>
+						</div>
+					</a>
+				</li>
+				<h6 class="text-uppercase font-weight-bold mx-auto my-3" id="registration_text">Trash Management</h6>
                 <li class="nav-item">
                     <a href="admintrashed.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_trashed') {
                                                                                                 echo 'background-color: var(--nav-link); border-radius: 5px;';
@@ -258,7 +287,7 @@ include("includes/classes/User.php");
 
 		function load_data(page, query = '') {
 			$.ajax({
-				url: "includes/handlers/ajax_fetch_records.php",
+				url: "includes/handlers/ajax_fetch_records_pending.php",
 				method: "POST",
 				data: {
 					page: page,

@@ -37,7 +37,7 @@ if($_POST['query'] != '') {
     OR status LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
     ';
 }
-$query .= 'WHERE deleted="no" ORDER BY id ASC ';
+$query .= 'WHERE deleted="no" AND status="Please Resubmit" ORDER BY id ASC ';
 
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
@@ -74,11 +74,11 @@ if($total_data > 0)
             $pending_text = "text-light";
         }else if ($row["status"] == "Please Resubmit") {
             $pending = "danger";
-            $pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+            $pending_icon = "<i class='fas fa-times-circle mr-1'></i>";
             $pending_text = "text-light";
         }else {
             $pending = "warning";
-            $pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+            $pending_icon = "<i class='fas fa-clock mr-1'></i>";
             $pending_text = "text-dark";
         }
 

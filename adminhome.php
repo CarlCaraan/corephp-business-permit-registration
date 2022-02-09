@@ -46,7 +46,7 @@ include("includes/classes/User.php");
 						</div>
 					</a>
 				</li>
-
+				<h6 class="text-uppercase font-weight-bold mx-auto my-3" id="registration_text">User Management</h6>
 				<li class="nav-item">
 					<a href="adminusers.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_users') {
 																							echo 'background-color: var(--nav-link); border-radius: 5px;';
@@ -61,9 +61,9 @@ include("includes/classes/User.php");
 						</div>
 					</a>
 				</li>
-
+				<h6 class="text-uppercase font-weight-bold mx-auto my-3" id="registration_text">Permit Management</h6>
 				<li class="nav-item">
-					<a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records') {
+					<a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_pending') {
 																								echo 'background-color: var(--nav-link); border-radius: 5px;';
 																							} ?>">
 						<div class="row center">
@@ -71,26 +71,55 @@ include("includes/classes/User.php");
 								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
 							</div>
 							<div class="col-8 py-0">
-								<div class="ml-2" id="sidebar_text_wrapper">Records</div>
+								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-warning">Pending</span></div>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="adminrecords_approved.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_approved') {
+																								echo 'background-color: var(--nav-link); border-radius: 5px;';
+																							} ?>">
+						<div class="row center">
+							<div class="col-2 py-0">
+								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
+							</div>
+							<div class="col-8 py-0">
+								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-success">Approved</span></div>
 							</div>
 						</div>
 					</a>
 				</li>
 
-                <li class="nav-item">
-                    <a href="admintrashed.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_trashed') {
-                                                                                                echo 'background-color: var(--nav-link); border-radius: 5px;';
-                                                                                            } ?>">
-                        <div class="row center">
-                            <div class="col-2 py-0">
-                                <div class="center" id="icon_wrapper"><i class="fas fa-archive" id="sidebar_icons"></i></div>
-                            </div>
-                            <div class="col-8 py-0">
-                                <div class="ml-2" id="sidebar_text_wrapper">Archives</div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+				<li class="nav-item">
+					<a href="adminrecords_reject.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_reject') {
+																								echo 'background-color: var(--nav-link); border-radius: 5px;';
+																							} ?>">
+						<div class="row center">
+							<div class="col-2 py-0">
+								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
+							</div>
+							<div class="col-8 py-0">
+								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-danger">Reject</span></div>
+							</div>
+						</div>
+					</a>
+				</li>
+				<h6 class="text-uppercase font-weight-bold mx-auto my-3" id="registration_text">Trash Management</h6>
+				<li class="nav-item">
+					<a href="admintrashed.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_trashed') {
+																								echo 'background-color: var(--nav-link); border-radius: 5px;';
+																							} ?>">
+						<div class="row center">
+							<div class="col-2 py-0">
+								<div class="center" id="icon_wrapper"><i class="fas fa-archive" id="sidebar_icons"></i></div>
+							</div>
+							<div class="col-8 py-0">
+								<div class="ml-2" id="sidebar_text_wrapper">Archives</div>
+							</div>
+						</div>
+					</a>
+				</li>
 			</ul>
 
 		</div>
@@ -130,7 +159,7 @@ include("includes/classes/User.php");
 								<canvas id="myPieChart"></canvas>
 							</div>
 							<small>Users Count:
-								<span class="counter"><?php echo $users; ?></span> 
+								<span class="counter"><?php echo $users; ?></span>
 							</small><br>
 							<small>Admin Count:
 								<span class="counter"><?php echo $admins; ?></span>
@@ -169,7 +198,7 @@ include("includes/classes/User.php");
 					$percentage_pending = substr(($all_pendings / $all_records) * 100, 0, 5);
 					$percentage_approved = substr(($all_approveds / $all_records) * 100, 0, 5);
 
-					$results_percentage = ($all_pendings + $all_approveds) / $all_records * 100;
+					$results_percentage = substr(($all_pendings + $all_approveds) / $all_records * 100, 0, 5);
 					?>
 					<!-- Start Progress Chart -->
 					<div class="card" id="dashboard_col_wrapper">
@@ -184,7 +213,7 @@ include("includes/classes/User.php");
 								<div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $percentage_pending; ?>%" aria-valuenow="<?php echo $all_pendings; ?>" aria-valuemin="0" aria-valuemax="<?php echo $all_records; ?>"></div>
 							</div>
 
-							<h4 class="small font-weight-bold">Verified 
+							<h4 class="small font-weight-bold">Verified
 								<span class="float-right">%</span>
 								<span class="float-right counter"><?php echo $percentage_approved; ?></span>
 							</h4>
@@ -205,7 +234,7 @@ include("includes/classes/User.php");
 							$total_documents = mysqli_num_rows($total_document_query);
 							?>
 							<small>Documents Uploaded Today:
-								<span class="counter"><?php  echo $total_documents; ?></span> 
+								<span class="counter"><?php echo $total_documents; ?></span>
 							</small>
 						</div>
 						<hr>
@@ -217,8 +246,8 @@ include("includes/classes/User.php");
 							</small>
 							<small><span id="approved_legends">■</span>
 								Approved Documents:
-								<span class="counter"><?php echo $all_approveds; ?></span> 
-							</small> 
+								<span class="counter"><?php echo $all_approveds; ?></span>
+							</small>
 						</div>
 					</div>
 					<!-- End Progress Chart -->
@@ -298,15 +327,15 @@ include("includes/classes/User.php");
 	</script>
 
 	<!-- Start Counter Up JS -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<script src="assets/js/jquery.counterup.min.js"></script>
 	<script>
-	jQuery(document).ready(function( $ ) {
-		$('.counter').counterUp({
-			delay: 10,
-			time: 1000
+		jQuery(document).ready(function($) {
+			$('.counter').counterUp({
+				delay: 10,
+				time: 1000
+			});
 		});
-	});
 	</script>
 
 	<!-- End Counter Up JS -->

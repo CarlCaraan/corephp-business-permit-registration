@@ -42,12 +42,12 @@ if(!empty($_POST)) {
             $mail->Host = 'smtp.gmail.com';        //Sets the SMTP hosts of your Email hosting, this for Godaddy
             $mail->Port = '587';                                //Sets the default SMTP server port
             $mail->SMTPAuth = true;                            //Sets SMTP authentication. Utilizes the Username and Password variables
-            $mail->Username = 'bannedefused3@gmail.com';                    //Sets SMTP username
-            $mail->Password = '0639854227101msdcfredsw';                    //Sets SMTP password
+            $mail->Username = 'wetutwetut@gmail.com';                    //Sets SMTP username
+            $mail->Password = 'wetwet666';                    //Sets SMTP password
             $mail->SMTPSecure = 'tls';                            //Sets connection prefix. Options are "", "ssl" or "tls"
             $mail->From = $records['email'];                    //Sets the From email address for the message
             $mail->FromName = "BPR-SantaMariaLaguna";                //Sets the From name of the message
-            $mail->AddAddress('bannedefused3@gmail.com', 'BPR-SantaMariaLaguna');        //Adds a "To" address
+            $mail->AddAddress('wetutwetut@gmail.com', 'BPR-SantaMariaLaguna');        //Adds a "To" address
             $mail->AddCC($records['email'], "Moderator");    //Adds a "Cc" address
             $mail->WordWrap = 50;                            //Sets word wrapping on the body of the message to a given number of characters
             $mail->IsHTML(true);                            //Sets message type to HTML				

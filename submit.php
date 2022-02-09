@@ -95,11 +95,11 @@ include("includes/classes/User.php");
 										$pending_text = "text-light";
 									} else if ($row["status"] == "Please Resubmit") {
 										$pending = "danger";
-										$pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+										$pending_icon = "<i class='fas fa-times-circle mr-1'></i>";
 										$pending_text = "text-light";
 									} else {
 										$pending = "warning";
-										$pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+										$pending_icon = "<i class='fas fa-clock mr-1'></i>";
 										$pending_text = "text-dark";
 									}
 
@@ -121,7 +121,7 @@ include("includes/classes/User.php");
 											<a class="btn btn-sm btn-info" href="download_pdf.php?file_name=<?php echo $row['file_name'] ?>"><i class="fas fa-paperclip" id="paperclip_icon"></i> View Attachment</a>
 										</td>
 										<td class="pt-3">
-											<small>
+											<small style="font-family: 'Poppins', sans-serif">
 												<?php echo $row['date_added'] ?>
 											</small>
 										</td>
