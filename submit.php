@@ -109,11 +109,9 @@ include("includes/classes/User.php");
 										<td>
 											<?php //echo number_format($row['file_size'] / 1024 / 1024, 2) . "MB" 
 											?>
-											<span
-											<?php
-											if(($row['status'] == "Please Resubmit") || ($row['status'] == "Verified")) echo "data-toggle='modal' data-target='.bd-example-modal-sm'";
-											?>
-											 class="btn btn-<?php echo $pending; ?> btn-sm <?php echo $pending_text; ?> edit_data" name="edit" id="<?php echo $row['id']; ?>">
+											<span <?php
+													if (($row['status'] == "Please Resubmit") || ($row['status'] == "Verified")) echo "data-toggle='modal' data-target='.bd-example-modal-sm'";
+													?> class="btn btn-<?php echo $pending; ?> btn-sm <?php echo $pending_text; ?> edit_data" name="edit" id="<?php echo $row['id']; ?>">
 												<?php echo $pending_icon . $row["status"]; ?>
 											</span>
 										</td>
@@ -172,7 +170,7 @@ include("includes/classes/User.php");
 		</div>
 	</div>
 	<!-- End Internet Notification Popup Message -->
-	
+
 	<!-- All Scripts -->
 	<?php include 'includes/scripts.php'; ?>
 
@@ -214,17 +212,17 @@ include("includes/classes/User.php");
 
 <!-- Small modal -->
 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-		  Important Notice
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	  </div>
-      <div class="modal-body">
-		  Please check your email.
-	  </div>
-    </div>
-  </div>
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				Important Notice
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Please check your email.
+			</div>
+		</div>
+	</div>
 </div>
