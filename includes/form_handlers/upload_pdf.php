@@ -4,6 +4,7 @@ require_once './pdo_handler.php';
 $userLoggedIn = $_SESSION['user_name'];
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
+$email = $_SESSION['user_email'];
 
 if(isset($_POST['upload'])) {
     $file_name = $_FILES['file']['name'];
@@ -70,7 +71,7 @@ if(isset($_POST['upload'])) {
     try {
         if($uploadOk == 1 && move_uploaded_file($file_temp, $path)) {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "INSERT INTO posts (added_by, file_name, file_size, date_added, first_name, last_name, deleted) VALUES ('$added_by', '$name', '$file_size', '$date_added', '$first_name', '$last_name', '$deleted')";
+            $query = "INSERT INTO posts (added_by, file_name, file_size, date_added, first_name, last_name, deleted, email) VALUES ('$added_by', '$name', '$file_size', '$date_added', '$first_name', '$last_name', '$deleted', '$email')";
             $conn->exec($query);
         }
     }

@@ -5,10 +5,10 @@ if(isset($_SESSION['user_name'])) {
     $users_details_query = mysqli_query($con, "SELECT * FROM register_user WHERE user_name='$userLoggedIn'");
     $user = mysqli_fetch_array($users_details_query);
 
-	$first_name = $user['first_name'];
-	$_SESSION['first_name'] = $first_name;
-	$last_name = $user['last_name'];
-	$_SESSION['last_name'] = $last_name;
+	// $first_name = $user['first_name'];
+	// $_SESSION['first_name'] = $first_name;
+	// $last_name = $user['last_name'];
+	// $_SESSION['last_name'] = $last_name;
 
 }else {
 	header("location:login.php");

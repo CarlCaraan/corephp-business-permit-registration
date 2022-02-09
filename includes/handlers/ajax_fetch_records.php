@@ -67,15 +67,21 @@ $output = '
 if($total_data > 0)
 {
     foreach($result as $row) {
-        $pending = "warning";
-        $pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
-        $pending_text = "text-dark";
 
         if($row["status"] == "Verified") {
             $pending = "success";
             $pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
             $pending_text = "text-light";
+        }else if ($row["status"] == "Please Resubmit") {
+            $pending = "danger";
+            $pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+            $pending_text = "text-light";
+        }else {
+            $pending = "warning";
+            $pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+            $pending_text = "text-dark";
         }
+
         $output .= '
         <tr>
             <td>'.$row["id"].'</td>

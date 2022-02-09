@@ -93,6 +93,14 @@ include("includes/classes/User.php");
 										$pending = "success";
 										$pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
 										$pending_text = "text-light";
+									} else if ($row["status"] == "Please Resubmit") {
+										$pending = "danger";
+										$pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+										$pending_text = "text-light";
+									} else {
+										$pending = "warning";
+										$pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+										$pending_text = "text-dark";
 									}
 
 								?>
@@ -101,7 +109,13 @@ include("includes/classes/User.php");
 										<td>
 											<?php //echo number_format($row['file_size'] / 1024 / 1024, 2) . "MB" 
 											?>
-											<span class="btn btn-<?php echo $pending; ?> btn-sm <?php echo $pending_text; ?> edit_data" name="edit" id="<?php echo $row['id']; ?>"><?php echo $pending_icon . $row["status"]; ?></span>
+											<span
+											<?php
+											if(($row['status'] == "Please Resubmit") || ($row['status'] == "Verified")) echo "data-toggle='modal' data-target='.bd-example-modal-sm'";
+											?>
+											 class="btn btn-<?php echo $pending; ?> btn-sm <?php echo $pending_text; ?> edit_data" name="edit" id="<?php echo $row['id']; ?>">
+												<?php echo $pending_icon . $row["status"]; ?>
+											</span>
 										</td>
 										<td>
 											<a class="btn btn-sm btn-info" href="download_pdf.php?file_name=<?php echo $row['file_name'] ?>"><i class="fas fa-paperclip" id="paperclip_icon"></i> View Attachment</a>
@@ -158,8 +172,10 @@ include("includes/classes/User.php");
 		</div>
 	</div>
 	<!-- End Internet Notification Popup Message -->
-
+	
+	<!-- All Scripts -->
 	<?php include 'includes/scripts.php'; ?>
+
 	<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
 	<!-- SweetAlert2 -->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -195,3 +211,20 @@ include("includes/classes/User.php");
 
 
 </html>
+
+<!-- Small modal -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+		  Important Notice
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+      <div class="modal-body">
+		  Please check your email.
+	  </div>
+    </div>
+  </div>
+</div>

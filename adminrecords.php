@@ -215,7 +215,7 @@ include("includes/classes/User.php");
 
 			<div class="modal-body">
 				<form method="post" id="insert_form">
-					<label for="added_by">Name</label>
+					<label for="added_by">Username</label>
 					<input type="text" name="added_by" id="added_by" class="form-control" required><br>
 
 					<label for="date_added">Date Added</label>
@@ -225,6 +225,7 @@ include("includes/classes/User.php");
 					<select name="status" id="status" class="form-control" required>
 						<option value="For Verification">For Verification</option>
 						<option value="Verified">Verified</option>
+						<option value="Please Resubmit">Reject</option>
 					</select><br>
 			</div>
 
