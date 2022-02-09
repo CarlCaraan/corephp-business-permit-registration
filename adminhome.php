@@ -53,8 +53,7 @@ include("includes/classes/User.php");
 																						} ?>">
 						<div class="row center">
 							<div class="col-2 py-0">
-								<div class="center" id="icon_wrapper"><i class="fas fa-user-friends" id="sidebar_icons"></i></fas>
-								</div>
+								<div class="center" id="icon_wrapper"><i class="fas fa-user-friends" id="sidebar_icons"></i></div>
 							</div>
 							<div class="col-8 py-0">
 								<div class="ml-2" id="sidebar_text_wrapper">Users</div>
@@ -69,7 +68,7 @@ include("includes/classes/User.php");
 																							} ?>">
 						<div class="row center">
 							<div class="col-2 py-0">
-								<div class="center" id="icon_wrapper"><i class="fas fa-book" mr-3" id="sidebar_icons"></div></i>
+								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
 							</div>
 							<div class="col-8 py-0">
 								<div class="ml-2" id="sidebar_text_wrapper">Records</div>
@@ -77,6 +76,21 @@ include("includes/classes/User.php");
 						</div>
 					</a>
 				</li>
+
+                <li class="nav-item">
+                    <a href="admintrashed.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_trashed') {
+                                                                                                echo 'background-color: var(--nav-link); border-radius: 5px;';
+                                                                                            } ?>">
+                        <div class="row center">
+                            <div class="col-2 py-0">
+                                <div class="center" id="icon_wrapper"><i class="fas fa-archive" id="sidebar_icons"></i></div>
+                            </div>
+                            <div class="col-8 py-0">
+                                <div class="ml-2" id="sidebar_text_wrapper">Archives</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
 			</ul>
 
 		</div>

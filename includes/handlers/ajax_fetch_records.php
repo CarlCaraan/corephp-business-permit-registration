@@ -91,8 +91,8 @@ if($total_data > 0)
             </td>
             <td class="center">
                 <div class="mx-auto" style="width: 100px;">
-                    <button name="edit" id="' . $row["id"] . '" class="btn btn-info edit_data"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger" data-id="' . $row["id"] . '" onclick="confirmDelete(this);"><i class="fas fa-trash" id="trash_icon"></i></button>
+                    <button name="edit" id="' . $row["id"] . '" class="btn btn-info edit_data btn-sm"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-secondary btn-sm" data-id="' . $row["id"] . '" onclick="confirmDelete(this);"><i class="fas fa-archive" id="trash_icon"></i></button>
                 </div>
             </td>
         </tr>

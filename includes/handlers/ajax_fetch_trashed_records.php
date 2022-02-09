@@ -27,21 +27,17 @@ else {
 }
 
 $query = "
-SELECT * FROM register_user
+SELECT * FROM posts
 ";
 
 if($_POST['query'] != '') {
     $query .= '
-    WHERE user_email LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
-    OR first_name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
-    OR last_name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
-    OR user_type LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
-    OR account LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
-    OR user_datetime LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+    WHERE added_by LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+    OR file_name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+    OR status LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
     ';
 }
-
-$query .= 'ORDER BY register_user_id ASC ';
+$query .= 'WHERE deleted="yes" ORDER BY id ASC ';
 
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
@@ -55,41 +51,48 @@ $result = $statement->fetchAll();
 $total_filter_data = $statement->rowCount();
 
 $output = '
-<label class="font-weight-bold m-2">Total Users : '.$total_data.'</label>
-<div class="float-left mb-3">
-    <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info"><i class="fas fa-user-plus"></i> Add User</button>
-</div>
+<label>Total Records : '.$total_data.'</label>
 <table class="table table-striped">
     <tr id="admin_table_headings">
 		<th>ID</th>
 		<th>Name</th>
-		<th>Sex</th>
-		<th>Email</th>
-		<th>Sign Up Date</th>
-		<th>Status</th>
-		<th>Role</th>
-		<th>Account</th>
-		<th class="center">Action</th>
+		<th>File Name</th>
+		<th>Size</th>
+		<th>Date Added</th>
+		<th class="center">Status</th>
+		<th class="center">Attachment</th>
+		<th class="center" width="20%">Action</th>
     </tr>
 ';
 if($total_data > 0)
 {
     foreach($result as $row) {
+        $pending = "warning";
+        $pending_icon = "<i class='fas fa-exclamation-circle mr-1'></i>";
+        $pending_text = "text-dark";
+
+        if($row["status"] == "Verified") {
+            $pending = "success";
+            $pending_icon = "<i class='fas fa-check-circle mr-1'></i>";
+            $pending_text = "text-light";
+        }
         $output .= '
         <tr>
-            <td>'.$row["register_user_id"].'</td>
-            <td>'.$row["first_name"] . " " . $row['last_name'] . '</td>
-            <td>'.$row["user_gender"].'</td>
-            <td>'.$row["user_email"].'</td>
-            <td>'.$row["user_datetime"].'</td>
-            <td>'.$row["user_email_status"].'</td>
-            <td>'.$row["user_type"].'</td>
-            <td>'.$row["account"].'</td>
+            <td>'.$row["id"].'</td>
+            <td>'.$row["last_name"].', '.$row["last_name"].'</td>
+            <td>'.$row["file_name"].'</td>
+            <td>'.number_format($row["file_size"]/1024/1024,2) . "MB" . '</td>
+            <td>'.$row["date_added"].'</td>
             <td class="center">
-                <div class="mx-auto" style="width: 100px;">
-                    <button name="edit" id="' . $row["register_user_id"] . '" class="btn btn-info btn-sm edit_data"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger btn-sm" data-id="' . $row["register_user_id"] . '" onclick="confirmDelete(this);"><i class="fas fa-trash" id="trash_icon"></i></button>
-                </div>
+                <button class="btn btn-' . $pending . ' btn-sm '. $pending_text .' edit_data" name="edit" id="' . $row["id"] . '" >' . $pending_icon . $row["status"].'</button>
+            </td>
+            <td class="center">
+                <a class="btn btn-primary btn-sm text-light" href="download_pdf.php?file_name='. $row['file_name']. '"><i class="fas fa-paperclip" id="paperclip_icon"></i> View Attachment</a>
+            </td>
+            <td class="center">
+                <button class="btn btn-secondary btn-sm" data-id="' . $row["id"] . '" onclick="confirmRestore(this);">Restore</button>
+                <button name="edit" id="' . $row["id"] . '" class="btn btn-info edit_data btn-sm">Update</button>
+                <button class="btn btn-danger btn-sm" data-id="' . $row["id"] . '" onclick="confirmDelete(this);">Delete</button>
             </td>
         </tr>
         ';
@@ -98,7 +101,7 @@ if($total_data > 0)
 else {
 $output .= '
     <tr>
-        <td colspan="10" align="center">No Data Found</td>
+        <td colspan="9" align="center">No Data Found</td>
     </tr>
     ';
 }
@@ -214,28 +217,25 @@ $(document).ready(function(){
     $('#add').click(function(){
         $('#insert').val("Insert");
         $('#insert_form')[0].reset();
-        $('#register_user_id').val("");
-        $('#add_user_headings').text("Add User")
+        $('#records_id').val("");
+        // $('#password_input').css("display", "block");
     });
     $('.edit_data').click(function(){
-        $('#add_user_headings').text("Edit User Details")
+        // $('#password_input').css("display", "none");
     });
     $(document).on('click', '.edit_data', function(){
-        var register_user_id = $(this).attr("id");
+        var records_id = $(this).attr("id");
         $.ajax({
-            url:"includes/handlers/ajax_fetch_update_users.php",
+            url:"includes/handlers/ajax_fetch_update_records.php",
             method:"POST",
-            data:{register_user_id:register_user_id},
+            data:{records_id:records_id},
             dataType:"json",
             success:function(data){
-                $('#first_name').val(data.first_name);
-                $('#last_name').val(data.last_name);
-                $('#user_gender').val(data.user_gender);
-                $('#user_email').val(data.user_email);
-                $('#user_datetime').val(data.user_datetime);
-                $('#user_email_status').val(data.user_email_status);
-                $('#user_type').val(data.user_type);
-                $('#register_user_id').val(data.register_user_id);
+                $('#added_by').val(data.added_by);
+                $('#file_name').val(data.file_name);
+                $('#date_added').val(data.date_added);
+                $('#status').val(data.status);
+                $('#records_id').val(data.id);
                 $('#insert').val("Update");
                 $('#add_data_Modal').modal('show');
             }
@@ -246,7 +246,7 @@ $(document).ready(function(){
         event.preventDefault();
 
         $.ajax({
-            url:"includes/handlers/ajax_insert_users.php",
+            url:"includes/handlers/ajax_insert_records.php",
             method:"POST",
             data:$('#insert_form').serialize(),
             beforeSend:function(){
@@ -255,7 +255,7 @@ $(document).ready(function(){
             success:function(data){
                 $('#insert_form')[0].reset();
                 $('#add_data_Modal').modal('hide');
-                $('#users_table').html(data);
+                $('#records_table').html(data);
                 setTimeout(function(){
                    window.location.reload(1);
                });
@@ -266,13 +266,24 @@ $(document).ready(function(){
 </script>
 <!-- End ajax_insert_user / ajax_fetch_update_users -->
 
-<!-- Start Delete Users -->
+<!-- Start Delete Records -->
 <script>
     function confirmDelete(self) {
         var id = self.getAttribute("data-id");
 
-        document.getElementById("form-delete-user").register_user_id.value = id;
+        document.getElementById("form-delete-record").records_id.value = id;
         $("#delete_modal").modal("show");
     }
 </script>
-<!-- End Delete Users -->
+<!-- End Delete Records -->
+
+<!-- Start Restore Records -->
+<script>
+    function confirmRestore(self) {
+        var id = self.getAttribute("data-id");
+
+        document.getElementById("form-restore-record").records_id.value = id;
+        $("#restore_modal").modal("show");
+    }
+</script>
+<!-- End Restore Records -->
