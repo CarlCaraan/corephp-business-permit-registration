@@ -70,7 +70,7 @@ include("includes/classes/User.php");
 																							} ?>">
 						<div class="row center">
 							<div class="col-2 py-0">
-								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
+								<div class="center" id="icon_wrapper"><img src="assets/images/icons/records_pending_icon.png" width="32px" alt=""></div>
 							</div>
 							<div class="col-8 py-0">
 								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-warning">Pending</span></div>
@@ -80,11 +80,11 @@ include("includes/classes/User.php");
 				</li>
 				<li class="nav-item">
 					<a href="adminrecords_approved.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_approved') {
-																								echo 'background-color: var(--nav-link); border-radius: 5px;';
-																							} ?>">
+																										echo 'background-color: var(--nav-link); border-radius: 5px;';
+																									} ?>">
 						<div class="row center">
 							<div class="col-2 py-0">
-								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
+								<div class="center" id="icon_wrapper"><img src="assets/images/icons/records_approved_icon.png" width="32px" alt=""></div>
 							</div>
 							<div class="col-8 py-0">
 								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-success">Approved</span></div>
@@ -94,14 +94,14 @@ include("includes/classes/User.php");
 				</li>
 				<li class="nav-item">
 					<a href="adminrecords_reject.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_reject') {
-																								echo 'background-color: var(--nav-link); border-radius: 5px;';
-																							} ?>">
+																										echo 'background-color: var(--nav-link); border-radius: 5px;';
+																									} ?>">
 						<div class="row center">
 							<div class="col-2 py-0">
-								<div class="center" id="icon_wrapper"><i class="fas fa-book" id="sidebar_icons"></div></i>
+								<div class="center" id="icon_wrapper"><img src="assets/images/icons/records_rejected_icon.png" width="32px" alt=""></div>
 							</div>
 							<div class="col-8 py-0">
-								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-danger">Reject</span></div>
+								<div class="ml-2" id="sidebar_text_wrapper">Records<span class="badge badge-danger">Rejected</span></div>
 							</div>
 						</div>
 					</a>
@@ -246,14 +246,14 @@ include("includes/classes/User.php");
 			<div class="modal-body">
 				<form method="post" id="insert_form">
 					<label for="first_name">First Name</label>
-					<input type="text" name="first_name" id="first_name" class="form-control" ><br>
+					<input type="text" name="first_name" id="first_name" class="form-control" required><br>
 
 					<label for="last_name">Last Name</label>
-					<input name="last_name" id="last_name" class="form-control" ></input><br>
+					<input name="last_name" id="last_name" class="form-control" required></input><br>
 
 					<div class="user_gender_disable">
 						<label for="user_gender">Gender</label>
-						<select name="user_gender" id="user_gender" class="form-control">
+						<select name="user_gender" id="user_gender" class="form-control" required>
 							<option disabled selected>Select Gender (optional)</option>
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
@@ -262,20 +262,20 @@ include("includes/classes/User.php");
 
 					<div class="user_email_disable">
 						<label for="user_email">Email</label>
-						<input name="user_email" id="user_email" class="form-control" ></input><br>
+						<input name="user_email" id="user_email" class="form-control" required></input><br>
 					</div>
 
 					<label for="user_datetime">Sign Up Date</label>
-					<input type="text" name="user_datetime" id="user_datetime" class="form-control" ></input><br>
+					<input type="text" name="user_datetime" id="user_datetime" class="form-control" required></input><br>
 
 					<label for="user_email_status">Status</label>
-					<select name="user_email_status" id="user_email_status" class="form-control" >
+					<select name="user_email_status" id="user_email_status" class="form-control" required>
 						<option value="verified">Verified</option>
 						<option value="not verified">Not Verified</option>
 					</select><br>
 
 					<label for="user_type">User Type</label>
-					<select name="user_type" id="user_type" class="form-control" >
+					<select name="user_type" id="user_type" class="form-control" required>
 						<option value="admin">Admin</option>
 						<option value="user">User</option>
 					</select><br>

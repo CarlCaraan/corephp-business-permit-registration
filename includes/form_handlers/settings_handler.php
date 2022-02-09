@@ -24,7 +24,25 @@ if(isset($_POST['update_details'])) {
 	$row = mysqli_fetch_array($email_check);
 	$matched_user = $row['user_name'];
 
-	if($matched_user == "" || $matched_user == $userLoggedIn) {
+    if (empty($_POST['first_name'])) {
+        $_SESSION['message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                            first name field is <strong>required</strong>.
+                        </div>";
+    }
+    else if (empty($_POST['last_name'])) {
+        $_SESSION['message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                            last name field is <strong>required</strong>.
+                        </div>";
+    }
+    else if (empty($_POST['user_gender'])) {
+        $_SESSION['message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                            gender field is <strong>required</strong>.
+                        </div>";
+    }
+	else if($matched_user == "" || $matched_user == $userLoggedIn) {
 			$_SESSION['message'] = "<div class='alert alert-success alert-dismissible fade show mt-2'>
                     	    <button type='button' class='close' data-dismiss='alert'>&times;</button>
                     	    User details successfully <strong>Updated!</strong> 

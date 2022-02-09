@@ -7,13 +7,43 @@ if(!empty($_POST)) {
     if(empty($_POST['first_name'])) {
         $_SESSION['update_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                                             <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                            first name is field <strong>required</strong>!
+                                            first name field is <strong>required</strong>!
                                         </div>";
     }
     else if(empty($_POST['last_name'])) {
         $_SESSION['update_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
                                             <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                            last name is field <strong>required</strong>!
+                                            last name field is <strong>required</strong>!
+                                        </div>";
+    }
+    else if(empty($_POST['user_gender'])) {
+        $_SESSION['update_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            gender field is <strong>required</strong>!
+                                        </div>";
+    }
+    else if(empty($_POST['user_email'])) {
+        $_SESSION['update_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            email field is <strong>required</strong>!
+                                        </div>";
+    }
+    else if(empty($_POST['user_datetime'])) {
+        $_SESSION['update_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            sign up date field is <strong>required</strong>!
+                                        </div>";
+    }
+    else if(empty($_POST['user_email_status'])) {
+        $_SESSION['update_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            status field is <strong>required</strong>!
+                                        </div>";
+    }
+    else if(empty($_POST['user_type'])) {
+        $_SESSION['update_message'] = "<div class='alert alert-danger alert-dismissible fade show mt-2'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            user type is <strong>required</strong>!
                                         </div>";
     }
     else{
