@@ -78,7 +78,7 @@ include("includes/classes/User.php");
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_approved') {
+                    <a href="adminrecords_approved.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_approved') {
                                                                                                 echo 'background-color: var(--nav-link); border-radius: 5px;';
                                                                                             } ?>">
                         <div class="row center">
@@ -93,7 +93,7 @@ include("includes/classes/User.php");
                 </li>
 
                 <li class="nav-item">
-                    <a href="adminrecords.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_reject') {
+                    <a href="adminrecords_reject.php" class="nav-link" id="admin_navlink" style="<?php if ($side == 'admin_records_reject') {
                                                                                                 echo 'background-color: var(--nav-link); border-radius: 5px;';
                                                                                             } ?>">
                         <div class="row center">

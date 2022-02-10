@@ -6,6 +6,10 @@ if(isset($_GET['file_name'])) {
 
     $query = $conn->prepare("DELETE FROM posts WHERE file_name='$name'");
     $query->execute();
+
+    // Delete Notification
+    $query2 = $conn->prepare("DELETE FROM notifications WHERE unique_name='$name' AND seen_status='0'");
+    $query2->execute();
     unlink("assets/uploads/" . $name);
 
     $_SESSION['delete_message'] = "<div class='alert alert-success alert-dismissible fade show mt-2'>

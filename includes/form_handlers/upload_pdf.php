@@ -6,13 +6,17 @@ $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
 $email = $_SESSION['user_email'];
 
+
+$fullname = $first_name . " " . $last_name;
+$notification_content = "has submitted a business permit registration request.";
+
 if(isset($_POST['upload'])) {
     $file_name = $_FILES['file']['name'];
     $file_temp = $_FILES['file']['tmp_name'];
     $file_size = $_FILES['file']['size'];
     $name = date("Y-m-d h-i-s") . "." . $file_name;
     $path = "../../assets/uploads/" . $name;
-    $date_added = date("Y-m-d");
+    $date_added = date("Y-m-d h:i:s");
 
     $added_by = $userLoggedIn;
     $deleted = "no";
@@ -73,6 +77,10 @@ if(isset($_POST['upload'])) {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $query = "INSERT INTO posts (added_by, file_name, file_size, date_added, first_name, last_name, deleted, email) VALUES ('$added_by', '$name', '$file_size', '$date_added', '$first_name', '$last_name', '$deleted', '$email')";
             $conn->exec($query);
+
+            // Insert Notification
+            $query2 = "INSERT INTO notifications (name, content, timestamp, seen_status, unique_name) VALUES ('$fullname', '$notification_content', '$date_added', '0', '$name')";
+            $conn->exec($query2);
         }
     }
     catch(PDOException $e) {

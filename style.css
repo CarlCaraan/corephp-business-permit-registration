@@ -685,7 +685,7 @@ a.top-scroll:hover {
 }
 #admin_navlink:hover {
   color: var(--darkfonts);
-  background-color: var(--nav-link);
+  background-color: var(--nav-link) opacity .9;
 }
 .modal-content {
   background-color: var(--container);
@@ -765,6 +765,34 @@ table tr:first-child th:first-child {
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
+}
+/* Admin Pending Notification */
+#notification_badge_icon {
+  position: absolute!important;
+  margin-left: -7px;
+  margin-top: -4px;
+}
+.dropdown_menu_notification {
+  border: 0px;
+  border-radius: 10px;
+  margin-right: 1rem;
+  height: 400px;
+  overflow-y: scroll;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+}
+#notification_link {
+  font-family: 'Lato', sans-serif;
+  color: var(--dark-fonts);
+  text-decoration: none;
+}
+#notification_li:hover {
+  background-color: #ECE7DF;
+  border-radius: 5px;
+}
+#notification_name {
+  color: var(--primary-color);
 }
 
 /*============= INTERNET NOTIFICATION POPUP MESSAGE =============*/
@@ -894,6 +922,9 @@ table tr:first-child th:first-child {
   }
   #registration_main_content {
     height: auto;
+  }
+  .dropdown_menu_notification {
+    margin-right: 0px;
   }
 }
 
