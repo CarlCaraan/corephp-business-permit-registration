@@ -782,6 +782,9 @@ table tr:first-child th:first-child {
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
 }
+.bell.show #bell_icon {
+  color: var(--secondary-color)!important;
+}
 #notification_link {
   font-family: 'Lato', sans-serif;
   color: var(--dark-fonts);

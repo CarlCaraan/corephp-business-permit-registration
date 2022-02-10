@@ -112,9 +112,9 @@ if (!defined('USERSITE')) {
 
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
+				<li class="nav-item bell ">
 					<a href="#" class="nav-link dropdown" data-toggle="dropdown">
-						<i class="fas fa-bell"></i>
+						<i class="fas fa-bell" id="bell_icon"></i>
 						<span class="badge badge-danger count" id="notification_badge_icon"></span>
 					</a>
 					<div class="dropdown-menu dropdown_menu_notification dropdown-menu-md-right"></div>
@@ -199,8 +199,30 @@ if (!defined('USERSITE')) {
 				}
 			});
 		}
+		// Detect when scrolled to bottom.
+		var listNotification = document.querySelector('.dropdown_menu_notification');
 
-		load_unseen_notification();
+		listNotification.addEventListener('scroll', function() {
+			if (listNotification.scrollTop + listNotification.clientHeight >= listNotification.scrollHeight) {
+				function load_unseen_notification(view = '') {
+					$.ajax({
+						url: "includes/handlers/ajax_fetch_notifications_loadmore.php",
+						method: "POST",
+						data: {
+							view: view
+						},
+						dataType: "json",
+						success: function(data) {
+							$('.dropdown_menu_notification').html(data.notification);
+							if (data.unseen_notification > 0) {
+								$('.count').html(data.unseen_notification);
+							}
+						}
+					});
+				}
+				load_unseen_notification();
+			}
+		});
 
 		// Remove number in notification
 		$(document).on('click', '.dropdown', function() {
