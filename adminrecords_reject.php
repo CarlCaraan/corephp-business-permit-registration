@@ -137,7 +137,7 @@ include("includes/classes/User.php");
 			<!-- Start Table Container -->
 			<div class="container-fluid">
 				<div class="card card-default mt-3" id="setting_container">
-					<h3 class="font-weight-bold pl-4 pt-4" id="setting_headings">Records</h3>
+					<h3 class="font-weight-bold pl-4 pt-4" id="setting_headings">Rejected Records</h3>
 					<div class="card-body">
 						<div class="form-group">
 							<input type="search" name="search_box" id="search_box" class="form-control login-input" placeholder="Search...">
