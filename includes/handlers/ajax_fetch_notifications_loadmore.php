@@ -6,7 +6,7 @@ if(isset($_POST["view"])){
 		mysqli_query($conn,"update `notifications` set seen_status='1' where seen_status='0'");
 	}
 	
-	$query=mysqli_query($conn,"select * from `notifications` order by id desc limit 99");
+	$query=mysqli_query($conn,"select * from `notifications` order by id desc limit 29");
 	$output = '';
 
 	if(mysqli_num_rows($query) > 0){
@@ -90,7 +90,9 @@ if(isset($_POST["view"])){
 			</li>
 			';
 		}
+		$output .= '<li class="text-center"><span href="#" class="text-bold text-italic">No more notifications</span></li>';
 	}
+
 	else{
 	$output .= '<li><a href="#" class="text-bold text-italic">No Notification Found</a></li>';
 	}

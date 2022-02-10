@@ -199,12 +199,14 @@ if (!defined('USERSITE')) {
 				}
 			});
 		}
-		// Detect when scrolled to bottom.
+		load_unseen_notification();
+
+		// Load more post on bottom scroll
 		var listNotification = document.querySelector('.dropdown_menu_notification');
 
 		listNotification.addEventListener('scroll', function() {
 			if (listNotification.scrollTop + listNotification.clientHeight >= listNotification.scrollHeight) {
-				function load_unseen_notification(view = '') {
+				function load_unseen_notification_load(view = '') {
 					$.ajax({
 						url: "includes/handlers/ajax_fetch_notifications_loadmore.php",
 						method: "POST",
@@ -220,7 +222,7 @@ if (!defined('USERSITE')) {
 						}
 					});
 				}
-				load_unseen_notification();
+				load_unseen_notification_load();
 			}
 		});
 
@@ -230,9 +232,9 @@ if (!defined('USERSITE')) {
 			load_unseen_notification('yes');
 		});
 
-		setInterval(function() {
-			load_unseen_notification();;
-		}, 5000);
+		// setInterval(function() {
+		// 	load_unseen_notification();;
+		// }, 5000);
 
 	});
 </script>
