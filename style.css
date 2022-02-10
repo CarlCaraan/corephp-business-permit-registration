@@ -684,8 +684,7 @@ a.top-scroll:hover {
   border: 1px solid var(--secondary-color);
 }
 #admin_navlink:hover {
-  color: var(--darkfonts);
-  background-color: var(--nav-link) opacity .9;
+  background-color: var(--container);
 }
 .modal-content {
   background-color: var(--container);
