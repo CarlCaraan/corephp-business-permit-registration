@@ -210,7 +210,7 @@
 							<div class="panel panel-default wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="1.2s">
 								<div class="panel-heading" id="headingfour">
 									<h4 class="panel-title">
-										<a class="font-weight-bold" href="#collapsefour" class="collapsed" data-toggle="collapse" data-parent="#accordian"> Course is deserving anything ?</a>
+										<a class="font-weight-bold" href="#collapsefour" class="collapsed" data-toggle="collapse" data-parent="#accordian"> System is deserving anything ?</a>
 									</h4>
 								</div>
 								<div id="collapsefour" class="panel-collapse collapse" aria-labelledby="headingfour">

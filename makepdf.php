@@ -16,13 +16,23 @@ $mpdf = new \Mpdf\Mpdf(['tempDir' => 'C:/']);
 //Create our pdf
 $data = '';
 
-$data .= '<h1>Your Details</h1>';
+$data .= '
+<div style="width: 100%; align-items: center; text-align: center; justify-content: center;">
+    <h5>Republic of the Philippines</h5>
+    <h5>Province of Laguna</h5>
+    <h5>Municipality of Santa Maria</h5>
+    <h3>Office of the Mayor</h3>
+
+    <hr>
+
+    <h1>BUSINESS PERMIT</h1>
+
+</div>
+is granted to:<br><br>
+';
 
 //Add data
-$data .= '<strong>First Name: </strong>' . $first_name . '<br>';
-$data .= '<strong>Last Name: </strong>' . $last_name . '<br>';
-$data .= '<strong>Middle Name: </strong>' . $middle_name . '<br>';
-$data .= '<strong>Suffix Name: </strong>' . $suffix_name . '<br>';
+$data .= '<strong>Full Name: </strong>' . $first_name . ' ' . $last_name . ' ' . $middle_name . ' ' . $last_name . ' ' . $suffix_name . '<br>';
 $data .= '<strong>Email: </strong>' . $email . '<br>';
 $data .= '<strong>Phone Number: </strong>' . $phone . '<br>';
 
