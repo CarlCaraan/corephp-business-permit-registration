@@ -128,10 +128,8 @@ include("includes/classes/User.php");
 
 		</div> <!-- End Container -->
 
-
 	</div>
 	<!-- End Settings Section -->
-
 
 	<!-- Start Internet Notification Popup Message -->
 	<div class="connections">
@@ -149,9 +147,10 @@ include("includes/classes/User.php");
 	</div>
 	<!-- End Internet Notification Popup Message -->
 
-
 	<?php include 'includes/scripts.php'; ?>
-	<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
+
+	<!-- Dark Mode JS -->
+	<script src="assets/js/darkmode.js"></script> 
 
 </body>
 

@@ -189,19 +189,27 @@ include("includes/classes/User.php");
 	</div>
 	<!-- End Internet Notification Popup Message -->
 
-	<!-- Javascript -->
+	<!-- ========= All Javascript ========= -->
+	<!-- Font Awesome CDN -->
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+
+	<!-- Boostrap JS CDN -->
 	<script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+
+	<!-- Main Custom JS -->
 	<script src="assets/js/custom.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><!-- Modern Date Picker -->
-	<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
+
+	<!-- Modern Date Picker -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+	<!-- Dark Mode JS -->
+	<script src="assets/js/darkmode.js"></script> 
 
 </body>
 
 </html>
 
-<!-- Start Modal Section -->
-
+<!-- ========= Start Modal Section ========= -->
 <!-- Start Delete Modal -->
 <div class="modal fade" id="delete_modal" role="dialog">
 	<div class="modal-dialog">
@@ -291,8 +299,7 @@ include("includes/classes/User.php");
 		</div>
 	</div>
 </div> <!-- End Insert User Modal -->
-<!-- End Modal Section -->
-
+<!-- ========= End Modal Section ========= -->
 
 <!-- Modern Datetime picker UI -->
 <script>
@@ -300,7 +307,6 @@ include("includes/classes/User.php");
 		enableTime: false
 	})
 </script>
-
 
 <!-- Start ajax_fetch_users -->
 <script>

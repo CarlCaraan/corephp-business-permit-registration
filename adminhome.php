@@ -277,13 +277,21 @@ include("includes/classes/User.php");
 	</div>
 	<!-- End Internet Notification Popup Message -->
 
-	<!-- Javascript -->
+	<!-- ========= ALL Javascript ========= -->
+	<!-- Font Awesome CDN -->
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
-	<script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-	<script src="assets/js/darkmode.js"></script> <!-- Dark Mode JS -->
-	<script src="assets/js/Chart.min.js"></script> <!-- Pie Chart Plugins -->
 
+	<!-- Bootstrap JS CDN -->
+	<script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+
+	<!-- Main Custom JS -->
+	<script src="assets/js/custom.js"></script>
+	
+	<!-- Dark Mode JS -->
+	<script src="assets/js/darkmode.js"></script> 
+
+	<!-- Start Pie Chart Plugins -->
+	<script src="assets/js/Chart.min.js"></script>
 	<script>
 		// Set new default font family and font color to mimic Bootstrap's default styling
 		Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -325,6 +333,7 @@ include("includes/classes/User.php");
 			},
 		});
 	</script>
+	<!-- End Pie Chart Plugins -->
 
 	<!-- Start Counter Up JS -->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
@@ -337,8 +346,8 @@ include("includes/classes/User.php");
 			});
 		});
 	</script>
-
 	<!-- End Counter Up JS -->
+
 </body>
 
 </html>
