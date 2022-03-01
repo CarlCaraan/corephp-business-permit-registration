@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2022 at 06:22 AM
+-- Generation Time: Mar 01, 2022 at 05:14 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -35,19 +35,6 @@ CREATE TABLE `login_data` (
   `login_datetime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `login_data`
---
-
-INSERT INTO `login_data` (`login_id`, `user_id`, `login_otp`, `last_activity`, `login_datetime`) VALUES
-(32, 178, 325807, '2009-01-22 08:44:07', '2022-01-09 07:44:07'),
-(33, 209, 530687, '2009-01-22 10:18:32', '2022-01-09 09:18:32'),
-(34, 210, 582577, '2021-01-22 09:23:23', '2022-01-21 08:23:23'),
-(35, 209, 652105, '2027-01-22 07:31:59', '2022-01-27 06:31:59'),
-(36, 209, 584016, '2009-02-22 02:34:53', '2022-02-09 01:34:53'),
-(37, 209, 180625, '2009-02-22 02:36:00', '2022-02-09 01:36:00'),
-(38, 209, 174583, '2009-02-22 02:36:27', '2022-02-09 01:36:27');
-
 -- --------------------------------------------------------
 
 --
@@ -62,19 +49,6 @@ CREATE TABLE `notifications` (
   `seen_status` int(10) NOT NULL,
   `unique_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `name`, `content`, `timestamp`, `seen_status`, `unique_name`) VALUES
-(1, 'Carl Caraan', 'has submitted a business permit registration request.', '2022-02-09', 1, ''),
-(3, 'Carl Caraan', 'has submitted a business permit registration request.', '2022-02-09', 1, ''),
-(11, 'Carl Caraan', 'has submitted a business permit registration request.', '2022-02-10 01:30:07', 1, '2022-02-10 01-30-07.Carl Caraan11.pdf'),
-(13, 'Carl Caraan', 'has submitted a business permit registration request.', '2022-02-10 01:31:45', 1, '2022-02-10 01-31-45.Carl Caraan11.pdf'),
-(14, 'Carl Caraan', 'has submitted a business permit registration request.', '2022-02-10 01:32:47', 1, '2022-02-10 01-32-47.Carl Caraan11.pdf'),
-(17, 'Carl Caraan', 'has submitted a business permit registration request.', '2022-02-10 03:43:47', 1, '2022-02-10 03-43-47.Carl Caraan11.pdf'),
-(19, 'Carl Caraan', 'has submitted a business permit registration request.', '2022-02-10 06:09:57', 1, '2022-02-10 06-09-57.Carl Caraan11.pdf');
 
 -- --------------------------------------------------------
 
@@ -94,15 +68,6 @@ CREATE TABLE `posts` (
   `deleted` varchar(3) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id`, `added_by`, `file_name`, `file_size`, `date_added`, `status`, `first_name`, `last_name`, `deleted`, `email`) VALUES
-(315, 'carl_castillo', '2022-02-09 07-22-22.Carl Caraan11.pdf', '28241', '2022-02-09', 'Please Resubmit', 'Carl', 'Castillo', 'no', 'bannedefused3@gmail.com'),
-(333, 'carl_caraan', '2022-02-10 03-43-47.Carl Caraan11.pdf', '28241', '2022-02-10 03:43:47', 'Please Resubmit', 'Carl', 'Caraan', 'no', 'bannedefused@gmail.com'),
-(335, 'carl_caraan', '2022-02-10 06-09-57.Carl Caraan11.pdf', '28241', '2022-02-10 06:09:57', 'For Verification', 'Carl', 'Caraan', 'no', 'bannedefused@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -125,14 +90,6 @@ CREATE TABLE `register_user` (
   `user_type` varchar(10) NOT NULL DEFAULT 'user',
   `account` varchar(255) NOT NULL DEFAULT 'local'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `register_user`
---
-
-INSERT INTO `register_user` (`register_user_id`, `first_name`, `last_name`, `user_name`, `user_email`, `user_password`, `user_activation_code`, `user_email_status`, `user_otp`, `user_datetime`, `user_gender`, `user_type`, `account`) VALUES
-(209, 'Carl', 'Castillo', 'carl_castillo', 'bannedefused3@gmail.com', '', '', 'verified', 0, '2022-02-09 10:48:20', 'Male', 'admin', 'google'),
-(210, 'Carl', 'Caraan', 'carl_caraan', 'bannedefused@gmail.com', '$2y$10$mp7hn7fUWsPaui4dyLLIfuOMdXwM2pwrLPTED1nQ.tTsm/Igu.VwK', '', 'verified', 0, '2022-02-09 02:52:29', 'Female', 'user', 'google');
 
 --
 -- Indexes for dumped tables
@@ -170,25 +127,25 @@ ALTER TABLE `register_user`
 -- AUTO_INCREMENT for table `login_data`
 --
 ALTER TABLE `login_data`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
 
 --
 -- AUTO_INCREMENT for table `register_user`
 --
 ALTER TABLE `register_user`
-  MODIFY `register_user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
+  MODIFY `register_user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
