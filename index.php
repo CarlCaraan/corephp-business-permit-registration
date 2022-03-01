@@ -21,7 +21,7 @@
 		<!--========= Start Carousel Section =========-->
 		<section>
 			<!--- Start Landing Page Image -->
-			<div class="landing">
+			<div class="landing2">
 				<div class="home-wrap">
 					<div class="home-inner home-inner2">
 					</div>
@@ -62,8 +62,8 @@
 		<!--========= Start Steps Instructions Section =========-->
 		<section id="instruction_container">
 			<div class="container py-5">
-				<div class="container center">
-					<h4 class="mb-4 wow fadeInUp" id="landing_page_heading">BUSINESS PERMIT REGISTRATION INSTRUCTIONS</h4>
+				<div class="container center mt-4 mb-5">
+					<h4 class="wow fadeInUp" id="landing_page_heading">BUSINESS PERMIT REGISTRATION INSTRUCTIONS</h4>
 				</div>
 				<div class="row">
 					<div class="col-md-3 wow fadeInLeft" data-wow-duration=".3s" data-wow-delay=".3s">

@@ -290,6 +290,13 @@ a.top-scroll:hover {
 .home-inner {
   background-image: url("assets/images/background.jpg");
 }
+.landing2 {
+  position: relative;
+  width: 100%;
+  height: 120vh; /* Change height of landing page image. */
+  display: table;
+  z-index: -1;
+}
 .home-inner2 {
   background-image: url("assets/images/bg-ultrawhite.jpg");
 }
@@ -911,6 +918,9 @@ table tr:first-child th:first-child {
   }
   #submit_main_content {
     height: auto;
+  }
+  #landing_page_heading {
+    font-size: 25px;
   }
 }
 /*-- Devices under 1200px (xl) --*/
