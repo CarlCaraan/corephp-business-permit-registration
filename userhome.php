@@ -70,8 +70,8 @@ include("includes/classes/User.php");
 													<input class="form-control registration-input" type="text" name="middle_name" placeholder="Middle Initial" required>
 												</div>
 												<div class="col-xl">
-													<label class="font-weight-bold" for="middle_name">Name Suffix (ex. Sr.Jr.III,etc.)</label>
-													<input class="form-control registration-input" type="text" name="suffix_name" placeholder="Name Suffix (optional)">
+													<label class="font-weight-bold" for="middle_name">Name Suffix</label>
+													<input class="form-control registration-input" type="text" name="suffix_name" placeholder="Sr.Jr.III,etc (optional)">
 												</div>
 											</div>
 											<div class="form-row mb-2">
